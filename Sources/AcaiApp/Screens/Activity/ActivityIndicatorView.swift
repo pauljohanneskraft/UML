@@ -26,14 +26,17 @@ struct ActivityIndicatorView: View {
     @ViewBuilder
     private var iconLabel: some View {
         if activityCenter.operations.isEmpty {
-            Label("Activity", systemImage: "circle")
+            Label(.app("View.ActivityIndicatorView.Activity"), systemImage: "circle")
                 .labelStyle(.iconOnly)
         } else {
-            Label("Activity — \(activityCenter.operations.count) in progress", systemImage: "circle.dotted")
+            let running = activityCenter.operations.count
+            Label(
+                .app("View.ActivityIndicatorView.ActivityProgress \(running)"), systemImage: "circle.dotted"
+            )
                 .labelStyle(.iconOnly)
                 .symbolEffect(.pulse)
                 .overlay(alignment: .topTrailing) {
-                    Text("\(activityCenter.operations.count)")
+                    Text(.app("View.ActivityIndicatorView.Text \(activityCenter.operations.count)"))
                         .font(.system(size: 9, weight: .bold))
                         .foregroundStyle(.white)
                         .padding(3)
@@ -56,7 +59,7 @@ private struct ActivityOperationListView: View {
                     ContentUnavailableView(
                         "Nothing in Progress",
                         systemImage: "checkmark.circle",
-                        description: Text("Reindexing, fetching, and cloning will show up here while they run.")
+                        description: Text(.app("View.ActivityOperationListView.ReindexingFetchingCloningWill"))
                     )
                     .accessibilityIdentifier("activity.emptyState")
                 } else {
@@ -65,11 +68,11 @@ private struct ActivityOperationListView: View {
                     }
                 }
             }
-            .navigationTitle("Activity")
+            .navigationTitle(.app("View.ActivityOperationListView.Activity"))
             #if os(iOS)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Done") { dismiss() }
+                    Button(.app("View.ActivityOperationListView.Done")) { dismiss() }
                         .accessibilityIdentifier("activity.doneButton")
                 }
             }
@@ -101,12 +104,12 @@ private struct ActivityOperationRow: View {
             Button {
                 activityCenter.cancel(operation.id)
             } label: {
-                Label("Cancel", systemImage: "xmark.circle.fill")
+                Label(.app("View.ActivityOperationRow.Cancel"), systemImage: "xmark.circle.fill")
                     .labelStyle(.iconOnly)
             }
             .buttonStyle(.borderless)
-            .help("Cancel")
-            .accessibilityLabel("Cancel \(operation.title)")
+            .help(.app("View.ActivityOperationRow.Cancel"))
+            .accessibilityLabel(.app("View.ActivityOperationRow.Cancel2 \(operation.title)"))
             .accessibilityIdentifier("activity.cancelButton.\(operation.id)")
         }
         .accessibilityIdentifier("activity.row.\(operation.id)")

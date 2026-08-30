@@ -29,7 +29,7 @@ struct CodebaseGlobalsSection: View {
             Text(global.name)
                 .fontWeight(.medium)
             if let type = global.type {
-                Text(": \(type.name)")
+                Text(.app("View.CodebaseGlobalsSection.Text \(type.name)"))
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .lineLimit(1)

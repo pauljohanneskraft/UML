@@ -51,7 +51,7 @@ struct CompareOverlayButton: View {
             // window's own toolbar instead of inside the popover.
             VStack(alignment: .leading, spacing: 0) {
                 HStack {
-                    Text("Compare vs git").font(.headline)
+                    Text(.app("View.CompareOverlayButton.CompareVsGit")).font(.headline)
                     Spacer()
                     clearButton
                 }
@@ -67,12 +67,12 @@ struct CompareOverlayButton: View {
             // correctly here).
             NavigationStack {
                 CompareGitPanel(diagram: diagram, onSelectChangedFileTypes: onSelectChangedFileTypes)
-                    .navigationTitle("Compare vs git")
+                    .navigationTitle(.app("View.CompareOverlayButton.CompareVsGit"))
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) { clearButton }
                         ToolbarItem(placement: .confirmationAction) {
-                            Button("Done") { isPresented = false }
+                            Button(.app("View.CompareOverlayButton.Done")) { isPresented = false }
                                 .accessibilityIdentifier("delta.doneButton")
                         }
                     }
@@ -86,7 +86,7 @@ struct CompareOverlayButton: View {
     /// lives in the panel's header chrome rather than at the top of the scrollable content
     /// underneath.
     private var clearButton: some View {
-        Button("Clear") {
+        Button(.app("View.CompareOverlayButton.Clear")) {
             model.updateComparisonGitRef(diagramID: diagram.id, ref: nil)
         }
         .disabled(diagram.comparisonGitRef == nil)
@@ -284,10 +284,12 @@ struct CompareGitPanel: View {
 
             VStack(alignment: .leading, spacing: 12) {
                 if isEditingCustomRef {
-                    TextField("ref (a SHA, HEAD~3, …)", text: $customRefText)
-                        .textFieldStyle(.roundedBorder)
-                        .onSubmit { model.updateComparisonGitRef(diagramID: diagram.id, ref: customRefText) }
-                        .accessibilityIdentifier("delta.customRefField")
+                    TextField(text: $customRefText) {
+                        Text(.app("View.CompareGitPanel.RefSHAHEAD3"))
+                    }
+                    .textFieldStyle(.roundedBorder)
+                    .onSubmit { model.updateComparisonGitRef(diagramID: diagram.id, ref: customRefText) }
+                    .accessibilityIdentifier("delta.customRefField")
                 }
 
                 if diagram.comparisonGitRef != nil {
@@ -340,7 +342,9 @@ struct CompareGitPanel: View {
         } else if !isFullyLoaded {
             HStack(spacing: 6) {
                 ProgressView().controlSize(.small)
-                Text("Loading \(diagram.comparisonGitRef ?? "")…").font(.caption).foregroundStyle(.secondary)
+                Text(.app("View.CompareGitPanel.Loading \(diagram.comparisonGitRef ?? "")"))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
             }
             // Distinguishes, for a UI test that times out waiting for "delta.loaded", "the panel is
             // genuinely still loading" (a real timing issue) from "the panel never reached a
@@ -348,7 +352,7 @@ struct CompareGitPanel: View {
             // identically as a bare timeout with `comparisonError` unset.
             .accessibilityIdentifier("delta.loading")
         } else {
-            Text("Loaded").font(.caption).foregroundStyle(.secondary)
+            Text(.app("View.CompareGitPanel.Loaded")).font(.caption).foregroundStyle(.secondary)
                 .accessibilityIdentifier("delta.loaded")
         }
     }
@@ -366,7 +370,7 @@ struct CompareGitPanel: View {
     }
 
     private var changedFilesSection: some View {
-        DisclosureGroup("Changed Files (\(changedFiles.count))") {
+        DisclosureGroup(.app("View.CompareGitPanel.ChangedFiles \(changedFiles.count)")) {
             VStack(alignment: .leading, spacing: 6) {
                 ForEach(changedFiles) { entry in
                     changedFileRow(entry)
@@ -409,8 +413,8 @@ struct CompareGitPanel: View {
                     Image(systemName: "scope")
                 }
                 .buttonStyle(.plain)
-                .help("Select the changed node(s) in this file")
-                .accessibilityLabel("Select changed nodes in \(entry.filePath)")
+                .help(.app("View.CompareGitPanel.SelectChangedNodeS"))
+                .accessibilityLabel(.app("View.CompareGitPanel.SelectChangedNodes \(entry.filePath)"))
                 .accessibilityIdentifier("delta.changedFile.select.\(entry.filePath)")
             }
         }
@@ -433,7 +437,7 @@ struct CompareGitPanel: View {
     }
 
     private var findingsDeltaSection: some View {
-        DisclosureGroup("New Findings (\(newFindings.count))") {
+        DisclosureGroup(.app("View.CompareGitPanel.NewFindings \(newFindings.count)")) {
             VStack(alignment: .leading, spacing: 6) {
                 ForEach(newFindings) { finding in
                     findingDeltaRow(finding)

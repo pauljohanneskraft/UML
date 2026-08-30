@@ -23,7 +23,7 @@ extension SequenceDiagramSidebar {
             Image(systemName: "cursorarrow.click")
                 .font(.title)
                 .foregroundStyle(.secondary)
-            Text("Select a lifeline or message to inspect")
+            Text(.app("SequenceDiagramSidebar.SelectLifelineMessageInspect"))
                 .font(.callout)
                 .foregroundStyle(.secondary)
         }
@@ -37,17 +37,21 @@ extension SequenceDiagramSidebar {
         return List {
             Section(name) {
                 if !sent.isEmpty {
-                    DisclosureGroup("Sends (\(sent.count))") {
+                    DisclosureGroup {
                         ForEach(Array(sent.enumerated()), id: \.offset) { _, message in
                             messageRow(message)
                         }
+                    } label: {
+                        Text(.app("SequenceDiagramSidebar.Sends \(sent.count)"))
                     }
                 }
                 if !received.isEmpty {
-                    DisclosureGroup("Receives (\(received.count))") {
+                    DisclosureGroup {
                         ForEach(Array(received.enumerated()), id: \.offset) { _, message in
                             messageRow(message)
                         }
+                    } label: {
+                        Text(.app("SequenceDiagramSidebar.Receives \(received.count)"))
                     }
                 }
             }
@@ -60,7 +64,7 @@ extension SequenceDiagramSidebar {
             Text(message.label ?? message.kind.rawValue)
                 .font(.caption.monospaced())
             Spacer()
-            Text("\(viewModel.participantName(message.from) ?? message.from) → "
+            Text(verbatim: "\(viewModel.participantName(message.from) ?? message.from) → "
                  + "\(viewModel.participantName(message.to) ?? message.to)")
                 .font(.caption2)
                 .foregroundStyle(.secondary)
@@ -70,10 +74,26 @@ extension SequenceDiagramSidebar {
     func messageDetail(_ message: SequenceDiagram.Message) -> some View {
         List {
             Section(message.label ?? "Message") {
-                LabeledContent("From", value: viewModel.participantName(message.from) ?? message.from)
-                LabeledContent("To", value: viewModel.participantName(message.to) ?? message.to)
-                LabeledContent("Kind", value: message.kind.rawValue)
-                LabeledContent("Order", value: "\(message.order)")
+                LabeledContent {
+                    Text(viewModel.participantName(message.from) ?? message.from)
+                } label: {
+                    Text(.app("SequenceDiagramSidebar.Text2"))
+                }
+                LabeledContent {
+                    Text(viewModel.participantName(message.to) ?? message.to)
+                } label: {
+                    Text(.app("SequenceDiagramSidebar.Text3"))
+                }
+                LabeledContent {
+                    Text(message.kind.rawValue)
+                } label: {
+                    Text(.app("SequenceDiagramSidebar.Kind"))
+                }
+                LabeledContent {
+                    Text(message.order, format: .number)
+                } label: {
+                    Text(.app("SequenceDiagramSidebar.Order"))
+                }
             }
         }
         .listStyle(.inset)
@@ -89,7 +109,7 @@ extension SequenceDiagramSidebar {
             .map { SelectableLifeline(id: $0, name: viewModel.participantName($0) ?? $0) }
         return MultiSelectionInspector(
             items: selected,
-            title: { Text("^[\($0) Lifeline](inflect: true) Selected") },
+            title: { Text(.app("SequenceDiagramSidebar.LifelineInflectTrueSelected \($0)")) },
             rowIcon: { _ in nil },
             rowLabel: \.name,
             rowDetail: nil,

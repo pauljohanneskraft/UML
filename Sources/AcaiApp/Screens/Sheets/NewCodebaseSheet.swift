@@ -54,7 +54,7 @@ struct NewCodebaseSheet: View {
     var body: some View {
         NavigationStack {
             Form {
-                Picker("Source", selection: $source) {
+                Picker(.app("View.NewCodebaseSheet.Source"), selection: $source) {
                     ForEach(Source.allCases) { Text($0.rawValue).tag($0) }
                 }
                 .pickerStyle(.segmented)
@@ -83,10 +83,10 @@ struct NewCodebaseSheet: View {
             .presentationDetents([.large])
             #endif
             .onAppear { isNameFieldFocused = true }
-            .navigationTitle("Add Codebase")
+            .navigationTitle(.app("View.NewCodebaseSheet.AddCodebase"))
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
+                    Button(.app("View.NewCodebaseSheet.Cancel")) { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     confirmButton
@@ -129,37 +129,43 @@ struct NewCodebaseSheet: View {
     private var localFolderSection: some View {
         Section {
             #if os(macOS)
-            // Not a bare `TextField("Name", text:)`: inside a macOS `Form`, a `TextField`'s own title
+            // Not a bare `TextField(text:label:)`: inside a macOS `Form`, a `TextField`'s own title
             // renders as an extra leading label rather than an internal placeholder, misaligning it
             // against an explicit `LabeledContent` row like this one. `prompt:` is unambiguously
             // internal placeholder text.
-            LabeledContent("Name") {
-                TextField("", text: $name, prompt: Text("e.g. MyLibrary"))
+            LabeledContent {
+                TextField("", text: $name, prompt: Text(.app("View.NewCodebaseSheet.EGMyLibrary")))
                     .multilineTextAlignment(.trailing)
                     .focused($isNameFieldFocused)
                     .accessibilityIdentifier("newCodebase.localNameField")
+            } label: {
+                Text(.app("View.NewCodebaseSheet.Name"))
             }
-            LabeledContent("Directory") {
+            LabeledContent {
                 HStack {
                     Text(directoryURL?.path ?? "No directory chosen")
                         .lineLimit(1)
                         .truncationMode(.middle)
                         .foregroundStyle(directoryURL == nil ? .secondary : .primary)
-                    Button("Choose…") { isChoosingDirectory = true }
+                    Button(.app("View.NewCodebaseSheet.Choose")) { isChoosingDirectory = true }
                         .accessibilityIdentifier("newCodebase.chooseDirectoryButton")
                 }
+            } label: {
+                Text(.app("View.NewCodebaseSheet.Directory"))
             }
             #else
-            TextField("Name", text: $name)
-                .focused($isNameFieldFocused)
-                .accessibilityIdentifier("newCodebase.localNameField")
+            TextField(text: $name) {
+                Text(.app("View.NewCodebaseSheet.Name"))
+            }
+            .focused($isNameFieldFocused)
+            .accessibilityIdentifier("newCodebase.localNameField")
             HStack {
                 Text(directoryURL?.path ?? "No directory chosen")
                     .lineLimit(1)
                     .truncationMode(.middle)
                     .foregroundStyle(directoryURL == nil ? .secondary : .primary)
                 Spacer()
-                Button("Choose…") { isChoosingDirectory = true }
+                Button(.app("View.NewCodebaseSheet.Choose")) { isChoosingDirectory = true }
                     .accessibilityIdentifier("newCodebase.chooseDirectoryButton")
             }
             #endif
@@ -173,14 +179,14 @@ struct NewCodebaseSheet: View {
                 // Read-only summary — the full sign-in/scopes/expiry UI lives in Settings; this
                 // just confirms who's signed in and lets you jump there for anything more.
                 HStack {
-                    Text("Signed in as \(account.login)")
+                    Text(.app("View.NewCodebaseSheet.Signed \(account.login)"))
                         .accessibilityIdentifier("newCodebase.signedInAsLabel")
                     Spacer()
                     settingsLinkButton
                 }
             } else {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Sign in to GitHub in Settings")
+                    Text(.app("View.NewCodebaseSheet.SignGitHubSettings"))
                         .foregroundStyle(.secondary)
                     settingsLinkButton
                 }
@@ -190,25 +196,35 @@ struct NewCodebaseSheet: View {
             Section {
                 #if os(macOS)
                 // Same `prompt:` fix as `localFolderSection` — see its comment.
-                LabeledContent("Name") {
-                    TextField("", text: $name, prompt: Text("Optional"))
+                LabeledContent {
+                    TextField("", text: $name, prompt: Text(.app("View.NewCodebaseSheet.Optional")))
                         .multilineTextAlignment(.trailing)
                         .accessibilityIdentifier("newCodebase.nameField")
+                } label: {
+                    Text(.app("View.NewCodebaseSheet.Name"))
                 }
-                LabeledContent("Search") {
-                    TextField("", text: $repositorySearch, prompt: Text("Search repositories"))
-                        .multilineTextAlignment(.trailing)
+                LabeledContent {
+                    TextField(
+                        "", text: $repositorySearch, prompt: Text(.app("View.NewCodebaseSheet.SearchRepositories"))
+                    )
+                    .multilineTextAlignment(.trailing)
+                } label: {
+                    Text(.app("View.NewCodebaseSheet.Search"))
                 }
                 #else
-                TextField("Name (optional)", text: $name)
-                    .accessibilityIdentifier("newCodebase.nameField")
-                TextField("Search repositories", text: $repositorySearch)
+                TextField(text: $name) {
+                    Text(.app("View.NewCodebaseSheet.NameOptional"))
+                }
+                .accessibilityIdentifier("newCodebase.nameField")
+                TextField(text: $repositorySearch) {
+                    Text(.app("View.NewCodebaseSheet.SearchRepositories"))
+                }
                 #endif
                 if isLoadingRepositories {
                     ProgressView()
                 } else {
-                    Picker("Repository", selection: $selectedRepository) {
-                        Text("None").tag(GitHubAPIClient.Repository?.none)
+                    Picker(.app("View.NewCodebaseSheet.Repository"), selection: $selectedRepository) {
+                        Text(.app("View.NewCodebaseSheet.None")).tag(GitHubAPIClient.Repository?.none)
                         ForEach(filteredRepositories) { repository in
                             Text(repository.fullName).tag(Optional(repository))
                         }
@@ -219,7 +235,7 @@ struct NewCodebaseSheet: View {
                     if isLoadingRefs {
                         ProgressView()
                     } else {
-                        Picker("Branch/Tag", selection: $selectedRef) {
+                        Picker(.app("View.NewCodebaseSheet.BranchTag"), selection: $selectedRef) {
                             ForEach(refs) { ref in
                                 Text(ref.name).tag(Optional(ref))
                             }
@@ -252,7 +268,7 @@ struct NewCodebaseSheet: View {
     /// Settings sheet instead, since a sheet can't stack on top of another sheet's own presentation
     /// cleanly on those platforms.
     private var settingsLinkButton: some View {
-        Button("Open Settings") {
+        Button(.app("View.NewCodebaseSheet.OpenSettings")) {
             #if os(macOS)
             openSettings()
             #else
@@ -268,7 +284,7 @@ struct NewCodebaseSheet: View {
     private var confirmButton: some View {
         switch source {
         case .localFolder:
-            Button("Add") {
+            Button(.app("View.NewCodebaseSheet.Add")) {
                 if let dir = directoryURL {
                     model.editing.addCodebase(
                         to: projectID, name: name, directoryURL: dir,

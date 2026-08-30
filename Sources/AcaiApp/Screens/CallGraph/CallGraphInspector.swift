@@ -51,7 +51,7 @@ struct CallGraphInspector: View {
             Image(systemName: "cursorarrow.click")
                 .font(.title)
                 .foregroundStyle(.secondary)
-            Text("Select a method to inspect")
+            Text(.app("View.CallGraphInspector.SelectMethodInspect"))
                 .font(.callout)
                 .foregroundStyle(.secondary)
         }
@@ -62,7 +62,7 @@ struct CallGraphInspector: View {
         let selected = graph.nodes.filter { selectedNodeIDs.contains($0.id) }.sorted { $0.label < $1.label }
         return MultiSelectionInspector(
             items: selected,
-            title: { Text("^[\($0) Method](inflect: true) Selected") },
+            title: { Text(.app("View.CallGraphInspector.MethodInflectTrueSelected \($0)")) },
             rowIcon: { $0.isFreeFunction ? "function" : "f.cursive" },
             rowLabel: \.label,
             rowDetail: nil,
@@ -75,14 +75,14 @@ struct CallGraphInspector: View {
         let coverage = graph.coverage
         let percent = Int((coverage.fraction * 100).rounded())
         return VStack(alignment: .leading, spacing: 4) {
-            Text("Coverage")
+            Text(.app("View.CallGraphInspector.Coverage"))
                 .font(.headline)
             HStack {
-                Text("Resolved call sites")
+                Text(.app("View.CallGraphInspector.ResolvedCallSites"))
                     .font(.caption)
                     .foregroundStyle(.secondary)
                 Spacer()
-                Text("\(coverage.resolved)/\(coverage.total)  (\(percent)%)")
+                Text(verbatim: "\(coverage.resolved)/\(coverage.total)  (\(percent)%)")
                     .font(.system(.caption, design: .monospaced))
             }
         }
@@ -101,7 +101,7 @@ struct CallGraphInspector: View {
                     .truncationMode(.middle)
                 Spacer()
                 if !node.inScope {
-                    Text("leaf")
+                    Text(.app("View.CallGraphInspector.Leaf"))
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                 }
@@ -156,7 +156,7 @@ struct CallGraphInspector: View {
     }
 
     private var legend: some View {
-        Text("Solid = in scope · dashed “leaf” = resolved callee outside the scope")
+        Text(.app("View.CallGraphInspector.SolidScopeDashedLeaf"))
             .font(.caption2)
             .foregroundStyle(.tertiary)
             .padding(.top, 4)

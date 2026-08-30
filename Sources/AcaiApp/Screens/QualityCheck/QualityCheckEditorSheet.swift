@@ -28,9 +28,9 @@ struct QualityCheckEditorSheet: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                Picker("Rules", selection: $source) {
-                    Text("Defined here").tag(Source.definedHere)
-                    Text("External YAML file").tag(Source.externalFile)
+                Picker(.app("View.QualityCheckEditorSheet.Rules"), selection: $source) {
+                    Text(.app("View.QualityCheckEditorSheet.DefinedHere")).tag(Source.definedHere)
+                    Text(.app("View.QualityCheckEditorSheet.ExternalYAMLFile")).tag(Source.externalFile)
                 }
                 .pickerStyle(.segmented)
                 .labelsHidden()
@@ -41,13 +41,13 @@ struct QualityCheckEditorSheet: View {
             #if os(macOS)
             .frame(maxWidth: 640, maxHeight: 560)
             #endif
-            .navigationTitle("Code Quality Check")
+            .navigationTitle(.app("View.QualityCheckEditorSheet.CodeQualityCheck"))
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
+                    Button(.app("View.QualityCheckEditorSheet.Cancel")) { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Save", action: save)
+                    Button(.app("View.QualityCheckEditorSheet.Save"), action: save)
                         .keyboardShortcut(.defaultAction)
                         .disabled(source == .externalFile && externalPath.isEmpty)
                 }
@@ -83,7 +83,7 @@ struct QualityCheckEditorSheet: View {
                 VStack(alignment: .leading, spacing: 16) {
                     QualityRulesEditor(rules: $rules)
                     Divider()
-                    Text("Preview").font(.headline)
+                    Text(.app("View.QualityCheckEditorSheet.Preview")).font(.headline)
                     QualityCheckReportView(report: rules.report(for: artifact))
                 }
                 .padding()
@@ -102,7 +102,7 @@ struct QualityCheckEditorSheet: View {
                     .foregroundStyle(externalPath.isEmpty ? .secondary : .primary)
                     .lineLimit(1).truncationMode(.middle)
                 Spacer()
-                Button("Choose…") { isChoosingFile = true }
+                Button(.app("View.QualityCheckEditorSheet.Choose")) { isChoosingFile = true }
             }
             Divider()
             externalPreview

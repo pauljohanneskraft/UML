@@ -55,18 +55,22 @@ struct MetricStatCard: View {
     var severity: MetricSeverity?
     var uniformHeight: CGFloat = 0
     /// Shown as a hover tooltip; reuses the same copy already shown in the tap-through drill-down.
-    var blurb: String?
+    var blurb: LocalizedStringResource?
     var onTap: (() -> Void)?
 
     var body: some View {
         if let onTap {
             Button(action: onTap) { cardBody }
                 .buttonStyle(.plain)
-                .help(blurb ?? "")
+                .help(helpText)
         } else {
             cardBody
-                .help(blurb ?? "")
+                .help(helpText)
         }
+    }
+
+    private var helpText: Text {
+        blurb.map(Text.init) ?? Text(verbatim: "")
     }
 
     private var cardBody: some View {

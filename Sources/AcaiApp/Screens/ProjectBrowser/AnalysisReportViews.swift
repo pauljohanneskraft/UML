@@ -35,7 +35,7 @@ struct ViolationRowView: View {
                 }
                 if violation.ruleKind == "cycle", let onViewAsDiagram {
                     Button(action: onViewAsDiagram) {
-                        Label("View as Diagram", systemImage: "arrow.triangle.2.circlepath")
+                        Label(.app("View.ViolationRowView.ViewDiagram"), systemImage: "arrow.triangle.2.circlepath")
                     }
                     .accessibilityIdentifier("violation.viewAsDiagramButton")
                 }
@@ -59,7 +59,7 @@ struct ViolationRowView: View {
             }
             Text(violation.message).font(.callout)
             if let source = violation.source {
-                Text("\(source.filePath):\(source.line)")
+                Text(verbatim: "\(source.filePath):\(source.line)")
                     .font(.caption.monospaced())
                     .foregroundStyle(.secondary)
                     .textSelection(.enabled)
@@ -100,7 +100,7 @@ private struct LocationRow: View {
                 Text(detail).font(.caption).foregroundStyle(.secondary)
             }
             if let location {
-                Text("\(location.filePath):\(location.line)")
+                Text(verbatim: "\(location.filePath):\(location.line)")
                     .font(.caption.monospaced())
                     .foregroundStyle(.secondary)
                     .textSelection(.enabled)
@@ -126,7 +126,7 @@ struct DeadCodeReportView: View {
                 systemImage: "checkmark.seal")
         } else {
             VStack(alignment: .leading, spacing: 8) {
-                Text("Candidates below this coverage floor may be false positives.")
+                Text(.app("View.DeadCodeReportView.CandidatesBelowCoverageFloor"))
                     .font(.caption).foregroundStyle(.secondary)
                 let candidates = Array(report.candidates.prefix(analysisReportLimit).enumerated())
                 ForEach(candidates, id: \.offset) { _, candidate in

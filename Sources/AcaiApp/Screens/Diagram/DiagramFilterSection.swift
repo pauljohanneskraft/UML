@@ -21,28 +21,30 @@ struct DiagramFilterSection: View {
     @State private var presetSaveError: String?
 
     var body: some View {
-        Section("Filter") {
+        Section(.app("View.DiagramFilterSection.Filter")) {
             SelectorEditor(title: "Show only", selector: nonOptionalFilter)
             saveAsQualityRuleButton
             presetControls
             AsyncOperationStatusView(identifierPrefix: "diagramFilter.presetSave", phase: presetSavePhase)
         }
         .task { await loadPresets() }
-        .alert("Save as Preset", isPresented: $showSaveAsPreset) {
-            TextField("Name", text: $presetName)
-                .accessibilityIdentifier("diagram.filter.presetNameField")
-            Button("Save", action: saveCurrentAsPreset)
+        .alert(.app("View.DiagramFilterSection.SavePreset"), isPresented: $showSaveAsPreset) {
+            TextField(text: $presetName) {
+                Text(.app("View.DiagramFilterSection.Name"))
+            }
+            .accessibilityIdentifier("diagram.filter.presetNameField")
+            Button(.app("View.DiagramFilterSection.Save"), action: saveCurrentAsPreset)
                 .accessibilityIdentifier("diagram.filter.presetSaveConfirmButton")
-            Button("Cancel", role: .cancel) { presetName = "" }
+            Button(.app("View.DiagramFilterSection.Cancel"), role: .cancel) { presetName = "" }
         }
         .sheet(isPresented: $showQualityRulesEditor) {
             QualityCheckEditorSheet(codebaseID: codebaseID, artifact: artifact)
         }
         .alert(
-            "Couldn't Save Preset",
+            .app("View.DiagramFilterSection.CouldNotSavePreset"),
             isPresented: Binding(get: { presetSaveError != nil }, set: { if !$0 { presetSaveError = nil } })
         ) {
-            Button("OK", role: .cancel) { presetSaveError = nil }
+            Button(.app("View.DiagramFilterSection.OK"), role: .cancel) { presetSaveError = nil }
         } message: {
             Text(presetSaveError ?? "")
         }
@@ -64,7 +66,7 @@ struct DiagramFilterSection: View {
     }
 
     private var saveAsQualityRuleButton: some View {
-        Button("Save as Quality Rule") {
+        Button(.app("View.DiagramFilterSection.SaveQualityRule")) {
             ruleAction.appendRule(for: filter ?? AcaiQuality.Selector())
             showQualityRulesEditor = true
         }
@@ -82,15 +84,15 @@ struct DiagramFilterSection: View {
     @ViewBuilder
     private var presetControls: some View {
         if !presets.presets.isEmpty {
-            Picker("Apply Preset", selection: presetSelection) {
-                Text("Choose…").tag(UUID?.none)
+            Picker(.app("View.DiagramFilterSection.ApplyPreset"), selection: presetSelection) {
+                Text(.app("View.DiagramFilterSection.Choose")).tag(UUID?.none)
                 ForEach(presets.presets) { preset in
                     Text(preset.name).tag(UUID?.some(preset.id))
                 }
             }
             .accessibilityIdentifier("diagram.filter.presetPicker")
         }
-        Button("Save as Preset…") { showSaveAsPreset = true }
+        Button(.app("View.DiagramFilterSection.SavePreset2")) { showSaveAsPreset = true }
             .accessibilityIdentifier("diagram.filter.saveAsPresetButton")
     }
 

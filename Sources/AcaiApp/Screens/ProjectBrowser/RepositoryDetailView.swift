@@ -11,7 +11,7 @@ struct RepositoryDetailView: View {
     @State private var isFetching = false
     @State private var isRemoving = false
     @State private var isLoadingDetails = false
-    @State private var removalBlockedMessage: String?
+    @State private var removalBlockedMessage: LocalizedStringResource?
     @State private var showRemoveConfirmation = false
     @State private var errorMessage: String?
 
@@ -26,27 +26,35 @@ struct RepositoryDetailView: View {
     var body: some View {
         let referencingCodebases = referencingCodebases
         Form {
-            Section("Repository") {
-                LabeledContent("Remote", value: remoteURL.absoluteString)
-                LabeledContent("On-disk size") {
+            Section(.app("View.RepositoryDetailView.Repository")) {
+                LabeledContent {
+                    Text(remoteURL.absoluteString)
+                } label: {
+                    Text(.app("View.RepositoryDetailView.Remote"))
+                }
+                LabeledContent {
                     if isLoadingDetails {
                         ProgressView()
                     } else {
                         Text(onDiskSize.map(Self.byteCountFormatter.string(fromByteCount:)) ?? "—")
                     }
+                } label: {
+                    Text(.app("View.RepositoryDetailView.DiskSize"))
                 }
-                LabeledContent("Last fetched") {
+                LabeledContent {
                     if isLoadingDetails {
                         ProgressView()
                     } else {
                         Text(lastFetchedAt.map { $0.formatted(.relative(presentation: .named)) } ?? "Never")
                     }
+                } label: {
+                    Text(.app("View.RepositoryDetailView.LastFetched"))
                 }
             }
 
-            Section("Codebases (\(referencingCodebases.count))") {
+            Section(.app("View.RepositoryDetailView.Codebases \(referencingCodebases.count)")) {
                 if referencingCodebases.isEmpty {
-                    Text("No codebases reference this repository.")
+                    Text(.app("View.RepositoryDetailView.NoCodebasesReferenceRepository"))
                         .foregroundStyle(.secondary)
                 } else {
                     ForEach(referencingCodebases) { codebase in
@@ -55,11 +63,11 @@ struct RepositoryDetailView: View {
                 }
             }
 
-            Section("Worktrees (\(worktreeNames.count))") {
+            Section(.app("View.RepositoryDetailView.Worktrees \(worktreeNames.count)")) {
                 if isLoadingDetails {
                     ProgressView()
                 } else if worktreeNames.isEmpty {
-                    Text("No linked worktrees.")
+                    Text(.app("View.RepositoryDetailView.NoLinkedWorktrees"))
                         .foregroundStyle(.secondary)
                 } else {
                     ForEach(worktreeNames, id: \.self) { name in
@@ -72,13 +80,13 @@ struct RepositoryDetailView: View {
         #if os(macOS)
         .formStyle(.grouped)
         #endif
-        .navigationTitle("Repository")
+        .navigationTitle(.app("View.RepositoryDetailView.Repository"))
         .toolbar {
             ToolbarItem {
                 Button {
                     Task { await fetchNow() }
                 } label: {
-                    Label("Fetch Now", systemImage: "arrow.clockwise")
+                    Label(.app("View.RepositoryDetailView.FetchNow"), systemImage: "arrow.clockwise")
                 }
                 .disabled(isFetching || isRemoving)
                 .accessibilityIdentifier("repository.fetchNowButton")
@@ -87,34 +95,34 @@ struct RepositoryDetailView: View {
                 Button(role: .destructive) {
                     attemptRemove(referencingCodebases)
                 } label: {
-                    Label("Remove", systemImage: "trash")
+                    Label(.app("View.RepositoryDetailView.Remove"), systemImage: "trash")
                 }
                 .disabled(isFetching || isRemoving)
                 .accessibilityIdentifier("repository.removeButton")
             }
         }
         .confirmationDialog(
-            "Remove this repository?",
+            .app("View.RepositoryDetailView.RemoveRepository"),
             isPresented: $showRemoveConfirmation
         ) {
-            Button("Remove", role: .destructive) { Task { await remove() } }
+            Button(.app("View.RepositoryDetailView.Remove"), role: .destructive) { Task { await remove() } }
                 .accessibilityIdentifier("repository.remove.confirmButton")
         } message: {
-            Text("This deletes its shared clone from disk. This cannot be undone.")
+            Text(.app("View.RepositoryDetailView.DeletesSharedCloneDisk"))
         }
         .alert(
-            "Can't Remove Repository",
+            .app("View.RepositoryDetailView.CanRemoveRepository"),
             isPresented: Binding(get: { removalBlockedMessage != nil }, set: { if !$0 { removalBlockedMessage = nil } })
         ) {
-            Button("OK") {}
+            Button(.app("View.RepositoryDetailView.OK")) {}
         } message: {
-            Text(removalBlockedMessage ?? "")
+            removalBlockedMessage.map(Text.init)
         }
         .alert(
-            "Operation Failed",
+            .app("View.RepositoryDetailView.OperationFailed"),
             isPresented: Binding(get: { errorMessage != nil }, set: { if !$0 { errorMessage = nil } })
         ) {
-            Button("OK") {}
+            Button(.app("View.RepositoryDetailView.OK")) {}
         } message: {
             Text(errorMessage ?? "")
         }
@@ -160,9 +168,8 @@ struct RepositoryDetailView: View {
     private func attemptRemove(_ referencingCodebases: [Codebase]) {
         guard referencingCodebases.isEmpty else {
             let names = referencingCodebases.map(\.name).sorted().joined(separator: ", ")
-            removalBlockedMessage =
-                "Remove or reassign \(names) first — this repository is still referenced by "
-                + "\(referencingCodebases.count == 1 ? "1 codebase" : "\(referencingCodebases.count) codebases")."
+            let count = referencingCodebases.count
+            removalBlockedMessage = .app("View.RepositoryDetailView.RemovalBlocked \(names) \(count)")
             return
         }
         showRemoveConfirmation = true

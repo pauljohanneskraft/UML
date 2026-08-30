@@ -54,7 +54,9 @@ struct QualityCheckReportView: View {
     private func violationList(_ report: QualityReport) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             if showsSummary {
-                Text("\(report.violations.count) finding(s) across \(report.checkedRuleCount) rule(s)")
+                let findings = report.violations.count
+                let rules = report.checkedRuleCount
+                Text(.app("View.QualityCheckReportView.FindingSAcrossRule \(findings) \(rules)"))
                     .font(.subheadline.bold())
                     .foregroundStyle(tint)
             }

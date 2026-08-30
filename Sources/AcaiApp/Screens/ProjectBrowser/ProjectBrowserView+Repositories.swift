@@ -7,7 +7,7 @@ extension ProjectBrowserView {
     var repositoriesSection: some View {
         let entries = model.repositoryIndex()
         if !entries.isEmpty {
-            Section("Repositories") {
+            Section(.app("ProjectBrowserView.Repositories")) {
                 ForEach(entries) { entry in
                     RepositoryRow(activityCenter: model.store.activityCenter, entry: entry)
                         .tag(ProjectBrowserViewModel.Selection.repository(entry.remoteURL))
@@ -36,7 +36,7 @@ private struct RepositoryRow: View {
             if isBusy {
                 ProgressView()
                     .controlSize(.small)
-                    .accessibilityLabel("Fetching")
+                    .accessibilityLabel(.app("View.RepositoryRow.Fetching"))
             } else {
                 Image(systemName: "point.3.filled.connected.trianglepath.dotted")
             }

@@ -76,35 +76,37 @@ struct FreeformDiagramView: View {
                     Button {
                         centerDiagram()
                     } label: {
-                        Label("Fit to View", systemImage: "rectangle.dashed")
+                        Label(.app("View.FreeformDiagramView.FitView"), systemImage: "rectangle.dashed")
                     }
-                    .help("Fit the diagram to the visible canvas (⌘0)")
+                    .help(.app("View.FreeformDiagramView.FitDiagramVisibleCanvas"))
                     .keyboardShortcut("0", modifiers: .command)
                     .accessibilityIdentifier("diagram.fitToViewButton")
 
                     Button {
                         showCheckpoints = true
                     } label: {
-                        Label("Checkpoints", systemImage: "clock.arrow.circlepath")
+                        Label(.app("View.FreeformDiagramView.Checkpoints"), systemImage: "clock.arrow.circlepath")
                     }
-                    .help("Save or restore a named snapshot of this diagram")
+                    .help(.app("View.FreeformDiagramView.SaveRestoreNamedSnapshot"))
                     .accessibilityIdentifier("diagram.checkpointsButton")
 
                     Button {
                         sidebarTab = .catalog
                         showSidebar.toggle()
                     } label: {
-                        Label("Sidebar", systemImage: "sidebar.trailing")
+                        Label(.app("View.FreeformDiagramView.Sidebar"), systemImage: "sidebar.trailing")
                     }
-                    .help("Toggle the Node Catalog / Inspector sidebar")
+                    .help(.app("View.FreeformDiagramView.ToggleNodeCatalogInspector"))
                     .accessibilityIdentifier("diagram.sidebarToggleButton")
                 }
                 #if os(iOS)
                 if horizontalSizeClass == .compact {
                     ToolbarItemGroup(placement: .bottomBar) {
-                        Picker("Bottom Bar Mode", selection: $bottomBarMode) {
-                            Label("Select", systemImage: "cursorarrow").tag(BottomBarMode.select)
-                            Label("Place", systemImage: "plus.square.on.square").tag(BottomBarMode.place)
+                        Picker(.app("View.FreeformDiagramView.BottomBarMode"), selection: $bottomBarMode) {
+                            Label(.app("View.FreeformDiagramView.Select"), systemImage: "cursorarrow")
+                                .tag(BottomBarMode.select)
+                            Label(.app("View.FreeformDiagramView.Place"), systemImage: "plus.square.on.square")
+                                .tag(BottomBarMode.place)
                         }
                         .pickerStyle(.segmented)
                         .labelsHidden()
@@ -115,7 +117,10 @@ struct FreeformDiagramView: View {
                         Button {
                             viewModel.applyLastUsedConnectionTool()
                         } label: {
-                            Label("Quick Add", systemImage: viewModel.lastUsedConnectionToolSystemImage)
+                            Label(
+                                .app("View.FreeformDiagramView.QuickAdd"),
+                                systemImage: viewModel.lastUsedConnectionToolSystemImage
+                            )
                         }
                         .disabled(!viewModel.canApplyLastUsedConnectionTool)
                         .accessibilityIdentifier("diagram.bottomBar.quickAddButton")
@@ -173,24 +178,23 @@ struct FreeformDiagramView: View {
                 deleteAlertTitle,
                 isPresented: $showDeleteConfirmation
             ) {
-                Button("Delete", role: .destructive) {
+                Button(.app("View.FreeformDiagramView.Delete"), role: .destructive) {
                     viewModel.deleteSelection()
                 }
-                Button("Cancel", role: .cancel) {}
+                Button(.app("View.FreeformDiagramView.Cancel"), role: .cancel) {}
             } message: {
-                Text("You can undo this action with ⌘Z.")
+                Text(.app("View.FreeformDiagramView.CanUndoActionZ"))
             }
             .sheet(isPresented: $showCheckpoints) {
                 FreeformDiagramCheckpointsView(viewModel: viewModel)
             }
     }
 
-    private var deleteAlertTitle: String {
+    private var deleteAlertTitle: LocalizedStringResource {
         if viewModel.selectedEdgeID != nil && viewModel.selectedNodeIDs.isEmpty {
-            return "Delete Relationship?"
+            return .app("View.FreeformDiagramView.DeleteRelationship")
         }
-        let count = viewModel.selectedNodeIDs.count
-        return count == 1 ? "Delete Node?" : "Delete \(count) Nodes?"
+        return .app("View.FreeformDiagramView.DeleteNodes \(viewModel.selectedNodeIDs.count)")
     }
 
     // MARK: - Canvas
@@ -267,7 +271,7 @@ struct FreeformDiagramView: View {
             Image(systemName: "hand.draw")
                 .font(.system(size: 40))
                 .foregroundStyle(.secondary)
-            Text("This canvas is empty")
+            Text(.app("View.FreeformDiagramView.CanvasEmpty"))
                 .font(.title3)
                 .foregroundStyle(.secondary)
             Text(emptyCanvasHintText)
@@ -328,8 +332,8 @@ struct FreeformDiagramView: View {
     private var sidebarContent: some View {
         VStack(spacing: 0) {
             Picker("", selection: $sidebarTab) {
-                Text("Catalog").tag(SidebarTab.catalog)
-                Text("Inspector").tag(SidebarTab.inspector)
+                Text(.app("View.FreeformDiagramView.Catalog")).tag(SidebarTab.catalog)
+                Text(.app("View.FreeformDiagramView.Inspector")).tag(SidebarTab.inspector)
             }
             .pickerStyle(.segmented)
             .padding(8)

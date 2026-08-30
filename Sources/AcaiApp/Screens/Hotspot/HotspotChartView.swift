@@ -58,11 +58,11 @@ struct HotspotChartView: View {
                 .sheet(isPresented: $showSidebar) {
                     NavigationStack {
                         legendContent
-                            .navigationTitle("Hotspots")
+                            .navigationTitle(.app("View.HotspotChartView.Hotspots"))
                             .navigationBarTitleDisplayMode(.inline)
                             .toolbar {
                                 ToolbarItem(placement: .confirmationAction) {
-                                    Button("Done") { showSidebar = false }
+                                    Button(.app("View.HotspotChartView.Done")) { showSidebar = false }
                                         .accessibilityIdentifier("diagram.sidebarDoneButton")
                                 }
                             }
@@ -108,7 +108,7 @@ struct HotspotChartView: View {
     private var loadingState: some View {
         VStack(spacing: 12) {
             ProgressView()
-            Text("Walking commit history…").foregroundStyle(.secondary)
+            Text(.app("View.HotspotChartView.WalkingCommitHistory")).foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
@@ -134,8 +134,8 @@ struct HotspotChartView: View {
                 filePointMark(point)
             }
         }
-        .chartXAxisLabel("Churn (commits touching the file)")
-        .chartYAxisLabel("Complexity (max cyclomatic)")
+        .chartXAxisLabel { Text(.app("View.HotspotChartView.ChurnAxis")) }
+        .chartYAxisLabel { Text(.app("View.HotspotChartView.ComplexityAxis")) }
         .chartForegroundStyleScale(["Hotspot": Color.red, "Normal": Color.blue])
         .chartSymbolScale(["Hotspot": BasicChartSymbolShape.diamond, "Normal": BasicChartSymbolShape.circle])
         .chartLegend(position: .bottom)
@@ -164,7 +164,7 @@ struct HotspotChartView: View {
         Group {
             if let data = viewModel.chartData {
                 if data.hotspots.isEmpty {
-                    Text("No files fall in the hotspot quadrant (high churn and high complexity).")
+                    Text(.app("View.HotspotChartView.NoFilesFallHotspot"))
                         .foregroundStyle(.secondary)
                         .padding()
                 } else {
@@ -174,7 +174,7 @@ struct HotspotChartView: View {
                                 Image(systemName: "flame.fill")
                                 Text(point.fileName).font(.callout.bold())
                             }
-                            Text("Churn \(point.churn) · Complexity \(point.complexity)")
+                            Text(.app("View.HotspotChartView.ChurnComplexity \(point.churn) \(point.complexity)"))
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                         }
@@ -185,7 +185,7 @@ struct HotspotChartView: View {
                     #endif
                 }
             } else {
-                Text("No data yet.").foregroundStyle(.secondary).padding()
+                Text(.app("View.HotspotChartView.NoDataYet")).foregroundStyle(.secondary).padding()
             }
         }
     }
@@ -198,9 +198,9 @@ struct HotspotChartView: View {
             Button {
                 showSidebar.toggle()
             } label: {
-                Label("Sidebar", systemImage: "sidebar.trailing")
+                Label(.app("View.HotspotChartView.Sidebar"), systemImage: "sidebar.trailing")
             }
-            .help("Toggle the ranked hotspot list")
+            .help(.app("View.HotspotChartView.ToggleRankedHotspotList"))
             .accessibilityIdentifier("diagram.sidebarToggleButton")
         }
     }

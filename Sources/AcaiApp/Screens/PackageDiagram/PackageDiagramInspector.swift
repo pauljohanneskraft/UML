@@ -42,7 +42,7 @@ struct PackageDiagramInspector: View {
             Image(systemName: "cursorarrow.click")
                 .font(.title)
                 .foregroundStyle(.secondary)
-            Text("Select a module to inspect")
+            Text(.app("View.PackageDiagramInspector.SelectModuleInspect"))
                 .font(.callout)
                 .foregroundStyle(.secondary)
         }
@@ -53,7 +53,7 @@ struct PackageDiagramInspector: View {
         let selected = diagram.nodes.filter { selectedNodeIDs.contains($0.id) }.sorted { $0.name < $1.name }
         return MultiSelectionInspector(
             items: selected,
-            title: { Text("^[\($0) Module](inflect: true) Selected") },
+            title: { Text(.app("View.PackageDiagramInspector.ModuleInflectTrueSelected \($0)")) },
             rowIcon: { _ in nil },
             rowLabel: \.name,
             rowDetail: { "\($0.typeCount) types" },
@@ -72,7 +72,7 @@ struct PackageDiagramInspector: View {
                 Text(node.name)
                     .font(.system(.subheadline, design: .monospaced).weight(.semibold))
                 Spacer()
-                Text("\(node.typeCount) types")
+                Text(.app("View.PackageDiagramInspector.Types \(node.typeCount)"))
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
@@ -130,10 +130,10 @@ struct PackageDiagramInspector: View {
 
     private var legend: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text("Fill = distance from the main sequence")
+            Text(.app("View.PackageDiagramInspector.FillDistanceMainSequence"))
                 .font(.caption2)
                 .foregroundStyle(.secondary)
-            Text("green = balanced · red = zone of pain / uselessness")
+            Text(.app("View.PackageDiagramInspector.GreenBalancedRedZone"))
                 .font(.caption2)
                 .foregroundStyle(.tertiary)
         }

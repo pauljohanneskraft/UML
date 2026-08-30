@@ -23,16 +23,18 @@ struct LicensesSection: View {
                         }
                     }
                     .accessibilityIdentifier("licenses.row.\(dependency.name)")
-                    .accessibilityLabel("\(dependency.name), \(dependency.licenseIdentifier) license")
+                    .accessibilityLabel(
+                        .app("View.LicensesSection.License \(dependency.name) \(dependency.licenseIdentifier)")
+                    )
                 }
             }
         }
         .task { await load() }
         .alert(item: $loadError) { failure in
             Alert(
-                title: Text("Something went wrong"),
+                title: Text(.app("View.LicensesSection.SomethingWentWrong")),
                 message: Text(failure.message),
-                dismissButton: .default(Text("OK"))
+                dismissButton: .default(Text(.app("View.LicensesSection.OK")))
             )
         }
     }

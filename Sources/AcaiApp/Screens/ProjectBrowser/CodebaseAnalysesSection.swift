@@ -27,11 +27,13 @@ struct QualityCheckSection: View {
     }
 
     var body: some View {
+        let findings = report.violations.count
+        let rules = report.checkedRuleCount
         CollapsibleSection(title: "Code Quality Check") {
             HStack(spacing: 8) {
                 if !report.isPassing {
                     SectionCountBadge(
-                        text: "\(report.violations.count) finding(s) across \(report.checkedRuleCount) rule(s)",
+                        text: .app("View.QualityCheckSection.FindingsAcrossRules \(findings) \(rules)"),
                         tint: .orange)
                 }
                 Button(configuration == nil ? "Set Up…" : "Edit…") { editing = true }
@@ -46,7 +48,7 @@ struct QualityCheckSection: View {
                     // Kept out of the collapsible header (shared with the count badge and
                     // Set Up…/Edit…) so it doesn't crowd or truncate on iPhone-width layouts.
                     if configuration != nil {
-                        Button("Export CI Check…") { exportingCICheck = true }
+                        Button(.app("View.QualityCheckSection.ExportCICheck")) { exportingCICheck = true }
                             .font(.caption)
                             .accessibilityIdentifier("qualityCheck.exportCICheckButton")
                     }
@@ -120,8 +122,8 @@ struct DeadCodeSection: View {
         CollapsibleSection(title: "Dead Code") {
             SectionCountBadge(
                 text: report.candidates.isEmpty
-                    ? "none · call-graph coverage \(coverage)%"
-                    : "\(report.candidates.count) candidate(s) · call-graph coverage \(coverage)%",
+                    ? .app("View.DeadCodeSection.NoneWithCoverage \(coverage)")
+                    : .app("View.DeadCodeSection.CandidatesWithCoverage \(report.candidates.count) \(coverage)"),
                 tint: report.candidates.isEmpty ? .secondary : .orange)
         } content: {
             DeadCodeReportView(report: report, artifact: artifact, codebase: codebase)
@@ -145,8 +147,8 @@ struct ParseHealthSection: View {
         ) {
             SectionCountBadge(
                 text: report.diagnostics.isEmpty
-                    ? "\(percent)%"
-                    : "\(percent)% · \(report.diagnosticCount) diagnostic(s)",
+                    ? .app("View.ParseHealthSection.Score \(percent)")
+                    : .app("View.ParseHealthSection.ScoreWithDiagnostics \(percent) \(report.diagnosticCount)"),
                 tint: percent >= 90 ? .secondary : .red)
         } content: {
             HealthReportView(report: report, codebase: codebase)
@@ -156,7 +158,7 @@ struct ParseHealthSection: View {
 }
 
 struct SectionCountBadge: View {
-    let text: String
+    let text: LocalizedStringResource
     var tint: Color = .secondary
 
     var body: some View {

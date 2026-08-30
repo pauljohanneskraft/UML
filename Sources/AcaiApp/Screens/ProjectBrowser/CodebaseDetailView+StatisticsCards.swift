@@ -138,7 +138,7 @@ extension CodebaseDetailView {
         let title: String
         let icon: String
         let family: MetricFamily
-        let blurb: String
+        let blurb: LocalizedStringResource
         var threshold: MetricThreshold?
         var color: Color { family.color }
     }

@@ -22,10 +22,10 @@ struct KeyboardShortcutsPanel: View {
                     }
                 }
             }
-            .navigationTitle("Keyboard Shortcuts")
+            .navigationTitle(.app("View.KeyboardShortcutsPanel.KeyboardShortcuts"))
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Done") { dismiss() }
+                    Button(.app("View.KeyboardShortcutsPanel.Done")) { dismiss() }
                 }
             }
         }
@@ -54,7 +54,7 @@ private struct KeyboardShortcutsHelpMenuButton: View {
     @Environment(\.openWindow) private var openWindow
 
     var body: some View {
-        Button("Keyboard Shortcuts") {
+        Button(.app("View.KeyboardShortcutsHelpMenuButton.KeyboardShortcuts")) {
             openWindow(id: KeyboardShortcutCommands.windowID)
         }
         .keyboardShortcut("/", modifiers: [.command, .shift])

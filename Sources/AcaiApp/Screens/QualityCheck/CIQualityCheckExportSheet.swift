@@ -41,10 +41,10 @@ struct CIQualityCheckExportSheet: View {
             #if os(macOS)
             .frame(minWidth: 480, idealWidth: 560, maxWidth: 720, minHeight: 360)
             #endif
-            .navigationTitle("Export CI Check")
+            .navigationTitle(.app("View.CIQualityCheckExportSheet.ExportCICheck"))
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Done") { dismiss() }
+                    Button(.app("View.CIQualityCheckExportSheet.Done")) { dismiss() }
                 }
             }
         }
@@ -62,7 +62,7 @@ struct CIQualityCheckExportSheet: View {
                 .background(Color.gray.opacity(0.1))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .accessibilityIdentifier(identifier)
-            Button("Copy") { copyToClipboard(code) }
+            Button(.app("View.CIQualityCheckExportSheet.Copy")) { copyToClipboard(code) }
                 .accessibilityIdentifier("\(identifier).copyButton")
         }
     }

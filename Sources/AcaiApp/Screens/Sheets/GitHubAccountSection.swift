@@ -53,7 +53,7 @@ struct GitHubAccountSection: View {
                         // Shown during the dismissal animation after deviceCode is set to nil
                         VStack(spacing: 16) {
                             ProgressView()
-                            Text("Completing sign in...")
+                            Text(.app("View.GitHubAccountSection.CompletingSign"))
                                 .foregroundStyle(.secondary)
                         }
                     }
@@ -85,7 +85,7 @@ struct GitHubAccountSection: View {
                     .accessibilityIdentifier("github.usedByCodebasesLabel")
             }
             Spacer()
-            Button("Sign Out", role: .destructive) {
+            Button(.app("View.GitHubAccountSection.SignOut"), role: .destructive) {
                 accountStore.signOut()
             }
             .accessibilityIdentifier("github.signOutButton")
@@ -104,7 +104,7 @@ struct GitHubAccountSection: View {
             if accountStore.isRefreshingScopes {
                 ProgressView().controlSize(.small)
             }
-            Button("Refresh Scopes") {
+            Button(.app("View.GitHubAccountSection.RefreshScopes")) {
                 Task { await accountStore.refreshScopes() }
             }
             .buttonStyle(.borderless)
@@ -118,7 +118,7 @@ struct GitHubAccountSection: View {
     /// scope" or "has none."
     private func scopeChecklist(_ account: GitHubTokenStore.StoredAccount) -> some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text("Scopes").font(.caption).foregroundStyle(.secondary)
+            Text(.app("View.GitHubAccountSection.Scopes")).font(.caption).foregroundStyle(.secondary)
             if let scopes = account.scopes {
                 ForEach([GitHubScope.contentsRead, .metadataRead, .pullRequestsRead], id: \.rawValue) { scope in
                     let has = scopes.contains(scope.rawValue)
@@ -127,7 +127,7 @@ struct GitHubAccountSection: View {
                         .font(.caption)
                 }
             } else {
-                Label("Unknown — this token type doesn't report scopes", systemImage: "questionmark.circle")
+                Label(.app("View.GitHubAccountSection.UnknownTokenTypeDoesn"), systemImage: "questionmark.circle")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .accessibilityIdentifier("github.scopesUnknownLabel")
@@ -157,23 +157,23 @@ struct GitHubAccountSection: View {
         if let deviceCode {
             deviceCodeView(deviceCode)
         } else {
-            Text("Paste a fine-grained personal access token scoped to Contents: Read-only — "
-                + "GitHub never shares your password with Acai.")
+            Text(.app("View.GitHubAccountSection.PasteFineGrainedPersonal"))
                 .font(.caption)
                 .foregroundStyle(.secondary)
-            SecureField("Personal Access Token", text: $patText)
-                .accessibilityIdentifier("github.patField")
-            Button("Sign In with Token") { signIn(with: .personalAccessToken(patText)) }
+            SecureField(text: $patText) {
+                Text(.app("View.GitHubAccountSection.PersonalAccessToken"))
+            }
+            .accessibilityIdentifier("github.patField")
+            Button(.app("View.GitHubAccountSection.SignToken")) { signIn(with: .personalAccessToken(patText)) }
                 .buttonStyle(.borderless)
                 .disabled(patText.isEmpty || isSigningIn)
                 .accessibilityIdentifier("github.signInWithTokenButton")
 
             if !GitHubAppConfiguration.standard.clientID.isEmpty {
-                Text("We'll generate a short code, copy it to your clipboard, and open github.com "
-                    + "so you can paste it and approve access.")
+                Text(.app("View.GitHubAccountSection.WeLlGenerateShort"))
                     .font(.caption)
                     .foregroundStyle(.secondary)
-                Button("Sign in with GitHub") { pollTask = Task { await startDeviceFlow() } }
+                Button(.app("View.GitHubAccountSection.SignGitHub")) { pollTask = Task { await startDeviceFlow() } }
                     .buttonStyle(.borderless)
                     .disabled(isSigningIn)
                     .accessibilityIdentifier("github.signInWithDeviceFlowButton")
@@ -186,12 +186,12 @@ struct GitHubAccountSection: View {
 
     private func deviceCodeView(_ code: GitHubDeviceAuthFlow.DeviceCode) -> some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Enter this code at the link below:")
+            Text(.app("View.GitHubAccountSection.EnterCodeLinkBelow"))
                 .font(.caption)
                 .foregroundStyle(.secondary)
             Text(code.userCode)
                 .font(.title2.monospaced().bold())
-            Text("Copied to clipboard")
+            Text(.app("View.GitHubAccountSection.CopiedClipboard"))
                 .font(.caption2)
                 .foregroundStyle(.tertiary)
             #if os(iOS)
@@ -199,17 +199,20 @@ struct GitHubAccountSection: View {
             // and the poll above keeps running uninterrupted — for the whole time the user is
             // authorizing on github.com. No callback URL is needed: the credential still comes
             // from `pollForCredential` below, not from anything this page redirects to.
-            Button("Open \(code.verificationURI.host ?? "github.com")") {
+            Button(.app("View.GitHubAccountSection.Open \(code.verificationURI.host ?? "github.com")")) {
                 isPresentingVerificationPage = true
             }
             .buttonStyle(.borderless)
             #else
-            Link("Open \(code.verificationURI.host ?? "github.com")", destination: code.verificationURI)
+            Link(
+                .app("View.GitHubAccountSection.Open \(code.verificationURI.host ?? "github.com")"),
+                destination: code.verificationURI
+            )
             #endif
             HStack {
                 ProgressView()
                 Spacer()
-                Button("Cancel", role: .cancel) {
+                Button(.app("View.GitHubAccountSection.Cancel"), role: .cancel) {
                     pollTask?.cancel()
                     pollTask = nil
                     deviceCode = nil

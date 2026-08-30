@@ -10,7 +10,7 @@ struct FreeformDiagramCatalog: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                Text("Node Catalog")
+                Text(.app("View.FreeformDiagramCatalog.NodeCatalog"))
                     .font(.headline)
                     .padding(.horizontal)
 
@@ -19,7 +19,7 @@ struct FreeformDiagramCatalog: View {
                 Divider()
                     .padding(.horizontal)
 
-                Text("Relationship Catalog")
+                Text(.app("View.FreeformDiagramCatalog.RelationshipCatalog"))
                     .font(.headline)
                     .padding(.horizontal)
 
@@ -28,7 +28,7 @@ struct FreeformDiagramCatalog: View {
                 Divider()
                     .padding(.horizontal)
 
-                Text("Message Catalog")
+                Text(.app("View.FreeformDiagramCatalog.MessageCatalog"))
                     .font(.headline)
                     .padding(.horizontal)
 
@@ -37,7 +37,7 @@ struct FreeformDiagramCatalog: View {
                 Divider()
                     .padding(.horizontal)
 
-                Text("Transition Catalog")
+                Text(.app("View.FreeformDiagramCatalog.TransitionCatalog"))
                     .font(.headline)
                     .padding(.horizontal)
 
@@ -156,7 +156,7 @@ struct FreeformDiagramCatalog: View {
             messageButton(label: "Self-Message", icon: "arrow.uturn.down", kind: .synchronous,
                           enabled: oneSelected, isSelf: true)
             if !twoSelected && !oneSelected {
-                Text("Select one or two lifelines (⌘-click) to add messages.")
+                Text(.app("View.FreeformDiagramCatalog.SelectOneTwoLifelines"))
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .padding(.horizontal)
@@ -195,7 +195,7 @@ struct FreeformDiagramCatalog: View {
             .buttonStyle(.plain)
             .disabled(!twoSelected && !oneSelected)
             if !twoSelected && !oneSelected {
-                Text("Select one or two states (⌘-click) to add a transition.")
+                Text(.app("View.FreeformDiagramCatalog.SelectOneTwoStates"))
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .padding(.horizontal)

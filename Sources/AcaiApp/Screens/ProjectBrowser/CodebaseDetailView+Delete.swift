@@ -7,7 +7,7 @@ extension CodebaseDetailView {
         Button(role: .destructive) {
             showDeleteConfirmation = true
         } label: {
-            Label("Delete Codebase…", systemImage: "trash")
+            Label(.app("CodebaseDetailView.DeleteCodebase"), systemImage: "trash")
                 .foregroundStyle(.red)
         }
         .accessibilityIdentifier("codebaseDetail.deleteCodebaseButton")

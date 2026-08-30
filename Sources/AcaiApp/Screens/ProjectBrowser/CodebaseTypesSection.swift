@@ -44,7 +44,7 @@ struct CodebaseTypesSection: View {
                 }
                 Spacer()
                 if !type.members.isEmpty {
-                    Text("\(type.members.count) members")
+                    Text(.app("View.CodebaseTypesSection.Members \(type.members.count)"))
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }

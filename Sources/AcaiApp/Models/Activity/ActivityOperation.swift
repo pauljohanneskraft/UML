@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 /// Purely a display+bookkeeping value; the actual work lives wherever `ActivityCenter.run` was
 /// called from.

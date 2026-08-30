@@ -8,13 +8,6 @@ struct FreeformDiagramCheckpointsView: View {
     @State private var showSaveAlert = false
     @State private var newCheckpointName = ""
 
-    private static let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        return formatter
-    }()
-
     var body: some View {
         NavigationStack {
             List {
@@ -22,7 +15,7 @@ struct FreeformDiagramCheckpointsView: View {
                     ContentUnavailableView(
                         "No Checkpoints",
                         systemImage: "clock.arrow.circlepath",
-                        description: Text("Save a checkpoint to snapshot this diagram's current nodes and edges.")
+                        description: Text(.app("View.FreeformDiagramCheckpointsView.SaveCheckpointSnapshotDiagram"))
                     )
                 } else {
                     ForEach(viewModel.checkpoints) { checkpoint in
@@ -37,32 +30,34 @@ struct FreeformDiagramCheckpointsView: View {
             // row out of view on a later re-presentation. `CompareGitOverlay`'s ref list sidesteps
             // the same class of bug the same way.
             .frame(minHeight: 150, maxHeight: 300)
-            .navigationTitle("Checkpoints")
+            .navigationTitle(.app("View.FreeformDiagramCheckpointsView.Checkpoints"))
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Done") { dismiss() }
+                    Button(.app("View.FreeformDiagramCheckpointsView.Done")) { dismiss() }
                         .accessibilityIdentifier("checkpoints.doneButton")
                 }
                 ToolbarItem(placement: .primaryAction) {
                     Button {
-                        newCheckpointName = Self.dateFormatter.string(from: Date())
+                        newCheckpointName = Date().formatted(date: .abbreviated, time: .shortened)
                         showSaveAlert = true
                     } label: {
-                        Label("Save Checkpoint", systemImage: "plus")
+                        Label(.app("View.FreeformDiagramCheckpointsView.SaveCheckpoint"), systemImage: "plus")
                     }
                     .accessibilityIdentifier("checkpoints.saveButton")
                 }
             }
-            .alert("Save Checkpoint", isPresented: $showSaveAlert) {
-                TextField("Name", text: $newCheckpointName)
-                    .accessibilityIdentifier("checkpoints.nameField")
-                Button("Save") {
+            .alert(.app("View.FreeformDiagramCheckpointsView.SaveCheckpoint"), isPresented: $showSaveAlert) {
+                TextField(text: $newCheckpointName) {
+                    Text(.app("View.FreeformDiagramCheckpointsView.Name"))
+                }
+                .accessibilityIdentifier("checkpoints.nameField")
+                Button(.app("View.FreeformDiagramCheckpointsView.Save")) {
                     let name = newCheckpointName.trimmingCharacters(in: .whitespaces)
                     guard !name.isEmpty else { return }
                     viewModel.saveCheckpoint(named: name)
                 }
                 .accessibilityIdentifier("checkpoints.confirmSaveButton")
-                Button("Cancel", role: .cancel) {}
+                Button(.app("View.FreeformDiagramCheckpointsView.Cancel"), role: .cancel) {}
             }
         }
     }
@@ -72,12 +67,12 @@ struct FreeformDiagramCheckpointsView: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(checkpoint.name)
                     .font(.body)
-                Text(Self.dateFormatter.string(from: checkpoint.createdDate))
+                Text(checkpoint.createdDate.formatted(date: .abbreviated, time: .shortened))
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
             Spacer()
-            Button("Restore") {
+            Button(.app("View.FreeformDiagramCheckpointsView.Restore")) {
                 viewModel.restoreCheckpoint(checkpoint.id)
                 dismiss()
             }
@@ -89,7 +84,7 @@ struct FreeformDiagramCheckpointsView: View {
             Button(role: .destructive) {
                 viewModel.deleteCheckpoint(checkpoint.id)
             } label: {
-                Label("Delete", systemImage: "trash")
+                Label(.app("View.FreeformDiagramCheckpointsView.Delete"), systemImage: "trash")
             }
             .accessibilityIdentifier("checkpoints.deleteButton.\(checkpoint.name)")
         }
@@ -97,7 +92,7 @@ struct FreeformDiagramCheckpointsView: View {
             Button(role: .destructive) {
                 viewModel.deleteCheckpoint(checkpoint.id)
             } label: {
-                Label("Delete", systemImage: "trash")
+                Label(.app("View.FreeformDiagramCheckpointsView.Delete"), systemImage: "trash")
             }
         }
     }

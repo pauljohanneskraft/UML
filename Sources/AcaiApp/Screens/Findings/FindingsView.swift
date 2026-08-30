@@ -28,13 +28,13 @@ struct FindingsView: View {
             if let project {
                 content(project: project)
             } else {
-                Text("Project not found")
+                Text(.app("View.FindingsView.ProjectNotFound"))
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .accessibilityIdentifier("findings.projectNotFoundState")
             }
         }
-        .navigationTitle("Findings")
+        .navigationTitle(.app("View.FindingsView.Findings"))
         .task(id: projectID) {
             await loadSuppression()
         }
@@ -42,10 +42,10 @@ struct FindingsView: View {
             requestAnalyses()
         }
         .alert(
-            "Couldn't Save Suppression",
+            .app("View.FindingsView.CouldNotSaveSuppression"),
             isPresented: Binding(get: { suppressionError != nil }, set: { if !$0 { suppressionError = nil } })
         ) {
-            Button("OK", role: .cancel) { suppressionError = nil }
+            Button(.app("View.FindingsView.OK"), role: .cancel) { suppressionError = nil }
         } message: {
             Text(suppressionError ?? "")
         }
@@ -97,7 +97,7 @@ struct FindingsView: View {
     private func loadingState(count: Int) -> some View {
         VStack(spacing: 12) {
             ProgressView()
-            Text("Analyzing \(count) codebase(s)…")
+            Text(.app("View.FindingsView.AnalyzingCodebaseS \(count)"))
                 .font(.callout)
                 .foregroundStyle(.secondary)
         }
@@ -151,13 +151,13 @@ struct FindingsView: View {
             if !stillAnalyzing.isEmpty {
                 HStack(spacing: 6) {
                     ProgressView().controlSize(.small)
-                    Text("Still analyzing \(stillAnalyzing.count) more codebase(s)…")
+                    Text(.app("View.FindingsView.StillAnalyzingMoreCodebase \(stillAnalyzing.count)"))
                 }
                 .font(.caption)
                 .foregroundStyle(.secondary)
             }
             if !notIndexed.isEmpty {
-                Text("\(notIndexed.count) codebase(s) not indexed — reindex to include their findings.")
+                Text(.app("View.FindingsView.CodebaseSNotIndexed \(notIndexed.count)"))
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
@@ -176,15 +176,15 @@ struct FindingsView: View {
                 }
             }
             HStack {
-                Picker("Codebase", selection: $selectedCodebaseID) {
-                    Text("All Codebases").tag(UUID?.none)
+                Picker(.app("View.FindingsView.Codebase"), selection: $selectedCodebaseID) {
+                    Text(.app("View.FindingsView.AllCodebases")).tag(UUID?.none)
                     ForEach(project.codebases.sorted { $0.name < $1.name }) { codebase in
                         Text(codebase.name).tag(Optional(codebase.id))
                     }
                 }
                 .accessibilityIdentifier("findings.codebaseFilter")
                 Spacer()
-                Toggle("Show suppressed too", isOn: $showSuppressed)
+                Toggle(.app("View.FindingsView.ShowSuppressedToo"), isOn: $showSuppressed)
                     .toggleStyle(.button)
                     .accessibilityIdentifier("findings.showSuppressedToggle")
             }
@@ -202,7 +202,7 @@ struct FindingsView: View {
                 selectedKinds.insert(kind)
             }
         } label: {
-            Label(kind.displayName, systemImage: kind.systemImage)
+            Label(kind.title, systemImage: kind.systemImage)
                 .font(.caption.weight(isSelected ? .semibold : .regular))
                 .padding(.horizontal, 10).padding(.vertical, 5)
                 .background(isSelected ? Color.accentColor.opacity(0.18) : Color.secondary.opacity(0.08))

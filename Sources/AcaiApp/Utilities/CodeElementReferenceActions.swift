@@ -66,7 +66,7 @@ struct CodeElementReferenceActions: ViewModifier {
                 Button {
                     finderReveal.reveal()
                 } label: {
-                    Label("Reveal in Finder", systemImage: "folder")
+                    Label(.app("View.CodeElementReferenceActions.RevealFinder"), systemImage: "folder")
                 }
             }
             #endif

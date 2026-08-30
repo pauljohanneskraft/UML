@@ -4,7 +4,7 @@ import AcaiCore
 extension CodebaseDetailView {
 
     func typeDetail(
-        _ title: String, _ description: String, _ types: [CodeMetrics.TypeMetric],
+        _ title: String, _ description: LocalizedStringResource, _ types: [CodeMetrics.TypeMetric],
         by keyPath: KeyPath<CodeMetrics.TypeMetric, Int>
     ) -> StatisticDetail {
         let rows = types
@@ -23,7 +23,7 @@ extension CodebaseDetailView {
     }
 
     func typeDetail(
-        _ title: String, _ description: String, _ types: [CodeMetrics.TypeMetric],
+        _ title: String, _ description: LocalizedStringResource, _ types: [CodeMetrics.TypeMetric],
         by keyPath: KeyPath<CodeMetrics.TypeMetric, Double>, format: (Double) -> String
     ) -> StatisticDetail {
         let rows = types
@@ -42,7 +42,7 @@ extension CodebaseDetailView {
     }
 
     func moduleDetail(
-        _ title: String, _ description: String, _ modules: [CodeMetrics.ModuleCoupling],
+        _ title: String, _ description: LocalizedStringResource, _ modules: [CodeMetrics.ModuleCoupling],
         value: (CodeMetrics.ModuleCoupling) -> Double, format: (Double) -> String
     ) -> StatisticDetail {
         let rows = modules

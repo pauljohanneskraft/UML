@@ -29,7 +29,7 @@ struct CodebaseFunctionsSection: View {
 
     private func functionRow(function: Member) -> some View {
         HStack(spacing: 8) {
-            Text("ƒ")
+            Text(.app("View.CodebaseFunctionsSection.Ƒ"))
                 .font(.caption.bold())
                 .foregroundStyle(.white)
                 .frame(width: 22, height: 22)

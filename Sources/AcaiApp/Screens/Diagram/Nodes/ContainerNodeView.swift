@@ -57,7 +57,7 @@ struct ContainerNodeView: View {
 
         VStack(alignment: .leading, spacing: 0) {
             VStack(spacing: 1) {
-                Text("<<\(stereotype)>>")
+                Text(.app("View.ContainerNodeView.Text \(stereotype)"))
                     .font(.system(size: 9, design: .monospaced))
                     .foregroundColor(styleBorder)
                 Text(name)

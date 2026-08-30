@@ -12,7 +12,7 @@ struct MultiSelectionInspector<Item: Identifiable>: View where Item.ID == String
     }
 
     let items: [Item]
-    /// The section header for the given selection count — e.g. `Text("^[\(count) Method](inflect: true) Selected")`.
+    /// The section header for the given selection count, e.g. an inflected "3 Methods Selected".
     let title: (Int) -> Text
     let rowIcon: (Item) -> String?
     let rowLabel: (Item) -> String

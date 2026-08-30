@@ -20,12 +20,12 @@ struct RuleSection<Content: View>: View {
             HStack {
                 Text(title).font(.headline)
                 if total > 0 {
-                    Text("\(total)").font(.caption).foregroundStyle(.secondary)
+                    Text(total, format: .number).font(.caption).foregroundStyle(.secondary)
                 }
                 Spacer()
                 Button(action: onAdd) { Image(systemName: "plus.circle.fill") }
                     .buttonStyle(.plain)
-                    .help("Add")
+                    .help(.app("View.RuleSection.Add"))
             }
             content
         }
@@ -51,7 +51,7 @@ struct RuleCard<Content: View>: View {
                     Image(systemName: "minus.circle.fill").foregroundStyle(.red)
                 }
                 .buttonStyle(.plain)
-                .help("Remove")
+                .help(.app("View.RuleCard.Remove"))
             }
             content
         }

@@ -3,7 +3,7 @@ import SwiftUI
 struct StatisticDetail: Identifiable {
     let id = UUID()
     let title: String
-    let description: String
+    let description: LocalizedStringResource
     let rows: [Row]
 
     struct Row: Identifiable {
@@ -23,7 +23,7 @@ struct StatisticDetailSheet: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                if !detail.description.isEmpty {
+                Group {
                     Text(detail.description)
                         .font(.callout)
                         .foregroundStyle(.secondary)
@@ -41,7 +41,7 @@ struct StatisticDetailSheet: View {
             .navigationTitle(detail.title)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Done") { dismiss() }
+                    Button(.app("View.StatisticDetailSheet.Done")) { dismiss() }
                         .keyboardShortcut(.defaultAction)
                 }
             }
@@ -51,7 +51,7 @@ struct StatisticDetailSheet: View {
     @ViewBuilder
     private var content: some View {
         if detail.rows.isEmpty {
-            Text("Nothing to show.")
+            Text(.app("View.StatisticDetailSheet.NothingShow"))
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else {

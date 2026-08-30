@@ -26,11 +26,13 @@ struct ForbiddenRulesEditor: View {
             SelectorEditor(title: "From", selector: $rules[index].from)
             SelectorEditor(title: "To", selector: $rules[index].to)
             HStack {
-                Text("Edge kinds").font(.caption.bold()).foregroundStyle(.secondary)
+                Text(.app("View.ForbiddenRulesEditor.EdgeKinds")).font(.caption.bold()).foregroundStyle(.secondary)
                 RelationshipKindPicker(kinds: $rules[index].kinds)
             }
-            TextField("Custom message (optional)", text: $rules[index].message.orEmpty)
-                .textFieldStyle(.roundedBorder)
+            TextField(text: $rules[index].message.orEmpty) {
+                Text(.app("View.ForbiddenRulesEditor.CustomMessageOptional"))
+            }
+            .textFieldStyle(.roundedBorder)
         })
     }
 }
@@ -60,11 +62,13 @@ struct ContractsEditor: View {
             SelectorEditor(title: "Into (protected region)", selector: $contracts[index].into)
             SelectorEditor(title: "Only (allowed sources)", selector: $contracts[index].only)
             HStack {
-                Text("Edge kinds").font(.caption.bold()).foregroundStyle(.secondary)
+                Text(.app("View.ContractsEditor.EdgeKinds")).font(.caption.bold()).foregroundStyle(.secondary)
                 RelationshipKindPicker(kinds: $contracts[index].kinds)
             }
-            TextField("Custom message (optional)", text: $contracts[index].message.orEmpty)
-                .textFieldStyle(.roundedBorder)
+            TextField(text: $contracts[index].message.orEmpty) {
+                Text(.app("View.ContractsEditor.CustomMessageOptional"))
+            }
+            .textFieldStyle(.roundedBorder)
         })
     }
 }

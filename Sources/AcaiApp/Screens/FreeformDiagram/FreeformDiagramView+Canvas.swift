@@ -17,29 +17,29 @@ extension FreeformDiagramView {
             Button {
                 showDeleteConfirmation = true
             } label: {
-                Label("Delete", systemImage: "trash")
+                Label(.app("FreeformDiagramView.Delete"), systemImage: "trash")
             }
             Button {
                 viewModel.clipboard.copySelection()
             } label: {
-                Label("Copy", systemImage: "doc.on.doc")
+                Label(.app("FreeformDiagramView.Copy"), systemImage: "doc.on.doc")
             }
             Button {
                 viewModel.clipboard.cutSelection()
             } label: {
-                Label("Cut", systemImage: "scissors")
+                Label(.app("FreeformDiagramView.Cut"), systemImage: "scissors")
             }
             Divider()
         }
         Button {
             viewModel.clipboard.paste()
         } label: {
-            Label("Paste", systemImage: "doc.on.clipboard")
+            Label(.app("FreeformDiagramView.Paste"), systemImage: "doc.on.clipboard")
         }
         Button {
             viewModel.selectAll()
         } label: {
-            Label("Select All", systemImage: "checklist")
+            Label(.app("FreeformDiagramView.SelectAll"), systemImage: "checklist")
         }
         Divider()
         ForEach(FreeformDiagramNodeKind.CatalogGroup.allCases, id: \.rawValue) { group in
@@ -301,7 +301,7 @@ extension FreeformDiagramView {
             sidebarTab = .inspector
             showSidebar = true
         } label: {
-            Label("Edit", systemImage: "pencil")
+            Label(.app("FreeformDiagramView.Edit"), systemImage: "pencil")
         }
 
         Divider()
@@ -309,13 +309,13 @@ extension FreeformDiagramView {
         Button {
             viewModel.moveNodeHigher(node.id)
         } label: {
-            Label("Move Higher", systemImage: "chevron.up")
+            Label(.app("FreeformDiagramView.MoveHigher"), systemImage: "chevron.up")
         }
 
         Button {
             viewModel.moveNodeLower(node.id)
         } label: {
-            Label("Move Lower", systemImage: "chevron.down")
+            Label(.app("FreeformDiagramView.MoveLower"), systemImage: "chevron.down")
         }
 
         Divider()
@@ -323,7 +323,7 @@ extension FreeformDiagramView {
         Button(role: .destructive) {
             viewModel.removeNode(node.id)
         } label: {
-            Label("Delete", systemImage: "trash")
+            Label(.app("FreeformDiagramView.Delete"), systemImage: "trash")
         }
     }
 

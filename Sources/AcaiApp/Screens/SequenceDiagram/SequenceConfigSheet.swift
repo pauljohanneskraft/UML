@@ -66,21 +66,21 @@ struct SequenceConfigSheet: View {
             .toolbar {
                 if phase == .resolveInterfaces {
                     ToolbarItem(placement: .navigation) {
-                        Button("Back") { phase = .entryPoint }
+                        Button(.app("View.SequenceConfigSheet.Back")) { phase = .entryPoint }
                     }
                 }
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel", role: .cancel, action: onCancel)
+                    Button(.app("View.SequenceConfigSheet.Cancel"), role: .cancel, action: onCancel)
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     switch phase {
                     case .entryPoint:
-                        Button("Next", action: advance)
+                        Button(.app("View.SequenceConfigSheet.Next"), action: advance)
                             .keyboardShortcut(.defaultAction)
                             .disabled(entryMethodName.isEmpty)
                             .accessibilityIdentifier("sequenceConfig.nextButton")
                     case .resolveInterfaces:
-                        Button("Create", action: create)
+                        Button(.app("View.SequenceConfigSheet.Create"), action: create)
                             .keyboardShortcut(.defaultAction)
                             .accessibilityIdentifier("sequenceConfig.createButton")
                     }
@@ -94,17 +94,16 @@ struct SequenceConfigSheet: View {
     private var entryPointForm: some View {
         Form {
             Section {
-                Text("Choose where the trace begins. Calls are followed through explicitly-typed "
-                     + "property receivers.")
+                Text(.app("View.SequenceConfigSheet.ChooseWhereTraceBegins"))
                     .font(.callout)
                     .foregroundStyle(.secondary)
             }
 
             Section {
-                LabeledContent("Type") {
+                LabeledContent {
                     VStack(alignment: .leading, spacing: 4) {
                         PickerFilterField(text: $typeQuery)
-                        Picker("Type", selection: $entryTypeName) {
+                        Picker(.app("View.SequenceConfigSheet.Type"), selection: $entryTypeName) {
                             Text(freeFunctionNames.isEmpty ? "Select…" : "None (top-level functions)").tag("")
                             ForEach(callableTypeNames.filtered(by: typeQuery), id: \.self) { Text($0).tag($0) }
                         }
@@ -116,13 +115,15 @@ struct SequenceConfigSheet: View {
                             }
                         }
                     }
+                } label: {
+                    Text(.app("View.SequenceConfigSheet.Type"))
                 }
 
                 LabeledContent(entryTypeName.isEmpty ? "Function" : "Method") {
                     VStack(alignment: .leading, spacing: 4) {
                         PickerFilterField(text: $methodQuery)
-                        Picker("Method", selection: $entryMethodName) {
-                            Text("Select…").tag("")
+                        Picker(.app("View.SequenceConfigSheet.Method"), selection: $entryMethodName) {
+                            Text(.app("View.SequenceConfigSheet.Select")).tag("")
                             ForEach(methodNames.filtered(by: methodQuery), id: \.self) { Text($0).tag($0) }
                         }
                         .labelsHidden()
@@ -131,10 +132,12 @@ struct SequenceConfigSheet: View {
                     }
                 }
 
-                LabeledContent("Max depth") {
+                LabeledContent {
                     Stepper(value: $maxDepth, in: 1...20) {
-                        Text("\(maxDepth)")
+                        Text(maxDepth, format: .number)
                     }
+                } label: {
+                    Text(.app("View.SequenceConfigSheet.MaxDepth"))
                 }
             }
         }
@@ -146,8 +149,7 @@ struct SequenceConfigSheet: View {
     private var resolveInterfacesForm: some View {
         Form {
             Section {
-                Text("These abstractions appear along the call path. Pick a concrete type to follow "
-                     + "its implementation, or leave it abstract.")
+                Text(.app("View.SequenceConfigSheet.TheseAbstractionsAppearAlong"))
                     .font(.callout)
                     .foregroundStyle(.secondary)
             }
@@ -156,7 +158,7 @@ struct SequenceConfigSheet: View {
                 ForEach($mappingRows) { $row in
                     LabeledContent(row.protocolName) {
                         Picker(row.protocolName, selection: $row.selection) {
-                            Text("Leave abstract").tag(String?.none)
+                            Text(.app("View.SequenceConfigSheet.LeaveAbstract")).tag(String?.none)
                             ForEach(row.candidates, id: \.self) { Text($0).tag(String?.some($0)) }
                         }
                         .labelsHidden()

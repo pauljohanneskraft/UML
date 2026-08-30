@@ -9,14 +9,14 @@ extension ProjectDetailView {
             Image(systemName: "tray.full")
                 .font(.system(size: 40))
                 .foregroundStyle(.secondary)
-            Text("Let's add your first codebase")
+            Text(.app("ProjectDetailView.LetSAddFirst"))
                 .font(.title3)
                 .foregroundStyle(.secondary)
             HStack(spacing: 12) {
                 Button {
                     addingCodebase = true
                 } label: {
-                    Label("Add codebase", systemImage: "plus")
+                    Label(.app("ProjectDetailView.AddCodebase"), systemImage: "plus")
                 }
                 .accessibilityIdentifier("projectDetail.addCodebaseButton")
                 addDiagramButton
@@ -31,7 +31,7 @@ extension ProjectDetailView {
         Button {
             createDiagram(name: "New Freeform Diagram")
         } label: {
-            Label("Add Diagram", systemImage: "rectangle.3.group")
+            Label(.app("ProjectDetailView.AddDiagram"), systemImage: "rectangle.3.group")
         }
         .accessibilityIdentifier("projectDetail.addDiagramButton")
     }

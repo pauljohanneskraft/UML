@@ -35,6 +35,12 @@ final class ProjectStore: ObservableObject {
         var relocatableCodebaseID: UUID?
     }
 
+    func report(_ message: LocalizedStringResource, relocating codebaseID: UUID? = nil) {
+        report(String(localized: message), relocating: codebaseID)
+    }
+
+    /// The `String` overload carries text the app did not write — an engine or system error's own
+    /// `localizedDescription`, which is shown untranslated rather than guessed at.
     func report(_ message: String, relocating codebaseID: UUID? = nil) {
         print(message)
         lastError = StoreError(message: message, relocatableCodebaseID: codebaseID)

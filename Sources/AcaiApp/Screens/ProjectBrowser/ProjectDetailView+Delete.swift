@@ -15,7 +15,7 @@ extension ProjectDetailView {
                 Image(systemName: "trash")
                     .font(.title2)
                     .frame(width: 32, height: 32)
-                Text("Delete Project…")
+                Text(.app("ProjectDetailView.DeleteProject"))
             }
             .foregroundStyle(.red)
             .accessibilityElement(children: .combine)

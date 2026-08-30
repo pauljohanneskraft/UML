@@ -29,7 +29,7 @@ struct AsyncOperationStatusView: View {
             }
             .accessibilityIdentifier("\(identifierPrefix).loading")
         case .loaded:
-            Text("Loaded").font(.caption).foregroundStyle(.secondary)
+            Text(.app("View.AsyncOperationStatusView.Loaded")).font(.caption).foregroundStyle(.secondary)
                 .accessibilityIdentifier("\(identifierPrefix).loaded")
         case .failed(let message):
             Label(message, systemImage: "exclamationmark.triangle")
