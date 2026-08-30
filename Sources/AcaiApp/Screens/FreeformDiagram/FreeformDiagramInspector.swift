@@ -433,7 +433,7 @@ extension FreeformDiagramInspector {
     private func edgeSummary(edge: FreeformDiagram.Edge) -> some View {
         let sourceName = viewModel.nodes.first(where: { $0.id == edge.sourceNodeID })?.name ?? "?"
         let targetName = viewModel.nodes.first(where: { $0.id == edge.targetNodeID })?.name ?? "?"
-        return Text(.app("View.FreeformDiagramInspector.FragmentRange \(sourceName) \(targetName)"))
+        return Text(.app("View.FreeformDiagramInspector.EdgeSummary \(sourceName) \(targetName)"))
             .font(.caption)
             .foregroundStyle(.secondary)
     }

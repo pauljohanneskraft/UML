@@ -119,29 +119,42 @@ extension FreeformDiagramInspector {
                     .buttonStyle(.borderless)
                 }
             }
-            HStack {
-                Stepper(value: Binding(
-                    get: { operand.firstOrder },
-                    set: { newValue in
-                        var operands = content.operands
-                        operands[index].firstOrder = newValue
-                        viewModel.sequence.updateFragment(nodeID, operands: operands)
-                    }
-                )) {
-                    Text(operand.firstOrder, format: .number).font(.caption.monospaced())
-                }
-                Stepper(value: Binding(
-                    get: { operand.lastOrder },
-                    set: { newValue in
-                        var operands = content.operands
-                        operands[index].lastOrder = newValue
-                        viewModel.sequence.updateFragment(nodeID, operands: operands)
-                    }
-                )) {
-                    Text(operand.lastOrder, format: .number).font(.caption.monospaced())
-                }
-            }
+            operandRangeRow(nodeID: nodeID, content: content, index: index, operand: operand)
         }
         .padding(.vertical, 2)
+    }
+
+    /// The two steppers bounding a fragment operand — labelled "From"/"To", since two bare numbers
+    /// side by side say nothing about which end is which, to the eye or to VoiceOver.
+    private func operandRangeRow(
+        nodeID: String,
+        content: FreeformDiagram.Node.FragmentContent,
+        index: Int,
+        operand: SequenceDiagram.Fragment.Operand
+    ) -> some View {
+        HStack {
+            Stepper(value: Binding(
+                get: { operand.firstOrder },
+                set: { newValue in
+                    var operands = content.operands
+                    operands[index].firstOrder = newValue
+                    viewModel.sequence.updateFragment(nodeID, operands: operands)
+                }
+            )) {
+                Text(.app("View.FreeformDiagramInspector.OperandFrom \(operand.firstOrder)"))
+                    .font(.caption.monospaced())
+            }
+            Stepper(value: Binding(
+                get: { operand.lastOrder },
+                set: { newValue in
+                    var operands = content.operands
+                    operands[index].lastOrder = newValue
+                    viewModel.sequence.updateFragment(nodeID, operands: operands)
+                }
+            )) {
+                Text(.app("View.FreeformDiagramInspector.OperandTo \(operand.lastOrder)"))
+                    .font(.caption.monospaced())
+            }
+        }
     }
 }

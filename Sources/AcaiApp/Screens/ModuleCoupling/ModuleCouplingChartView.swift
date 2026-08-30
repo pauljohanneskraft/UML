@@ -163,7 +163,9 @@ struct ModuleCouplingChartView: View {
         60 + distance * 140
     }
 
-    private func percent(_ value: Double) -> String { String(format: "%.0f%%", value * 100) }
+    private func percent(_ value: Double) -> String {
+        value.formatted(.percent.precision(.fractionLength(0)))
+    }
 
     // MARK: - Legend / sidebar
 

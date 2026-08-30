@@ -73,7 +73,7 @@ extension SequenceDiagramSidebar {
 
     func messageDetail(_ message: SequenceDiagram.Message) -> some View {
         List {
-            Section(message.label ?? "Message") {
+            Section {
                 LabeledContent {
                     Text(verbatim: viewModel.participantName(message.from) ?? message.from)
                 } label: {
@@ -94,6 +94,9 @@ extension SequenceDiagramSidebar {
                 } label: {
                     Text(.app("View.SequenceDiagramSidebar.Order"))
                 }
+            } header: {
+                message.label.map { Text(verbatim: $0) }
+                    ?? Text(.app("View.SequenceDiagramSidebar.Message"))
             }
         }
         .listStyle(.inset)

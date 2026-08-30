@@ -95,7 +95,7 @@ struct NewCodebaseSheet: View {
             .fileImporter(isPresented: $isChoosingDirectory, allowedContentTypes: [.folder]) { result in
                 guard let url = try? result.get() else { return }
                 guard url.startAccessingSecurityScopedResource() else {
-                    model.store.report("Access to \"\(url.path)\" was denied.")
+                    model.store.report(.app("Error.ScopedResourceAccess.Denied \(url.path)"))
                     return
                 }
                 defer { url.stopAccessingSecurityScopedResource() }
@@ -106,7 +106,8 @@ struct NewCodebaseSheet: View {
                     securityScopedBookmark = try SecurityScopedBookmark(resolving: url)
                 } catch {
                     securityScopedBookmark = nil
-                    model.store.report("Couldn't keep access to \"\(url.path)\": \(error.localizedDescription)")
+                    model.store.report(
+                        .app("Error.ScopedResourceAccess.BookmarkFailed \(url.path) \(error.localizedDescription)"))
                 }
                 // Detecting a `.git` root reads the repository's config/HEAD, so it must happen
                 // inside this same security-scoped access window.
@@ -299,7 +300,9 @@ struct NewCodebaseSheet: View {
         case .gitHub:
             // "Add" once the repository already has a local hub clone (this will attach a
             // worktree, not start a fresh network clone) — "Clone" the first time.
-            Button(isSelectedRepositoryAlreadyCloned ? "Add" : "Clone") {
+            Button(isSelectedRepositoryAlreadyCloned
+                ? .app("View.NewCodebaseSheet.Add")
+                : .app("View.NewCodebaseSheet.Clone")) {
                 guard let repository = selectedRepository, let ref = selectedRef, let account,
                       !clonePhase.isInFlight else { return }
                 clonePhase = .loading(.app("View.NewCodebaseSheet.Cloning"))
@@ -337,8 +340,13 @@ struct NewCodebaseSheet: View {
         guard !repositorySearch.isEmpty else { return repositories }
         return repositories.filter { $0.fullName.localizedCaseInsensitiveContains(repositorySearch) }
     }
+}
 
-    private func loadRepositories() async {
+// MARK: - GitHub Loading
+
+extension NewCodebaseSheet {
+
+    func loadRepositories() async {
         guard let account else { return }
         isLoadingRepositories = true
         defer { isLoadingRepositories = false }
@@ -349,7 +357,7 @@ struct NewCodebaseSheet: View {
         }
     }
 
-    private func loadRefs(for repository: GitHubAPIClient.Repository) async {
+    func loadRefs(for repository: GitHubAPIClient.Repository) async {
         guard let account else { return }
         isLoadingRefs = true
         defer { isLoadingRefs = false }

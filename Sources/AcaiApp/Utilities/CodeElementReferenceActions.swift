@@ -31,7 +31,7 @@ struct CodeElementReferenceActions: ViewModifier {
         FinderReveal(
             codebase: codebase, relativePath: relativePath,
             onFailure: { [store = model.store] in
-                store.report("Couldn't reveal in Finder: \($0.localizedDescription)")
+                store.report(.app("Error.FinderReveal.Failed \($0.localizedDescription)"))
             }
         )
     }

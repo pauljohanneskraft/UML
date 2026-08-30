@@ -151,7 +151,7 @@ public struct ProjectBrowserView: View {
             defaultFilename: model.pendingExport?.filename
         ) { result in
             if case .failure(let error) = result {
-                model.store.report("Export failed: \(error.localizedDescription)")
+                model.store.report(.app("Error.ProjectBrowserView.ExportFailed \(error.localizedDescription)"))
             }
             model.pendingExport = nil
         }
@@ -398,7 +398,7 @@ private struct StoreErrorAlert: ViewModifier {
             let bookmark = try SecurityScopedBookmark(resolving: url)
             model.editing.relocateCodebase(id: codebaseID, directoryURL: url, securityScopedBookmark: bookmark)
         } catch {
-            store.report("Couldn't use that folder: \(error.localizedDescription)")
+            store.report(.app("Error.ProjectBrowserView.FolderUnusable \(error.localizedDescription)"))
         }
     }
 }

@@ -56,7 +56,7 @@ struct QualityCheckEditorSheet: View {
             .fileImporter(isPresented: $isChoosingFile, allowedContentTypes: [.yaml]) { result in
                 guard let url = try? result.get() else { return }
                 guard url.startAccessingSecurityScopedResource() else {
-                    model.store.report("Access to \"\(url.path)\" was denied.")
+                    model.store.report(.app("Error.ScopedResourceAccess.Denied \(url.path)"))
                     return
                 }
                 defer { url.stopAccessingSecurityScopedResource() }
@@ -67,7 +67,8 @@ struct QualityCheckEditorSheet: View {
                     externalBookmark = try SecurityScopedBookmark(resolving: url)
                 } catch {
                     externalBookmark = nil
-                    model.store.report("Couldn't keep access to \"\(url.path)\": \(error.localizedDescription)")
+                    model.store.report(
+                        .app("Error.ScopedResourceAccess.BookmarkFailed \(url.path) \(error.localizedDescription)"))
                 }
             }
         }

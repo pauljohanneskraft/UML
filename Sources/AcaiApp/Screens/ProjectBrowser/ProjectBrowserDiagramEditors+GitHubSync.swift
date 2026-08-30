@@ -53,7 +53,7 @@ extension ProjectCodebaseEditor {
             persist()
             await reindex(codebaseID: codebaseID)
         } catch {
-            store.report("Clone failed: \(error.localizedDescription)")
+            store.report(.app("Error.ProjectBrowserViewModel.CloneFailed \(error.localizedDescription)"))
         }
     }
 
@@ -63,7 +63,7 @@ extension ProjectCodebaseEditor {
     func pull(codebaseID: UUID) async {
         guard let codebase = codebase(for: codebaseID), let source = codebase.githubSource else { return }
         guard let account = GitHubTokenStore().load() else {
-            store.report("Sign in to GitHub to pull \(source.owner)/\(source.repo).")
+            store.report(.app("Error.ProjectBrowserViewModel.SignInToPull \(source.owner)/\(source.repo)"))
             return
         }
         // Extracted into locals before the `@Sendable` closure below — see `addGitHubCodebase`'s
@@ -99,7 +99,7 @@ extension ProjectCodebaseEditor {
             }
             await reindex(codebaseID: codebaseID)
         } catch {
-            store.report("Pull failed: \(error.localizedDescription)")
+            store.report(.app("Error.ProjectBrowserViewModel.PullFailed \(error.localizedDescription)"))
         }
     }
 
@@ -111,7 +111,7 @@ extension ProjectCodebaseEditor {
     func switchGitHubRef(codebaseID: UUID, ref: String, kind: GitHubRef.Kind) async {
         guard let codebase = codebase(for: codebaseID), let source = codebase.githubSource else { return }
         guard let account = GitHubTokenStore().load() else {
-            store.report("Sign in to GitHub to switch branches.")
+            store.report(.app("Error.ProjectBrowserViewModel.SignInToSwitchBranches"))
             return
         }
         // Extracted into locals before the `@Sendable` closure below — see `addGitHubCodebase`'s
@@ -146,7 +146,7 @@ extension ProjectCodebaseEditor {
             }
             await reindex(codebaseID: codebaseID)
         } catch {
-            store.report("Branch switch failed: \(error.localizedDescription)")
+            store.report(.app("Error.ProjectBrowserViewModel.BranchSwitchFailed \(error.localizedDescription)"))
         }
     }
 
@@ -222,7 +222,9 @@ extension ProjectCodebaseEditor {
             // An app-managed directory (a GitHub clone or worktree) must never be re-pointed at a
             // folder of the user's choosing — only a codebase they picked themselves.
             let relocatable = error is ScopedResourceAccess.Failure && codebase.githubSource == nil
-            store.report("Reindex failed: \(error.localizedDescription)", relocating: relocatable ? codebaseID : nil)
+            store.report(
+                .app("Error.ProjectBrowserViewModel.ReindexFailed \(error.localizedDescription)"),
+                relocating: relocatable ? codebaseID : nil)
         }
     }
 }

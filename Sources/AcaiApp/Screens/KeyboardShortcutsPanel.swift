@@ -9,16 +9,18 @@ struct KeyboardShortcutsPanel: View {
         NavigationStack {
             List {
                 ForEach(KeyboardShortcutReference.groups) { group in
-                    Section(group.title) {
+                    Section {
                         ForEach(group.shortcuts) { shortcut in
                             HStack {
-                                Text(verbatim: shortcut.name)
+                                Text(localized: shortcut.name)
                                 Spacer()
                                 Text(verbatim: shortcut.symbol)
                                     .foregroundStyle(.secondary)
                                     .monospaced()
                             }
                         }
+                    } header: {
+                        Text(localized: group.title)
                     }
                 }
             }

@@ -360,7 +360,7 @@ private extension ClassDiagramSidebar {
                 FinderReveal(
                     codebase: viewModel.codebase, relativePath: filePath,
                     onFailure: { [store = model.store] in
-                        store.report("Couldn't reveal in Finder: \($0.localizedDescription)")
+                        store.report(.app("Error.FinderReveal.Failed \($0.localizedDescription)"))
                     }
                 ).reveal()
             } label: {

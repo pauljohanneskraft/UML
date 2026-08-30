@@ -66,7 +66,7 @@ extension FreeformDiagramInspector {
             }
             .labelsHidden()
         } header: {
-            Text(.app("View.FreeformDiagramInspector.TransitionStateKind"))
+            Text(.app("View.FreeformDiagramInspector.StateKindHeader"))
                 .font(.subheadline.weight(.medium))
                 .foregroundStyle(.secondary)
         }

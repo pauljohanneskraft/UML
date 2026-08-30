@@ -41,8 +41,12 @@ struct CompareOverlayButton: View {
         .padding(8)
         .background(isOn ? AnyShapeStyle(Color.accentColor) : AnyShapeStyle(.thinMaterial), in: Circle())
         .padding(10)
-        .help(isOn ? "Comparing vs \(diagram.comparisonGitRef ?? "")" : "Compare vs git")
-        .accessibilityLabel(isOn ? "Compare vs git, comparison active" : "Compare vs git")
+        .help(isOn
+            ? .app("View.CompareGitOverlay.ComparingVs \(diagram.comparisonGitRef ?? "")")
+            : .app("View.CompareGitOverlay.CompareVsGit"))
+        .accessibilityLabel(isOn
+            ? .app("View.CompareGitOverlay.CompareVsGitActive")
+            : .app("View.CompareGitOverlay.CompareVsGit"))
         .accessibilityIdentifier("delta.openButton")
         #if os(macOS)
         .popover(isPresented: $isPresented) {
@@ -457,7 +461,9 @@ struct CompareGitPanel: View {
                     .foregroundStyle(reviewed ? Color.accentColor : .secondary)
             }
             .buttonStyle(.plain)
-            .accessibilityLabel(reviewed ? "Mark finding as not reviewed" : "Mark finding as reviewed")
+            .accessibilityLabel(reviewed
+                ? .app("View.CompareGitOverlay.MarkNotReviewed")
+                : .app("View.CompareGitOverlay.MarkReviewed"))
             .accessibilityIdentifier("delta.finding.reviewToggle.\(finding.id)")
 
             FindingRow(finding: finding, codebase: model.codebase(for: diagram.codebaseID))
@@ -481,20 +487,5 @@ struct CompareGitPanel: View {
         else { return }
         pullRequests = (try? await GitHubRepositoryServiceResolver().resolve().pullRequests(
             credential: credential, owner: source.owner, repo: source.repo)) ?? []
-    }
-
-    private var legend: some View {
-        HStack(spacing: 10) {
-            swatch(Color(hex: DeltaEdgeColors.standard.added), .app("View.CompareGitOverlay.Added"))
-            swatch(Color(hex: DeltaEdgeColors.standard.removed), .app("View.CompareGitOverlay.Removed"))
-            swatch(Color(hex: DeltaEdgeColors.standard.changed), .app("View.CompareGitOverlay.Changed"))
-        }
-    }
-
-    private func swatch(_ color: Color, _ label: LocalizedStringResource) -> some View {
-        HStack(spacing: 3) {
-            Circle().fill(color).frame(width: 8, height: 8)
-            Text(localized: label).font(.caption2).foregroundStyle(.secondary)
-        }
     }
 }
