@@ -97,8 +97,9 @@ struct QualityCheckEditorSheet: View {
     private var externalContent: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Text(externalPath.isEmpty ? "No file selected"
-                     : (externalPath as NSString).abbreviatingWithTildeInPath)
+                (externalPath.isEmpty
+                    ? Text(.app("View.QualityCheckEditorSheet.NoFileSelected"))
+                    : Text(verbatim: (externalPath as NSString).abbreviatingWithTildeInPath))
                     .foregroundStyle(externalPath.isEmpty ? .secondary : .primary)
                     .lineLimit(1).truncationMode(.middle)
                 Spacer()
@@ -114,14 +115,14 @@ struct QualityCheckEditorSheet: View {
     @ViewBuilder
     private var externalPreview: some View {
         if externalPath.isEmpty {
-            QualityCheckPlaceholder(text: "Choose a YAML rules file to validate this codebase against.")
+            QualityCheckPlaceholder(text: .app("View.QualityCheckEditorSheet.ChooseYAMLRulesFile"))
         } else {
             switch externalRules {
             case .success(let rules):
                 ScrollView { QualityCheckReportView(report: rules.report(for: artifact)) }
             case .failure(let error):
                 QualityCheckPlaceholder(
-                    text: "Could not load rules: \(error.localizedDescription)",
+                    text: .app("View.QualityCheckEditorSheet.CouldNotLoadRules \(error.localizedDescription)"),
                     systemImage: "exclamationmark.triangle")
             }
         }

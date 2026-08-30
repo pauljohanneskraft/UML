@@ -116,8 +116,12 @@ struct SequenceDiagramSidebar: View {
                     VStack(alignment: .leading, spacing: 4) {
                         PickerFilterField(text: $typeQuery)
                         Picker(.app("View.SequenceDiagramSidebar.Type"), selection: $draftEntryTypeName) {
-                            Text(freeFunctionNames.isEmpty ? "Select…" : "None (top-level functions)").tag("")
-                            ForEach(callableTypeNames.filtered(by: typeQuery), id: \.self) { Text($0).tag($0) }
+                            Text(localized: freeFunctionNames.isEmpty
+                                ? .app("View.SequenceDiagramSidebar.SelectEllipsis")
+                                : .app("View.SequenceDiagramSidebar.NoneTopLevelFunctions")).tag("")
+                            ForEach(callableTypeNames.filtered(by: typeQuery), id: \.self) {
+                                Text(verbatim: $0).tag($0)
+                            }
                         }
                         .labelsHidden()
                         .accessibilityIdentifier("diagram.sequenceSettings.typePicker")
@@ -136,7 +140,9 @@ struct SequenceDiagramSidebar: View {
                         PickerFilterField(text: $methodQuery)
                         Picker(.app("View.SequenceDiagramSidebar.Method"), selection: $draftEntryMethodName) {
                             Text(.app("View.SequenceDiagramSidebar.Select")).tag("")
-                            ForEach(draftMethodNames.filtered(by: methodQuery), id: \.self) { Text($0).tag($0) }
+                            ForEach(draftMethodNames.filtered(by: methodQuery), id: \.self) {
+                                Text(verbatim: $0).tag($0)
+                            }
                         }
                         .labelsHidden()
                         .disabled(draftMethodNames.isEmpty)
@@ -166,7 +172,7 @@ struct SequenceDiagramSidebar: View {
                         LabeledContent(row.protocolName) {
                             Picker(row.protocolName, selection: $row.selection) {
                                 Text(.app("View.SequenceDiagramSidebar.LeaveAbstract")).tag(String?.none)
-                                ForEach(row.candidates, id: \.self) { Text($0).tag(String?.some($0)) }
+                                ForEach(row.candidates, id: \.self) { Text(verbatim: $0).tag(String?.some($0)) }
                             }
                             .labelsHidden()
                         }

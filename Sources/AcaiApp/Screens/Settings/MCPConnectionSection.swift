@@ -34,7 +34,7 @@ struct MCPConnectionSection: View {
                     .accessibilityIdentifier("mcp.notInstalledLabel")
             }
 
-            Text(snippet.json)
+            Text(verbatim: snippet.json)
                 .font(.system(.caption, design: .monospaced))
                 .textSelection(.enabled)
                 .frame(maxWidth: .infinity, alignment: .leading)

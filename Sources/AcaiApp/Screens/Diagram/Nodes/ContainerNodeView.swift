@@ -57,10 +57,10 @@ struct ContainerNodeView: View {
 
         VStack(alignment: .leading, spacing: 0) {
             VStack(spacing: 1) {
-                Text(.app("View.ContainerNodeView.Text \(stereotype)"))
+                Text(.app("View.ContainerNodeView.Stereotype \(stereotype)"))
                     .font(.system(size: 9, design: .monospaced))
                     .foregroundColor(styleBorder)
-                Text(name)
+                Text(verbatim: name)
                     .font(.system(size: 11, weight: .semibold, design: .monospaced))
                     .foregroundColor(palette.primaryInk)
             }

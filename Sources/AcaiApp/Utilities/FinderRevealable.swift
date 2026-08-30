@@ -54,7 +54,7 @@ struct FinderRevealable: ViewModifier {
         ) {
             Button(.app("View.FinderRevealable.OK"), role: .cancel) { errorMessage = nil }
         } message: {
-            Text(errorMessage ?? "")
+            Text(verbatim: errorMessage ?? "")
         }
         #else
         // No Finder on iOS — pass through unwrapped rather than a tappable button that does nothing.

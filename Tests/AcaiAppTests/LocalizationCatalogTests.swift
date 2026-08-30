@@ -17,11 +17,13 @@ struct LocalizationCatalogTests {
         .deletingLastPathComponent()
         .appendingPathComponent("Sources/AcaiApp")
 
-    /// One `.app("Identifier \(x)")` call site.
+    /// One `.app("Identifier \(x)")` call site, with the source text of each interpolation.
     private struct Usage {
         let identifier: String
-        let argumentCount: Int
+        let arguments: [String]
         let file: String
+
+        var argumentCount: Int { arguments.count }
     }
 
     /// A localizable position that must never take a bare literal. The empty literal is the one
@@ -33,6 +35,9 @@ struct LocalizationCatalogTests {
         ".help(", ".navigationTitle(", ".accessibilityLabel(", ".accessibilityHint(",
         ".accessibilityValue(", ".alert(", ".confirmationDialog("
     ]
+
+    /// The spellings that state what a `Text` holds. Anything else is an unmarked string.
+    private static let textIntents = ["verbatim:", "localized:", ".app(", "image:"]
 
     // MARK: - Catalog
 
@@ -59,6 +64,30 @@ struct LocalizationCatalogTests {
         return unit["value"] as? String
     }
 
+    /// One concrete format string of a localization, with the substitutions that resolve its
+    /// `%#@name@` tokens. A plural entry has one per plural form; every form has to agree.
+    private struct LocalizedFormat {
+        let value: String
+        let substitutions: [String: [String: Any]]
+    }
+
+    /// Every format string a localization can produce — its flat value, or one per plural form.
+    private func formats(of entry: [String: Any], _ language: String) -> [LocalizedFormat] {
+        guard let localizations = entry["localizations"] as? [String: Any],
+              let localization = localizations[language] as? [String: Any] else { return [] }
+        let substitutions = localization["substitutions"] as? [String: [String: Any]] ?? [:]
+        if let unit = localization["stringUnit"] as? [String: Any], let value = unit["value"] as? String {
+            return [LocalizedFormat(value: value, substitutions: substitutions)]
+        }
+        guard let variations = localization["variations"] as? [String: Any],
+              let plural = variations["plural"] as? [String: Any] else { return [] }
+        return plural.values.compactMap { form in
+            guard let form = form as? [String: Any], let unit = form["stringUnit"] as? [String: Any],
+                  let value = unit["value"] as? String else { return nil }
+            return LocalizedFormat(value: value, substitutions: substitutions)
+        }
+    }
+
     // MARK: - Source
 
     private func swiftFiles() -> [URL] {
@@ -82,7 +111,7 @@ struct LocalizationCatalogTests {
                 usages.append(
                     Usage(
                         identifier: String(identifier),
-                        argumentCount: literal.components(separatedBy: "\\(").count - 1,
+                        arguments: interpolations(in: literal),
                         file: file.lastPathComponent
                     )
                 )
@@ -90,6 +119,39 @@ struct LocalizationCatalogTests {
             }
         }
         return usages
+    }
+
+    /// The source text of each `\(…)` in a string literal, paren-balanced so a nested call stays
+    /// whole.
+    private func interpolations(in literal: Substring) -> [String] {
+        var arguments: [String] = []
+        var remainder = literal
+        while let start = remainder.range(of: "\\(") {
+            remainder = remainder[start.upperBound...]
+            var depth = 1
+            var end = remainder.startIndex
+            while end < remainder.endIndex, depth > 0 {
+                if remainder[end] == "(" { depth += 1 }
+                if remainder[end] == ")" { depth -= 1 }
+                if depth > 0 { end = remainder.index(after: end) }
+            }
+            arguments.append(String(remainder[..<end]))
+            guard end < remainder.endIndex else { break }
+            remainder = remainder[remainder.index(after: end)...]
+        }
+        return arguments
+    }
+
+    /// The source text between a `(` at `start` and its matching `)`.
+    private func call(in source: String, from start: String.Index) -> Substring {
+        var depth = 1
+        var end = start
+        while end < source.endIndex, depth > 0 {
+            if source[end] == "(" { depth += 1 }
+            if source[end] == ")" { depth -= 1 }
+            if depth > 0 { end = source.index(after: end) }
+        }
+        return source[start..<end]
     }
 
     // MARK: - Tests
@@ -114,7 +176,7 @@ struct LocalizationCatalogTests {
         for usage in usages() {
             let key = strings.keys.first { $0 == usage.identifier || $0.hasPrefix(usage.identifier + " %") }
             guard let key else { continue }
-            let placeholders = key.components(separatedBy: " %").count - 1
+            let placeholders = FormatArguments(key).byPosition.count
             #expect(
                 placeholders == usage.argumentCount,
                 """
@@ -122,6 +184,89 @@ struct LocalizationCatalogTests {
                 catalog key expects \(placeholders)
                 """
             )
+        }
+    }
+
+    @Test("Every localization formats its arguments exactly as the key declares them")
+    func specifiersMatchTheKey() throws {
+        let strings = try catalogStrings()
+        for (key, entry) in strings {
+            let declared = FormatArguments(key)
+            guard !declared.byPosition.isEmpty else { continue }
+            for language in Self.shippedLanguages {
+                for format in formats(of: entry, language) {
+                    let actual = FormatArguments(format.value, substitutions: format.substitutions)
+                    #expect(
+                        actual == declared,
+                        """
+                        \(language) '\(key)': value '\(format.value)' formats \(actual), \
+                        the key declares \(declared)
+                        """
+                    )
+                }
+            }
+        }
+    }
+
+    /// The key a call site looks up is built from the *type* it interpolates — an `Int` renders
+    /// `%lld`, so a key written `%@` is never found and the identifier reaches the screen raw. Only
+    /// the arguments source text alone proves to be integers are checked here; the rest is on the
+    /// Xcode build, which is the only thing that compiles the catalog.
+    @Test("An integer argument reaches a catalog key that formats integers")
+    func integerArgumentsUseIntegerSpecifiers() throws {
+        let strings = try catalogStrings()
+        for usage in usages() {
+            let key = strings.keys.first { $0 == usage.identifier || $0.hasPrefix(usage.identifier + " %") }
+            guard let key else { continue }
+            let declared = FormatArguments(key).byPosition
+            for (offset, argument) in usage.arguments.enumerated() where isInteger(argument) {
+                let specifier = declared[offset + 1]
+                #expect(
+                    specifier == "lld" || specifier == "d",
+                    """
+                    \(usage.file): '\(usage.identifier)' passes the integer '\(argument)', \
+                    but '\(key)' formats argument \(offset + 1) as %\(specifier ?? "")
+                    """
+                )
+            }
+        }
+    }
+
+    /// Whether an interpolation is an integer on its source text alone — no type inference.
+    private func isInteger(_ argument: String) -> Bool {
+        argument.wholeMatch(of: /-?\d+/) != nil
+            || argument.hasSuffix(".count")
+            || argument.hasPrefix("Int(")
+            || argument.contains(/\?\?\s*-?\d+$/)
+    }
+
+    /// `Text(someString)` renders whatever it is handed and reads the same whether the string is
+    /// chrome that should have been translated or content that must not be. Spelling the intent out
+    /// — `verbatim:` for content, `localized:`/`.app` for chrome — is what makes the difference
+    /// visible to a reader and checkable here.
+    @Test("Every Text says whether its content is localized or verbatim")
+    func everyTextDeclaresItsIntent() throws {
+        for file in swiftFiles() {
+            guard let source = try? String(contentsOf: file, encoding: .utf8) else { continue }
+            var searched = source.startIndex
+            while let start = source.range(of: "Text(", range: searched..<source.endIndex) {
+                searched = start.upperBound
+                if start.lowerBound > source.startIndex {
+                    let before = source[source.index(before: start.lowerBound)]
+                    guard !(before.isLetter || before == "." || before == "_") else { continue }
+                }
+                let argument = call(in: source, from: start.upperBound)
+                    .drop { $0.isWhitespace }
+                guard !argument.hasPrefix("\"") else { continue }
+                let styled = argument.contains("format:") || argument.contains("style:")
+                #expect(
+                    Self.textIntents.contains(where: argument.hasPrefix) || styled,
+                    """
+                    \(file.lastPathComponent): Text(\(argument.prefix(40))…) says nothing about its \
+                    content — use Text(verbatim:) for content, Text(localized:)/.app for chrome
+                    """
+                )
+            }
         }
     }
 
@@ -198,15 +343,20 @@ struct LocalizationCatalogTests {
             guard let source = try? String(contentsOf: file, encoding: .utf8) else { continue }
             for prefix in Self.localizablePrefixes {
                 var searched = source.startIndex
-                while let start = source.range(of: prefix + "\"", range: searched..<source.endIndex) {
+                while let start = source.range(of: prefix, range: searched..<source.endIndex) {
                     searched = start.upperBound
                     // `Label(` must be the whole word, not the tail of `chartXAxisLabel(`.
                     let isWholeWord = prefix.hasPrefix(".") || start.lowerBound == source.startIndex
                         || !(source[source.index(before: start.lowerBound)].isLetter
                              || source[source.index(before: start.lowerBound)] == ".")
                     guard isWholeWord else { continue }
+                    // The literal may sit on the next line — a call broken after its paren is the
+                    // same violation.
+                    var argument = source[start.upperBound...].drop { $0.isWhitespace }
+                    guard argument.first == "\"" else { continue }
+                    argument = argument.dropFirst()
                     #expect(
-                        source[start.upperBound...].first == "\"",
+                        argument.first == "\"",
                         "\(file.lastPathComponent): \(prefix)\"…\") takes a bare literal — use .app(\"…\")"
                     )
                 }

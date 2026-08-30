@@ -18,7 +18,7 @@ struct RelationshipKindPicker: View {
                 }
             }
         } label: {
-            Text(summary)
+            Text(localized: summary)
         }
         .fixedSize()
     }

@@ -135,7 +135,7 @@ extension FreeformDiagramInspector {
                 ForEach(FreeformDiagramNodeKind.CatalogGroup.allCases, id: \.rawValue) { group in
                     Section(group.rawValue) {
                         ForEach(FreeformDiagramNodeKind.cases(in: group)) { elementKind in
-                            Text(elementKind.displayName).tag(elementKind)
+                            Text(verbatim: elementKind.displayName).tag(elementKind)
                         }
                     }
                 }
@@ -253,7 +253,7 @@ extension FreeformDiagramInspector {
                     set: { viewModel.sequence.updateLifelineKind(node.id, kind: $0) }
                 )) {
                     ForEach(SequenceDiagram.Participant.Kind.allCases, id: \.self) { role in
-                        Text(role.rawValue.capitalized).tag(role)
+                        Text(verbatim: role.rawValue.capitalized).tag(role)
                     }
                 }
                 .labelsHidden()
@@ -299,10 +299,10 @@ extension FreeformDiagramInspector {
                     Text(verbatim: "\(edge.messageOrder ?? 0).")
                         .font(.caption.monospaced())
                         .foregroundStyle(.secondary)
-                    Text(edge.label ?? (edge.messageKind == .return ? "(return)" : "(message)"))
+                    (edge.label.map { Text(verbatim: $0) } ?? Text(localized: placeholderLabel(for: edge)))
                         .font(.caption.monospaced())
                     Spacer()
-                    Text(outgoing ? "→ \(otherName)" : "← \(otherName)")
+                    Text(verbatim: outgoing ? "→ \(otherName)" : "← \(otherName)")
                         .font(.caption.monospaced())
                         .foregroundStyle(.secondary)
                 }
@@ -318,6 +318,12 @@ extension FreeformDiagramInspector {
         }
     }
 
+    private func placeholderLabel(for edge: FreeformDiagram.Edge) -> LocalizedStringResource {
+        edge.messageKind == .return
+            ? .app("View.FreeformDiagramInspector.UnlabelledReturn")
+            : .app("View.FreeformDiagramInspector.UnlabelledMessage")
+    }
+
     private func relationshipsListSection(
         node: FreeformDiagram.Node,
         relationships: [FreeformDiagram.Edge]
@@ -325,12 +331,12 @@ extension FreeformDiagramInspector {
         Section {
             ForEach(relationships) { edge in
                 HStack {
-                    Text(edge.kind.rawValue)
+                    Text(verbatim: edge.kind.rawValue)
                         .font(.caption)
                     Spacer()
                     let otherID = edge.sourceNodeID == node.id ? edge.targetNodeID : edge.sourceNodeID
                     let otherName = viewModel.nodes.first(where: { $0.id == otherID })?.name ?? "?"
-                    Text(otherName)
+                    Text(verbatim: otherName)
                         .font(.caption.monospaced())
                         .foregroundStyle(.secondary)
                 }
@@ -383,42 +389,42 @@ extension FreeformDiagramInspector {
 
     private func edgePickersSection(edge: FreeformDiagram.Edge) -> some View {
         Section {
-            Picker(.app("FreeformDiagramInspector.Source"), selection: Binding(
+            Picker(.app("View.FreeformDiagramInspector.Source"), selection: Binding(
                 get: { edge.sourceNodeID },
                 set: { newSource in
                     viewModel.updateEdge(edge.id, sourceID: newSource,
                                          targetID: edge.targetNodeID, kind: edge.kind)
                 }
             )) {
-                ForEach(viewModel.nodes) { node in Text(node.name).tag(node.id) }
+                ForEach(viewModel.nodes) { node in Text(verbatim: node.name).tag(node.id) }
             }
 
-            Picker(.app("FreeformDiagramInspector.Target"), selection: Binding(
+            Picker(.app("View.FreeformDiagramInspector.Target"), selection: Binding(
                 get: { edge.targetNodeID },
                 set: { newTarget in
                     viewModel.updateEdge(edge.id, sourceID: edge.sourceNodeID,
                                          targetID: newTarget, kind: edge.kind)
                 }
             )) {
-                ForEach(viewModel.nodes) { node in Text(node.name).tag(node.id) }
+                ForEach(viewModel.nodes) { node in Text(verbatim: node.name).tag(node.id) }
             }
 
-            Picker(.app("FreeformDiagramInspector.Kind"), selection: Binding(
+            Picker(.app("View.FreeformDiagramInspector.KindPicker"), selection: Binding(
                 get: { edge.kind },
                 set: { newKind in
                     viewModel.updateEdge(edge.id, sourceID: edge.sourceNodeID,
                                          targetID: edge.targetNodeID, kind: newKind)
                 }
             )) {
-                Text(.app("FreeformDiagramInspector.Inheritance")).tag(Relationship.Kind.inheritance)
-                Text(.app("FreeformDiagramInspector.Conformance")).tag(Relationship.Kind.conformance)
-                Text(.app("FreeformDiagramInspector.Composition")).tag(Relationship.Kind.composition)
-                Text(.app("FreeformDiagramInspector.Aggregation")).tag(Relationship.Kind.aggregation)
-                Text(.app("FreeformDiagramInspector.Association")).tag(Relationship.Kind.association)
-                Text(.app("FreeformDiagramInspector.Dependency")).tag(Relationship.Kind.dependency)
+                Text(.app("View.FreeformDiagramInspector.Inheritance")).tag(Relationship.Kind.inheritance)
+                Text(.app("View.FreeformDiagramInspector.Conformance")).tag(Relationship.Kind.conformance)
+                Text(.app("View.FreeformDiagramInspector.Composition")).tag(Relationship.Kind.composition)
+                Text(.app("View.FreeformDiagramInspector.Aggregation")).tag(Relationship.Kind.aggregation)
+                Text(.app("View.FreeformDiagramInspector.Association")).tag(Relationship.Kind.association)
+                Text(.app("View.FreeformDiagramInspector.Dependency")).tag(Relationship.Kind.dependency)
             }
         } header: {
-            Text(.app("FreeformDiagramInspector.Relationship"))
+            Text(.app("View.FreeformDiagramInspector.Relationship"))
                 .font(.subheadline.weight(.medium))
                 .foregroundStyle(.secondary)
         }
@@ -427,7 +433,7 @@ extension FreeformDiagramInspector {
     private func edgeSummary(edge: FreeformDiagram.Edge) -> some View {
         let sourceName = viewModel.nodes.first(where: { $0.id == edge.sourceNodeID })?.name ?? "?"
         let targetName = viewModel.nodes.first(where: { $0.id == edge.targetNodeID })?.name ?? "?"
-        return Text(.app("FreeformDiagramInspector.Text5 \(sourceName) \(targetName)"))
+        return Text(.app("View.FreeformDiagramInspector.FragmentRange \(sourceName) \(targetName)"))
             .font(.caption)
             .foregroundStyle(.secondary)
     }
@@ -444,13 +450,13 @@ extension FreeformDiagramInspector {
                     }
                 }
             } header: {
-                Text(.app("FreeformDiagramInspector.NodesSelected \(viewModel.selectedNodeIDs.count)"))
+                Text(.app("View.FreeformDiagramInspector.NodesSelected \(viewModel.selectedNodeIDs.count)"))
             }
             Section {
                 Button(role: .destructive) {
                     viewModel.deleteSelection()
                 } label: {
-                    Label(.app("FreeformDiagramInspector.DeleteSelected"), systemImage: "trash")
+                    Label(.app("View.FreeformDiagramInspector.DeleteSelected"), systemImage: "trash")
                         .frame(maxWidth: .infinity)
                 }
             }

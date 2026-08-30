@@ -36,7 +36,7 @@ struct ActivityIndicatorView: View {
                 .labelStyle(.iconOnly)
                 .symbolEffect(.pulse)
                 .overlay(alignment: .topTrailing) {
-                    Text(.app("View.ActivityIndicatorView.Text \(activityCenter.operations.count)"))
+                    Text(.app("View.ActivityIndicatorView.RunningCount \(activityCenter.operations.count)"))
                         .font(.system(size: 9, weight: .bold))
                         .foregroundStyle(.white)
                         .padding(3)
@@ -56,11 +56,14 @@ private struct ActivityOperationListView: View {
         NavigationStack {
             Group {
                 if activityCenter.operations.isEmpty {
-                    ContentUnavailableView(
-                        "Nothing in Progress",
-                        systemImage: "checkmark.circle",
-                        description: Text(.app("View.ActivityOperationListView.ReindexingFetchingCloningWill"))
-                    )
+                    ContentUnavailableView {
+                        Label(
+                            .app("View.ActivityOperationListView.NothingInProgress"),
+                            systemImage: "checkmark.circle"
+                        )
+                    } description: {
+                        Text(.app("View.ActivityOperationListView.ReindexingFetchingCloningWill"))
+                    }
                     .accessibilityIdentifier("activity.emptyState")
                 } else {
                     List(activityCenter.operations) { operation in
@@ -91,7 +94,7 @@ private struct ActivityOperationRow: View {
             Image(systemName: operation.kind.systemImage)
                 .foregroundStyle(.secondary)
             VStack(alignment: .leading, spacing: 2) {
-                Text(operation.title)
+                Text(localized: operation.title)
                 if let progress = operation.progress {
                     ProgressView(value: progress)
                 } else {
@@ -109,7 +112,7 @@ private struct ActivityOperationRow: View {
             }
             .buttonStyle(.borderless)
             .help(.app("View.ActivityOperationRow.Cancel"))
-            .accessibilityLabel(.app("View.ActivityOperationRow.Cancel2 \(operation.title)"))
+            .accessibilityLabel(.app("View.ActivityOperationRow.CancelOperation \(operation.title)"))
             .accessibilityIdentifier("activity.cancelButton.\(operation.id)")
         }
         .accessibilityIdentifier("activity.row.\(operation.id)")

@@ -1,7 +1,139 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "CodebaseDetailView.CodebaseHasNotBeen" : {
+    "Activity.Cloning %@/%@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@/%2$@ wird geklont…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cloning %1$@/%2$@…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clonage de %1$@/%2$@…"
+          }
+        }
+      }
+    },
+    "Activity.ExportingAtlas %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atlas von %@ wird exportiert…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exporting %@ atlas…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Export de l'atlas de %@…"
+          }
+        }
+      }
+    },
+    "Activity.Fetching %@/%@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@/%2$@ wird abgerufen…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fetching %1$@/%2$@…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Récupération de %1$@/%2$@…"
+          }
+        }
+      }
+    },
+    "Activity.FetchingRemote %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ wird abgerufen…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fetching %@…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Récupération de %@…"
+          }
+        }
+      }
+    },
+    "Activity.Indexing %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ wird indiziert…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indexing %@…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indexation de %@…"
+          }
+        }
+      }
+    },
+    "Activity.Switching %@/%@ %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@/%2$@ wird auf %3$@ umgestellt…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Switching %1$@/%2$@ to %3$@…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bascule de %1$@/%2$@ vers %3$@…"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.CodebaseHasNotBeen" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -23,7 +155,7 @@
         }
       }
     },
-    "CodebaseDetailView.DeleteCodebase" : {
+    "View.CodebaseDetailView.DeleteCodebaseEllipsis" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -45,7 +177,7 @@
         }
       }
     },
-    "CodebaseDetailView.IndexNow" : {
+    "View.CodebaseDetailView.IndexNow" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -485,24 +617,24 @@
         }
       }
     },
-    "Error.GitHubTokenStore.Keychain %lld" : {
+    "Error.GitHubTokenStore.Keychain %d" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Keychain-Fehler %lld."
+            "value" : "Keychain-Fehler %d."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Keychain error %lld."
+            "value" : "Keychain error %d."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Erreur du trousseau %lld."
+            "value" : "Erreur du trousseau %d."
           }
         }
       }
@@ -793,7 +925,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Action" : {
+    "View.FreeformDiagramInspector.Action" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -815,7 +947,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.AddMethod" : {
+    "View.FreeformDiagramInspector.AddMethod" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -837,7 +969,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.AddOperand" : {
+    "View.FreeformDiagramInspector.AddOperand" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -859,7 +991,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.AddProperty" : {
+    "View.FreeformDiagramInspector.AddProperty" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -881,7 +1013,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Aggregation" : {
+    "View.FreeformDiagramInspector.Aggregation" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -903,7 +1035,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Association" : {
+    "View.FreeformDiagramInspector.Association" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -925,7 +1057,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Asynchronous" : {
+    "View.FreeformDiagramInspector.Asynchronous" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -947,7 +1079,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Choice" : {
+    "View.FreeformDiagramInspector.Choice" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -969,7 +1101,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Composition" : {
+    "View.FreeformDiagramInspector.Composition" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -991,7 +1123,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Conformance" : {
+    "View.FreeformDiagramInspector.Conformance" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1013,7 +1145,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Create" : {
+    "View.FreeformDiagramInspector.Create" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1035,7 +1167,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.DeleteSelected" : {
+    "View.FreeformDiagramInspector.DeleteSelected" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1057,7 +1189,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Dependency" : {
+    "View.FreeformDiagramInspector.Dependency" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1079,7 +1211,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Destroy" : {
+    "View.FreeformDiagramInspector.Destroy" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1101,7 +1233,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Event" : {
+    "View.FreeformDiagramInspector.Event" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1123,7 +1255,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Final" : {
+    "View.FreeformDiagramInspector.Final" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1145,7 +1277,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Fragment" : {
+    "View.FreeformDiagramInspector.Fragment" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1167,7 +1299,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.GuardCondition" : {
+    "View.FreeformDiagramInspector.GuardCondition" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1189,7 +1321,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.GuardEGCart" : {
+    "View.FreeformDiagramInspector.GuardEGCart" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1211,7 +1343,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Inheritance" : {
+    "View.FreeformDiagramInspector.Inheritance" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1233,7 +1365,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Initial" : {
+    "View.FreeformDiagramInspector.Initial" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1255,7 +1387,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Kind" : {
+    "View.FreeformDiagramInspector.KindPicker" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1277,7 +1409,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Label" : {
+    "View.FreeformDiagramInspector.Label" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1299,7 +1431,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Message" : {
+    "View.FreeformDiagramInspector.Message" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1321,7 +1453,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Methods" : {
+    "View.FreeformDiagramInspector.Methods" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1343,7 +1475,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Name" : {
+    "View.FreeformDiagramInspector.MemberName" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1365,7 +1497,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.NodesSelected %lld" : {
+    "View.FreeformDiagramInspector.NodesSelected %lld" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1387,7 +1519,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Operator" : {
+    "View.FreeformDiagramInspector.Operator" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1409,29 +1541,29 @@
         }
       }
     },
-    "FreeformDiagramInspector.Order %@" : {
+    "View.FreeformDiagramInspector.Order %lld" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reihenfolge: %@"
+            "value" : "Reihenfolge: %lld"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Order: %@"
+            "value" : "Order: %lld"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ordre : %@"
+            "value" : "Ordre : %lld"
           }
         }
       }
     },
-    "FreeformDiagramInspector.Properties" : {
+    "View.FreeformDiagramInspector.Properties" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1453,7 +1585,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Relationship" : {
+    "View.FreeformDiagramInspector.Relationship" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1475,7 +1607,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Return" : {
+    "View.FreeformDiagramInspector.Return" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1497,7 +1629,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.ReturnType" : {
+    "View.FreeformDiagramInspector.ReturnType" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1519,7 +1651,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Source" : {
+    "View.FreeformDiagramInspector.Source" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1541,7 +1673,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.State" : {
+    "View.FreeformDiagramInspector.State" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1563,7 +1695,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.StateKind" : {
+    "View.FreeformDiagramInspector.StateKind" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1585,7 +1717,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.StateKind2" : {
+    "View.FreeformDiagramInspector.TransitionStateKind" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1607,7 +1739,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Synchronous" : {
+    "View.FreeformDiagramInspector.Synchronous" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1629,7 +1761,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Target" : {
+    "View.FreeformDiagramInspector.Target" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1651,7 +1783,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Text" : {
+    "View.FreeformDiagramInspector.From" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1673,7 +1805,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Text2" : {
+    "View.FreeformDiagramInspector.To" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1695,7 +1827,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Text5 %@ %@" : {
+    "View.FreeformDiagramInspector.FragmentRange %@ %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1717,7 +1849,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Transition" : {
+    "View.FreeformDiagramInspector.Transition" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1739,7 +1871,7 @@
         }
       }
     },
-    "FreeformDiagramInspector.Type" : {
+    "View.FreeformDiagramInspector.Type" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1761,7 +1893,7 @@
         }
       }
     },
-    "FreeformDiagramView.CancelPlacement" : {
+    "View.FreeformDiagramView.CancelPlacement" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1783,7 +1915,7 @@
         }
       }
     },
-    "FreeformDiagramView.Copy" : {
+    "View.FreeformDiagramView.Copy" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1805,7 +1937,7 @@
         }
       }
     },
-    "FreeformDiagramView.Cut" : {
+    "View.FreeformDiagramView.Cut" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1827,7 +1959,7 @@
         }
       }
     },
-    "FreeformDiagramView.Delete" : {
+    "View.FreeformDiagramView.DeleteMenu" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1849,7 +1981,7 @@
         }
       }
     },
-    "FreeformDiagramView.Edit" : {
+    "View.FreeformDiagramView.Edit" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1871,7 +2003,7 @@
         }
       }
     },
-    "FreeformDiagramView.MoveHigher" : {
+    "View.FreeformDiagramView.MoveHigher" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1893,7 +2025,7 @@
         }
       }
     },
-    "FreeformDiagramView.MoveLower" : {
+    "View.FreeformDiagramView.MoveLower" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1915,7 +2047,7 @@
         }
       }
     },
-    "FreeformDiagramView.Paste" : {
+    "View.FreeformDiagramView.Paste" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1937,7 +2069,7 @@
         }
       }
     },
-    "FreeformDiagramView.SelectAll" : {
+    "View.FreeformDiagramView.SelectAll" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2025,7 +2157,7 @@
         }
       }
     },
-    "ProjectBrowserView.Delete" : {
+    "View.ProjectBrowserView.Delete" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2047,7 +2179,7 @@
         }
       }
     },
-    "ProjectBrowserView.DeleteProject" : {
+    "View.ProjectBrowserView.DeleteProjectMenu" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2069,7 +2201,7 @@
         }
       }
     },
-    "ProjectBrowserView.Name" : {
+    "View.ProjectBrowserView.Name" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2091,7 +2223,7 @@
         }
       }
     },
-    "ProjectBrowserView.Reindex" : {
+    "View.ProjectBrowserView.Reindex" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2113,7 +2245,7 @@
         }
       }
     },
-    "ProjectBrowserView.Rename" : {
+    "View.ProjectBrowserView.Rename" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2135,7 +2267,7 @@
         }
       }
     },
-    "ProjectBrowserView.Repositories" : {
+    "View.ProjectBrowserView.Repositories" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2157,7 +2289,7 @@
         }
       }
     },
-    "ProjectBrowserView.SearchTypesModulesMethods" : {
+    "View.ProjectBrowserView.SearchTypesModulesMethods" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2179,7 +2311,7 @@
         }
       }
     },
-    "ProjectDetailView.AddCodebase" : {
+    "View.ProjectDetailView.AddCodebaseMenu" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2201,7 +2333,7 @@
         }
       }
     },
-    "ProjectDetailView.AddDiagram" : {
+    "View.ProjectDetailView.AddDiagram" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2223,7 +2355,7 @@
         }
       }
     },
-    "ProjectDetailView.Delete" : {
+    "View.ProjectDetailView.DeleteMenu" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2245,7 +2377,7 @@
         }
       }
     },
-    "ProjectDetailView.DeleteProject" : {
+    "View.ProjectDetailView.DeleteProjectEllipsis" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2267,7 +2399,7 @@
         }
       }
     },
-    "ProjectDetailView.ExportCodebaseAtlas" : {
+    "View.ProjectDetailView.ExportCodebaseAtlas" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2289,7 +2421,7 @@
         }
       }
     },
-    "ProjectDetailView.ExportDOT" : {
+    "View.ProjectDetailView.ExportDOT" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2311,7 +2443,7 @@
         }
       }
     },
-    "ProjectDetailView.ExportMermaid" : {
+    "View.ProjectDetailView.ExportMermaid" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2333,7 +2465,7 @@
         }
       }
     },
-    "ProjectDetailView.Findings" : {
+    "View.ProjectDetailView.Findings" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2355,7 +2487,7 @@
         }
       }
     },
-    "ProjectDetailView.FreeformDiagram" : {
+    "View.ProjectDetailView.FreeformDiagram" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2377,7 +2509,7 @@
         }
       }
     },
-    "ProjectDetailView.LetSAddFirst" : {
+    "View.ProjectDetailView.LetSAddFirst" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2399,7 +2531,7 @@
         }
       }
     },
-    "ProjectDetailView.Reindex" : {
+    "View.ProjectDetailView.ReindexMenu" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2421,7 +2553,7 @@
         }
       }
     },
-    "SequenceDiagramSidebar.Kind" : {
+    "View.SequenceDiagramSidebar.Kind" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2443,7 +2575,7 @@
         }
       }
     },
-    "SequenceDiagramSidebar.LifelineInflectTrueSelected %lld" : {
+    "View.SequenceDiagramSidebar.LifelineInflectTrueSelected %lld" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2465,7 +2597,7 @@
         }
       }
     },
-    "SequenceDiagramSidebar.Order" : {
+    "View.SequenceDiagramSidebar.Order" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2487,7 +2619,7 @@
         }
       }
     },
-    "SequenceDiagramSidebar.Receives %lld" : {
+    "View.SequenceDiagramSidebar.Receives %lld" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2509,7 +2641,7 @@
         }
       }
     },
-    "SequenceDiagramSidebar.SelectLifelineMessageInspect" : {
+    "View.SequenceDiagramSidebar.SelectLifelineMessageInspect" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2531,7 +2663,7 @@
         }
       }
     },
-    "SequenceDiagramSidebar.Sends %lld" : {
+    "View.SequenceDiagramSidebar.Sends %lld" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2553,7 +2685,7 @@
         }
       }
     },
-    "SequenceDiagramSidebar.Text2" : {
+    "View.SequenceDiagramSidebar.From" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2575,7 +2707,7 @@
         }
       }
     },
-    "SequenceDiagramSidebar.Text3" : {
+    "View.SequenceDiagramSidebar.To" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2641,7 +2773,7 @@
         }
       }
     },
-    "View.ActivityIndicatorView.Text %lld" : {
+    "View.ActivityIndicatorView.RunningCount %lld" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2707,6 +2839,28 @@
         }
       }
     },
+    "View.ActivityOperationListView.NothingInProgress" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nichts in Arbeit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nothing in Progress"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rien en cours"
+          }
+        }
+      }
+    },
     "View.ActivityOperationListView.ReindexingFetchingCloningWill" : {
       "localizations" : {
         "de" : {
@@ -2751,7 +2905,7 @@
         }
       }
     },
-    "View.ActivityOperationRow.Cancel2 %@" : {
+    "View.ActivityOperationRow.CancelOperation %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -2791,6 +2945,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Chargé"
+          }
+        }
+      }
+    },
+    "View.BudgetsEditor.AppliesToOptional" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gilt für (optional)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Applies to (optional)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S'applique à (facultatif)"
           }
         }
       }
@@ -2857,6 +3033,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Métrique"
+          }
+        }
+      }
+    },
+    "View.BudgetsEditor.MetricBudgets" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metrik-Budgets"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metric budgets"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Budgets de métriques"
           }
         }
       }
@@ -3231,6 +3429,94 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Codebase entière"
+          }
+        }
+      }
+    },
+    "View.CallGraphInspector.CalledBy" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufgerufen von"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Called by"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appelé par"
+          }
+        }
+      }
+    },
+    "View.CallGraphInspector.CalledByCount %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufgerufen von (%lld)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Called By (%lld)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appelé par (%lld)"
+          }
+        }
+      }
+    },
+    "View.CallGraphInspector.Calls %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufrufe (%lld)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calls (%lld)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appels (%lld)"
+          }
+        }
+      }
+    },
+    "View.CallGraphInspector.CallsOut" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ausgehende Aufrufe"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calls out"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appels sortants"
           }
         }
       }
@@ -3715,6 +4001,116 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Exporter la vérification CI"
+          }
+        }
+      }
+    },
+    "View.CIQualityCheckExportSheet.GitHubActionsStep" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub-Actions-Schritt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GitHub Actions step"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Étape GitHub Actions"
+          }
+        }
+      }
+    },
+    "View.CIQualityCheckExportSheet.PasteIntoJob" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Füge dies in einen Job ein, der das Repository bereits auscheckt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paste into a job that already checks out the repository."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Collez ceci dans un job qui fait déjà le checkout du repository."
+          }
+        }
+      }
+    },
+    "View.CIQualityCheckExportSheet.RulesFileOutsideCodebase %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diese Regeldatei liegt nicht im Ordner von %@, ein CI-Checkout hat sie also nicht. Committe eine Kopie ins Repository (z. B. als quality.yml), bevor du den Ausschnitt unten in CI verwendest."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This rules file isn't inside %@'s own folder, so a CI runner's checkout won't have it. Commit a copy into the repository (e.g. as quality.yml) before using the snippet below in CI."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce fichier de règles n'est pas dans le dossier de %@ ; le checkout d'un runner CI ne l'aura donc pas. Committez-en une copie dans le repository (par ex. comme quality.yml) avant d'utiliser l'extrait ci-dessous en CI."
+          }
+        }
+      }
+    },
+    "View.CIQualityCheckExportSheet.RunsAgainstCurrentLocation" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Läuft gegen den aktuellen Ort dieser Codebase."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Runs against this codebase's current location."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S'exécute sur l'emplacement actuel de cette codebase."
+          }
+        }
+      }
+    },
+    "View.CIQualityCheckExportSheet.ShellCommand" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shell-Befehl"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shell command"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commande shell"
           }
         }
       }
@@ -4247,7 +4643,7 @@
         }
       }
     },
-    "View.ClassDiagramSidebar.Relationships2 %lld" : {
+    "View.ClassDiagramSidebar.RelationshipsCount %lld" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4863,6 +5259,28 @@
         }
       }
     },
+    "View.CodebaseDetailView.Abstractness" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abstractness"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abstractness"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abstractness"
+          }
+        }
+      }
+    },
     "View.CodebaseDetailView.AbstractnessBlurb" : {
       "localizations" : {
         "de" : {
@@ -4907,6 +5325,28 @@
         }
       }
     },
+    "View.CodebaseDetailView.AfferentCa" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afferent (Ca)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afferent (Ca)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afferent (Ca)"
+          }
+        }
+      }
+    },
     "View.CodebaseDetailView.AnalyzingCodebase" : {
       "localizations" : {
         "de" : {
@@ -4929,6 +5369,28 @@
         }
       }
     },
+    "View.CodebaseDetailView.Avg %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ø %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "avg %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "moy. %@"
+          }
+        }
+      }
+    },
     "View.CodebaseDetailView.BranchTag" : {
       "localizations" : {
         "de" : {
@@ -4947,6 +5409,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Branch/Tag"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.Children" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subtypen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Children"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sous-types"
           }
         }
       }
@@ -4995,6 +5479,28 @@
         }
       }
     },
+    "View.CodebaseDetailView.CohesionLCOM" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kohäsion (LCOM)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cohesion (LCOM)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cohésion (LCOM)"
+          }
+        }
+      }
+    },
     "View.CodebaseDetailView.ConfirmDeleteCodebase %@" : {
       "localizations" : {
         "de" : {
@@ -5017,6 +5523,28 @@
         }
       }
     },
+    "View.CodebaseDetailView.CyclomaticComplexity" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cyclomatic Complexity"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cyclomatic Complexity"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cyclomatic Complexity"
+          }
+        }
+      }
+    },
     "View.CodebaseDetailView.CyclomaticComplexityBlurb" : {
       "localizations" : {
         "de" : {
@@ -5035,6 +5563,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "La Cyclomatic Complexity la plus élevée d'une méthode : 1 + ses points de décision (branches, boucles, cas de switch, catchs), comptés à chaque profondeur d'imbrication. Fait ressortir la méthode compliquée qu'un simple décompte de méthodes masque — une cible de choix pour l'extraire et la tester."
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.DataClassScore" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data-Class-Score"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data-class Score"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Score data-class"
           }
         }
       }
@@ -5079,6 +5629,50 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Forme d'héritage à la fois profonde et large (profondeur × enfants). Un type à la fois profondément dérivé et largement sous-classé se trouve au centre d'une hiérarchie fragile où les changements se répercutent dans toutes les directions."
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.Deepest" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "am tiefsten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "deepest"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "les plus profonds"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.DeepWide" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tief & breit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deep & Wide"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profond et large"
           }
         }
       }
@@ -5149,6 +5743,28 @@
         }
       }
     },
+    "View.CodebaseDetailView.DistanceMainSeq" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Distance (Hauptsequenz)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Distance (Main Seq.)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Distance (séq. principale)"
+          }
+        }
+      }
+    },
     "View.CodebaseDetailView.EfferentBlurb" : {
       "localizations" : {
         "de" : {
@@ -5167,6 +5783,72 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Couplage efférent (Ce) : nombre de types extérieurs au module dont il dépend. Un Ce élevé signifie que le module s'étend largement vers l'extérieur — sensible aux changements ailleurs et plus difficile à réutiliser isolément."
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.EfferentCe" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Efferent (Ce)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Efferent (Ce)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Efferent (Ce)"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.Exemplars %@ %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ : %2$@"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.FanIn" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fan-in"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fan-in"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fan-in"
           }
         }
       }
@@ -5193,6 +5875,28 @@
         }
       }
     },
+    "View.CodebaseDetailView.FanOut" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fan-out"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fan-out"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fan-out"
+          }
+        }
+      }
+    },
     "View.CodebaseDetailView.FanOutBlurb" : {
       "localizations" : {
         "de" : {
@@ -5211,6 +5915,50 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nombre d'autres types dont dépend ce type. Un fan-out élevé signifie de nombreuses responsabilités — plus difficile à modifier et à tester, et un candidat à la scission."
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.Farthest" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "am weitesten entfernt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "farthest"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "les plus éloignés"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.FeatureEnvy" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feature Envy"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feature Envy"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feature Envy"
           }
         }
       }
@@ -5237,6 +5985,94 @@
         }
       }
     },
+    "View.CodebaseDetailView.Hotspot" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hotspot"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hotspot"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hotspot"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.Hub" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hub"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hub"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hub"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.Indexing" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wird indiziert…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indexing…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indexation…"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.InheritanceDepth" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vererbungstiefe"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inheritance Depth"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profondeur d'héritage"
+          }
+        }
+      }
+    },
     "View.CodebaseDetailView.InheritanceDepthBlurb" : {
       "localizations" : {
         "de" : {
@@ -5255,6 +6091,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Chaîne d'héritage/de conformité la plus longue pour un type. 0–2 est facile à suivre ; les chaînes profondes (>5) sont un signe de complexité excessive."
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.Instability" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instability"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instability"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instability"
           }
         }
       }
@@ -5303,6 +6161,28 @@
         }
       }
     },
+    "View.CodebaseDetailView.Largest" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "am größten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "largest"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "les plus grands"
+          }
+        }
+      }
+    },
     "View.CodebaseDetailView.LastIndexed %@" : {
       "localizations" : {
         "de" : {
@@ -5325,6 +6205,328 @@
         }
       }
     },
+    "View.CodebaseDetailView.LeastCohesive" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "am wenigsten kohäsiv"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "least cohesive"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "les moins cohésifs"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.Max %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "max. %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "max %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "max %@"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.Methods" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Methoden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Methods"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Méthodes"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.More %lld" : {
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld weiterer"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld weitere"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld more"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld more"
+                }
+              }
+            }
+          }
+        },
+        "fr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld autre"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld autres"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.Most" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "die meisten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "most"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "le plus"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.MostAbstract" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "am abstraktesten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "most abstract"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "les plus abstraits"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.MostBranchy" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "am verzweigtesten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "most branchy"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "les plus ramifiés"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.MostCoupled" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "am stärksten gekoppelt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "most coupled"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "les plus couplés"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.MostData" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "am datenlastigsten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "most data"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "les plus axés données"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.MostDependedOn" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "am häufigsten benötigt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "most depended-on"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "les plus sollicités"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.MostSubclassed" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "am häufigsten unterklassifiziert"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "most subclassed"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "les plus sous-classés"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.MostUnstable" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "am instabilsten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "most unstable"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "les plus instables"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.MutablePublicState" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Veränderlicher öffentlicher Zustand"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mutable Public State"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "État public mutable"
+          }
+        }
+      }
+    },
     "View.CodebaseDetailView.MutablePublicStateBlurb" : {
       "localizations" : {
         "de" : {
@@ -5343,6 +6545,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Properties stockées modifiables publiquement. Un état public mutable rompt l'encapsulation : n'importe quel appelant peut modifier directement les composants internes du type. Préférez une exposition en lecture seule avec des setters restreints."
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.NestingDepth" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verschachtelungstiefe"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nesting Depth"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profondeur d'imbrication"
           }
         }
       }
@@ -5435,6 +6659,50 @@
         }
       }
     },
+    "View.CodebaseDetailView.Overrides" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overrides"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overrides"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overrides"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.Parameters" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parameter"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parameters"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paramètres"
+          }
+        }
+      }
+    },
     "View.CodebaseDetailView.ParametersBlurb" : {
       "localizations" : {
         "de" : {
@@ -5453,6 +6721,50 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Liste de paramètres la plus large parmi les méthodes/initialiseurs d'un type. Les longues listes de paramètres sont difficiles à appeler correctement et signalent souvent un type manquant qui devrait regrouper les arguments."
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.Properties" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Properties"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Properties"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Properties"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.PublicAPI" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Public API"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Public API"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "API publique"
           }
         }
       }
@@ -5501,6 +6813,28 @@
         }
       }
     },
+    "View.CodebaseDetailView.Pulling" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wird gepullt…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pulling…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pull en cours…"
+          }
+        }
+      }
+    },
     "View.CodebaseDetailView.Reindex" : {
       "localizations" : {
         "de" : {
@@ -5545,6 +6879,28 @@
         }
       }
     },
+    "View.CodebaseDetailView.ResponseRFC" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Response (RFC)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Response (RFC)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Response (RFC)"
+          }
+        }
+      }
+    },
     "View.CodebaseDetailView.SdpBlurb" : {
       "localizations" : {
         "de" : {
@@ -5563,6 +6919,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Violations du Stable-Dependencies-Principle : modules dont celui-ci dépend et qui sont *moins* stables que lui — une dépendance vers quelque chose de plus susceptible de changer que vous, ce qui fait remonter les répercussions des modifications. Ce n'est pas un cycle, donc la détection de cycles ne le repère pas. Appuyez pour voir les modules en cause."
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.SDPBreaches" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SDP-Verstöße"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SDP Breaches"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Violations SDP"
           }
         }
       }
@@ -5589,6 +6967,108 @@
         }
       }
     },
+    "View.CodebaseDetailView.Statistics" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statistiken"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statistics"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statistiques"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.SwitchingTo %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wird auf %@ umgestellt…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Switching to %@…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bascule vers %@…"
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.SyntaxIssues %lld" : {
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Syntaxproblem erkannt"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Syntaxprobleme erkannt"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld syntax issue detected"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld syntax issues detected"
+                }
+              }
+            }
+          }
+        },
+        "fr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld problème de syntaxe détecté"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld problèmes de syntaxe détectés"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "View.CodebaseDetailView.WeightedMethodsBlurb" : {
       "localizations" : {
         "de" : {
@@ -5607,6 +7087,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Méthodes pondérées par type (nombre de méthodes). Les grands types portent de nombreuses responsabilités (risque de faible cohésion / SRP) et sont des candidats de choix pour la scission."
+          }
+        }
+      }
+    },
+    "View.CodebaseDetailView.Widest" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "am breitesten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "widest"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "les plus larges"
           }
         }
       }
@@ -5633,7 +7135,51 @@
         }
       }
     },
-    "View.CodebaseGlobalsSection.Text %@" : {
+    "View.CodebaseFunctionsSection.TopLevelFunctions" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Top-Level-Funktionen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Top-Level Functions"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fonctions de premier niveau"
+          }
+        }
+      }
+    },
+    "View.CodebaseGlobalsSection.GlobalVariablesConstants" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Globale Variablen & Konstanten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Global Variables & Constants"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Variables et constantes globales"
+          }
+        }
+      }
+    },
+    "View.CodebaseGlobalsSection.TypeAnnotation %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5699,6 +7245,28 @@
         }
       }
     },
+    "View.CodebaseRelationshipsSection.Relationships" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beziehungen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Relationships"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Relations"
+          }
+        }
+      }
+    },
     "View.CodebaseTypesSection.Members %lld" : {
       "localizations" : {
         "de" : {
@@ -5721,6 +7289,50 @@
         }
       }
     },
+    "View.CodebaseTypesSection.Types" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Typen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Types"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Types"
+          }
+        }
+      }
+    },
+    "View.CodeElementReferenceActions.OpenIn %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In %@ öffnen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open in %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir dans %@"
+          }
+        }
+      }
+    },
     "View.CodeElementReferenceActions.RevealFinder" : {
       "localizations" : {
         "de" : {
@@ -5739,6 +7351,72 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Afficher dans le Finder"
+          }
+        }
+      }
+    },
+    "View.CompareGitOverlay.Added" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hinzugefügt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "added"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ajouté"
+          }
+        }
+      }
+    },
+    "View.CompareGitOverlay.Changed" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "geändert"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "changed"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "modifié"
+          }
+        }
+      }
+    },
+    "View.CompareGitOverlay.Removed" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "entfernt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "removed"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "supprimé"
           }
         }
       }
@@ -5831,7 +7509,7 @@
         }
       }
     },
-    "View.CompareGitPanel.RefSHAHEAD3" : {
+    "View.CompareGitPanel.RefPlaceholder" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5963,7 +7641,7 @@
         }
       }
     },
-    "View.ContainerNodeView.Text %@" : {
+    "View.ContainerNodeView.Stereotype %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5981,6 +7659,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "<<%@>>"
+          }
+        }
+      }
+    },
+    "View.ContractsEditor.AccessContracts" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zugriffsverträge"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Access contracts"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contrats d'accès"
           }
         }
       }
@@ -6025,6 +7725,50 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Types de lien"
+          }
+        }
+      }
+    },
+    "View.ContractsEditor.IntoProtectedRegion" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nach (geschützter Bereich)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Into (protected region)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vers (zone protégée)"
+          }
+        }
+      }
+    },
+    "View.ContractsEditor.OnlyAllowedSources" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur (erlaubte Quellen)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only (allowed sources)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uniquement (sources autorisées)"
           }
         }
       }
@@ -6293,6 +8037,50 @@
         }
       }
     },
+    "View.DeadCodeSection.DeadCode" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toter Code"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dead Code"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Code mort"
+          }
+        }
+      }
+    },
+    "View.DeadCodeSection.NoCandidates %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Dead-Code-Kandidaten (Aufrufgraph-Abdeckung %lld %%)."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No dead-code candidates (call-graph coverage %lld%%)."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun candidat de code mort (couverture du graphe d'appels %lld %%)."
+          }
+        }
+      }
+    },
     "View.DeadCodeSection.NoneWithCoverage %lld" : {
       "localizations" : {
         "de" : {
@@ -6513,7 +8301,7 @@
         }
       }
     },
-    "View.DiagramFilterSection.SavePreset2" : {
+    "View.DiagramFilterSection.SaveAsPreset" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6553,6 +8341,50 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enregistrer comme règle de qualité"
+          }
+        }
+      }
+    },
+    "View.DiagramFilterSection.SavingPreset" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preset wird gespeichert…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving preset…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrement du préréglage…"
+          }
+        }
+      }
+    },
+    "View.DiagramFilterSection.ShowOnly" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur anzeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show only"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher uniquement"
           }
         }
       }
@@ -6827,6 +8659,94 @@
         }
       }
     },
+    "View.FindingsView.NoCodebaseIndexedYet" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch keine Codebase in diesem Projekt wurde indiziert. Indiziere eine Codebase neu, um hier ihre Findings zu sehen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No codebase in this project has been indexed yet. Reindex a codebase to see its findings here."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune codebase de ce projet n'a encore été indexée. Réindexez une codebase pour voir ses findings ici."
+          }
+        }
+      }
+    },
+    "View.FindingsView.NoCodebasesYet" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieses Projekt hat noch keine Codebases. Füge eine hinzu, um hier ihre Findings zu sehen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This project has no codebases yet. Add one to see its findings here."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce projet n'a encore aucune codebase. Ajoutez-en une pour voir ses findings ici."
+          }
+        }
+      }
+    },
+    "View.FindingsView.NoFindingsClean" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Findings — jede indizierte Codebase in diesem Projekt ist sauber."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No findings — every indexed codebase in this project is clean."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun finding — chaque codebase indexée de ce projet est propre."
+          }
+        }
+      }
+    },
+    "View.FindingsView.NoFindingsMatchFilters" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Findings entsprechen den aktuellen Filtern."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No findings match the current filters."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun finding ne correspond aux filtres actuels."
+          }
+        }
+      }
+    },
     "View.FindingsView.OK" : {
       "localizations" : {
         "de" : {
@@ -6867,6 +8787,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Projet introuvable"
+          }
+        }
+      }
+    },
+    "View.FindingsView.Saving" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wird gespeichert…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrement…"
           }
         }
       }
@@ -7022,19 +8964,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tiefe: %@"
+            "value" : "Tiefe: %lld"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Depth: %@"
+            "value" : "Depth: %lld"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Profondeur : %@"
+            "value" : "Profondeur : %lld"
           }
         }
       }
@@ -7233,6 +9175,72 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Types de lien"
+          }
+        }
+      }
+    },
+    "View.ForbiddenRulesEditor.ForbiddenDependencies" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verbotene Abhängigkeiten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forbidden dependencies"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dépendances interdites"
+          }
+        }
+      }
+    },
+    "View.ForbiddenRulesEditor.From" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Von"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "From"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De"
+          }
+        }
+      }
+    },
+    "View.ForbiddenRulesEditor.To" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nach"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "À"
           }
         }
       }
@@ -7475,6 +9483,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nom"
+          }
+        }
+      }
+    },
+    "View.FreeformDiagramCheckpointsView.NoCheckpoints" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Checkpoints"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Checkpoints"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun point de contrôle"
           }
         }
       }
@@ -7805,6 +9835,50 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sélectionner un nœud ou une relation à inspecter"
+          }
+        }
+      }
+    },
+    "View.FreeformDiagramInspector.UnlabelledMessage" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Nachricht)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(message)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(message)"
+          }
+        }
+      }
+    },
+    "View.FreeformDiagramInspector.UnlabelledReturn" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Rückgabe)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(return)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(retour)"
           }
         }
       }
@@ -8219,6 +10293,28 @@
         }
       }
     },
+    "View.FreeformDiagramView.RightClickToAddNode" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechtsklick fügt einen Knoten hinzu, oder öffne den Knotenkatalog in der Seitenleiste."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Right-click to add a node, or open the Node Catalog in the sidebar."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Faites un clic droit pour ajouter un nœud, ou ouvrez le catalogue de nœuds dans la barre latérale."
+          }
+        }
+      }
+    },
     "View.FreeformDiagramView.SaveRestoreNamedSnapshot" : {
       "localizations" : {
         "de" : {
@@ -8303,6 +10399,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Afficher ou masquer la barre latérale Catalogue de nœuds / Inspecteur"
+          }
+        }
+      }
+    },
+    "View.FreeformDiagramView.TouchAndHoldToAddNode" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Halte gedrückt, um einen Knoten hinzuzufügen, oder öffne den Knotenkatalog in der Seitenleiste."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Touch and hold to add a node, or open the Node Catalog in the sidebar."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Touchez et maintenez pour ajouter un nœud, ou ouvrez le catalogue de nœuds dans la barre latérale."
           }
         }
       }
@@ -8571,6 +10689,50 @@
         }
       }
     },
+    "View.GitHubAccountSection.TokenExpired" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dein Token ist abgelaufen. Melde dich erneut an, um weiter von GitHub zu pullen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your token has expired. Sign in again to keep pulling from GitHub."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Votre token a expiré. Reconnectez-vous pour continuer à puller depuis GitHub."
+          }
+        }
+      }
+    },
+    "View.GitHubAccountSection.TokenExpires %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dein Token läuft %@ ab. Melde dich bald erneut an."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your token expires %@. Sign in again soon."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Votre token expire %@. Reconnectez-vous bientôt."
+          }
+        }
+      }
+    },
     "View.GitHubAccountSection.UnknownTokenTypeDoesn" : {
       "localizations" : {
         "de" : {
@@ -8589,6 +10751,64 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inconnu — ce type de token ne signale pas de scopes"
+          }
+        }
+      }
+    },
+    "View.GitHubAccountSection.UsedByCodebases %lld" : {
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Von %lld Codebase verwendet"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Von %lld Codebases verwendet"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Used by %lld codebase"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Used by %lld codebases"
+                }
+              }
+            }
+          }
+        },
+        "fr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Utilisé par %lld codebase"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Utilisé par %lld codebases"
+                }
+              }
+            }
           }
         }
       }
@@ -8708,19 +10928,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Churn %@ · Komplexität %@"
+            "value" : "Churn %lld · Komplexität %lld"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Churn %@ · Complexity %@"
+            "value" : "Churn %lld · Complexity %lld"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Churn %@ · Complexité %@"
+            "value" : "Churn %lld · Complexité %lld"
           }
         }
       }
@@ -8743,6 +10963,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Complexité (cyclomatique max.)"
+          }
+        }
+      }
+    },
+    "View.HotspotChartView.CouldNotLoadGitHistory %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Git-Historie konnte nicht geladen werden: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn't load git history: %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de charger l'historique git : %@"
           }
         }
       }
@@ -8835,6 +11077,50 @@
         }
       }
     },
+    "View.HotspotChartView.NoFilesToPlot" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch keine Dateien zum Darstellen — indiziere die Codebase zuerst neu."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No files to plot yet — reindex the codebase first."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun fichier à tracer pour l'instant — réindexez d'abord la codebase."
+          }
+        }
+      }
+    },
+    "View.HotspotChartView.NoGitHistory" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für diese Codebase ist keine Git-Historie verfügbar — sie ist kein Git-Repository, oder ihr Repository wurde noch nicht geklont."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No git history available for this codebase — it isn't a git repository, or its repository hasn't been cloned yet."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun historique git disponible pour cette codebase — ce n'est pas un repository git, ou son repository n'a pas encore été cloné."
+          }
+        }
+      }
+    },
     "View.HotspotChartView.Sidebar" : {
       "localizations" : {
         "de" : {
@@ -8901,7 +11187,7 @@
         }
       }
     },
-    "View.InfiniteCanvas.Text %lld" : {
+    "View.InfiniteCanvas.ZoomPercent %lld" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -9095,6 +11381,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Couches classées du haut (niveau le plus élevé) vers le bas."
+          }
+        }
+      }
+    },
+    "View.LayersEditor.Matches" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trifft zu auf"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Matches"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Correspond à"
           }
         }
       }
@@ -9649,6 +11957,28 @@
         }
       }
     },
+    "View.MultiSelectToggleButton.Select" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auswählen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionner"
+          }
+        }
+      }
+    },
     "View.MultiSelectToggleButton.ToggleMultiSelectMode" : {
       "localizations" : {
         "de" : {
@@ -9715,6 +12045,28 @@
         }
       }
     },
+    "View.NewCodebaseSheet.AlreadyClonedLocally" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lokal bereits geklont — diese Codebase hinzuzufügen geht schnell."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Already cloned locally — adding this codebase will be fast."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déjà cloné localement — l'ajout de cette codebase sera rapide."
+          }
+        }
+      }
+    },
     "View.NewCodebaseSheet.BranchTag" : {
       "localizations" : {
         "de" : {
@@ -9777,6 +12129,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Choisir…"
+          }
+        }
+      }
+    },
+    "View.NewCodebaseSheet.Cloning" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wird geklont…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cloning…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clonage…"
           }
         }
       }
@@ -9865,6 +12239,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nom (facultatif)"
+          }
+        }
+      }
+    },
+    "View.NewCodebaseSheet.NoDirectoryChosen" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Verzeichnis gewählt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No directory chosen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun répertoire choisi"
           }
         }
       }
@@ -10221,6 +12617,160 @@
         }
       }
     },
+    "View.NoteNodeView.EmptyNote" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(leere Notiz)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(empty note)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(note vide)"
+          }
+        }
+      }
+    },
+    "View.PackageDiagramInspector.AbstractnessA" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abstractness (A)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abstractness (A)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abstractness (A)"
+          }
+        }
+      }
+    },
+    "View.PackageDiagramInspector.AfferentCa" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afferent (Ca)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afferent (Ca)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afferent (Ca)"
+          }
+        }
+      }
+    },
+    "View.PackageDiagramInspector.DependedOnBy %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wird benötigt von (%lld)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Depended On By (%lld)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dont dépendent (%lld)"
+          }
+        }
+      }
+    },
+    "View.PackageDiagramInspector.DependsOn %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hängt ab von (%lld)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Depends On (%lld)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dépend de (%lld)"
+          }
+        }
+      }
+    },
+    "View.PackageDiagramInspector.DistanceFromMainSeq" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Distanz zur Hauptsequenz"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Distance from main seq."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Distance à la séq. principale"
+          }
+        }
+      }
+    },
+    "View.PackageDiagramInspector.EfferentCe" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Efferent (Ce)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Efferent (Ce)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Efferent (Ce)"
+          }
+        }
+      }
+    },
     "View.PackageDiagramInspector.FillDistanceMainSequence" : {
       "localizations" : {
         "de" : {
@@ -10261,6 +12811,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "vert = équilibré · rouge = zone of pain / uselessness"
+          }
+        }
+      }
+    },
+    "View.PackageDiagramInspector.InstabilityI" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instability (I)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instability (I)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instability (I)"
           }
         }
       }
@@ -10683,6 +13255,50 @@
         }
       }
     },
+    "View.ParseHealthSection.NoDiagnostics %lld %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parse-Zustand %1$lld %% — keine Diagnosen über %2$@."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parse health %1$lld%% — no diagnostics across %2$@."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Santé de l'analyse %1$lld %% — aucun diagnostic sur %2$@."
+          }
+        }
+      }
+    },
+    "View.ParseHealthSection.ParseHealth" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parse-Zustand"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parse Health"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Santé de l'analyse"
+          }
+        }
+      }
+    },
     "View.ParseHealthSection.Score %lld" : {
       "localizations" : {
         "de" : {
@@ -10786,6 +13402,64 @@
                       "value" : "%arg diagnostics"
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "View.ParseHealthSection.Types %lld" : {
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Typ"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Typen"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld type"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld types"
+                }
+              }
+            }
+          }
+        },
+        "fr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld type"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld types"
                 }
               }
             }
@@ -11167,7 +13841,7 @@
         }
       }
     },
-    "View.ProjectDetailView.AddCodebase2" : {
+    "View.ProjectDetailView.AddCodebase" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -11453,7 +14127,7 @@
         }
       }
     },
-    "View.ProjectDetailView.NoFreeformDiagramsYet2" : {
+    "View.ProjectDetailView.NoFreeformDiagramsYetTouch" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -11695,6 +14369,28 @@
         }
       }
     },
+    "View.QualityCheckEditorSheet.ChooseYAMLRulesFile" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wähle eine YAML-Regeldatei, gegen die diese Codebase geprüft wird."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose a YAML rules file to validate this codebase against."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisissez un fichier de règles YAML pour valider cette codebase."
+          }
+        }
+      }
+    },
     "View.QualityCheckEditorSheet.CodeQualityCheck" : {
       "localizations" : {
         "de" : {
@@ -11713,6 +14409,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Contrôle de qualité du code"
+          }
+        }
+      }
+    },
+    "View.QualityCheckEditorSheet.CouldNotLoadRules %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regeln konnten nicht geladen werden: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not load rules: %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de charger les règles : %@"
           }
         }
       }
@@ -11757,6 +14475,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fichier YAML externe"
+          }
+        }
+      }
+    },
+    "View.QualityCheckEditorSheet.NoFileSelected" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Datei gewählt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No file selected"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun fichier sélectionné"
           }
         }
       }
@@ -11975,6 +14715,196 @@
         }
       }
     },
+    "View.QualityCheckReportView.NoRulesDefined" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noch keine Regeln definiert — füge mindestens eine Regel hinzu, um diese Codebase zu prüfen."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No rules defined yet — add at least one rule to check this codebase."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune règle définie — ajoutez au moins une règle pour contrôler cette codebase."
+          }
+        }
+      }
+    },
+    "View.QualityCheckReportView.QualityOK %lld" : {
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Qualität OK — %lld Regel geprüft, keine Verstöße."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Qualität OK — %lld Regeln geprüft, keine Verstöße."
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Quality OK — %lld rule checked, no violations."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Quality OK — %lld rules checked, no violations."
+                }
+              }
+            }
+          }
+        },
+        "fr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Qualité OK — %lld règle contrôlée, aucune violation."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Qualité OK — %lld règles contrôlées, aucune violation."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "View.QualityCheckSection.BuiltInBudgets %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eingebaute Smell-Budgets · %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Built-in smell budgets · %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Budgets de smells intégrés · %@"
+          }
+        }
+      }
+    },
+    "View.QualityCheckSection.CodeQualityCheck" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Codequalitätsprüfung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Code Quality Check"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contrôle de qualité du code"
+          }
+        }
+      }
+    },
+    "View.QualityCheckSection.CouldNotLoadRulesBuiltIn %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Regeln konnten nicht geladen werden: %@ — es werden stattdessen die eingebauten Smell-Budgets angezeigt."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not load rules: %@ — showing the built-in smell budgets instead."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de charger les règles : %@ — affichage des budgets de smells intégrés à la place."
+          }
+        }
+      }
+    },
+    "View.QualityCheckSection.DefinedInApp" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In der App definiert"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Defined in app"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Défini dans l'app"
+          }
+        }
+      }
+    },
+    "View.QualityCheckSection.Edit" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bearbeiten…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modifier…"
+          }
+        }
+      }
+    },
     "View.QualityCheckSection.ExportCICheck" : {
       "localizations" : {
         "de" : {
@@ -12141,6 +15071,108 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "View.QualityCheckSection.OriginRules %@ %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "View.QualityCheckSection.Rules %lld" : {
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Regel"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Regeln"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld rule"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld rules"
+                }
+              }
+            }
+          }
+        },
+        "fr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld règle"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld règles"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "View.QualityCheckSection.SetUp" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einrichten…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set Up…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurer…"
           }
         }
       }
@@ -12361,6 +15393,50 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Indexation…"
+          }
+        }
+      }
+    },
+    "View.QuickOpenView.OpenIn %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In %@ öffnen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open in %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir dans %@"
+          }
+        }
+      }
+    },
+    "View.QuickOpenView.SearchEverything" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alles durchsuchen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search Everything"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout rechercher"
           }
         }
       }
@@ -12595,6 +15671,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dernière récupération"
+          }
+        }
+      }
+    },
+    "View.RepositoryDetailView.Never" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Never"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jamais"
           }
         }
       }
@@ -13039,6 +16137,28 @@
         }
       }
     },
+    "View.SectionCountBadge.Count %lld" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        }
+      }
+    },
     "View.SelectorEditor.AnnotationEGEntity" : {
       "localizations" : {
         "de" : {
@@ -13193,7 +16313,7 @@
         }
       }
     },
-    "View.SelectorEditor.Text" : {
+    "View.SelectorEditor.AnyAccessLevel" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -13413,7 +16533,51 @@
         }
       }
     },
+    "View.SequenceConfigSheet.NoneTopLevelFunctions" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keiner (Top-Level-Funktionen)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "None (top-level functions)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun (fonctions de premier niveau)"
+          }
+        }
+      }
+    },
     "View.SequenceConfigSheet.Select" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auswählen…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionner…"
+          }
+        }
+      }
+    },
+    "View.SequenceConfigSheet.SelectEllipsis" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -13721,6 +16885,28 @@
         }
       }
     },
+    "View.SequenceDiagramSidebar.NoneTopLevelFunctions" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keiner (Top-Level-Funktionen)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "None (top-level functions)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun (fonctions de premier niveau)"
+          }
+        }
+      }
+    },
     "View.SequenceDiagramSidebar.ResolveInterfaces" : {
       "localizations" : {
         "de" : {
@@ -13788,6 +16974,28 @@
       }
     },
     "View.SequenceDiagramSidebar.Select" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auswählen…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionner…"
+          }
+        }
+      }
+    },
+    "View.SequenceDiagramSidebar.SelectEllipsis" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -14755,6 +17963,28 @@
         }
       }
     },
+    "View.StateDiagramSidebar.NoLabel" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(keine Beschriftung)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(no label)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(sans libellé)"
+          }
+        }
+      }
+    },
     "View.StateDiagramSidebar.Outgoing %lld" : {
       "localizations" : {
         "de" : {
@@ -14953,7 +18183,7 @@
         }
       }
     },
-    "View.StateDiagramSidebar.Text3" : {
+    "View.StateDiagramSidebar.From" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -14975,7 +18205,7 @@
         }
       }
     },
-    "View.StateDiagramSidebar.Text4" : {
+    "View.StateDiagramSidebar.To" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -15327,7 +18557,7 @@
         }
       }
     },
-    "View.StereotypedBoxNodeView.Text %@" : {
+    "View.StereotypedBoxNodeView.Stereotype %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {

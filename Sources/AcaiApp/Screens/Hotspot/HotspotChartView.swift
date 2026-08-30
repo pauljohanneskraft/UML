@@ -89,19 +89,20 @@ struct HotspotChartView: View {
         if viewModel.isLoading {
             loadingState
         } else if let message = viewModel.loadError {
-            statusState(systemImage: "exclamationmark.triangle", text: "Couldn't load git history: \(message)")
+            statusState(
+                systemImage: "exclamationmark.triangle",
+                text: .app("View.HotspotChartView.CouldNotLoadGitHistory \(message)"))
         } else if !viewModel.hasGitHistory {
             statusState(
                 systemImage: "questionmark.folder",
-                text: "No git history available for this codebase — it isn't a git repository, "
-                    + "or its repository hasn't been cloned yet."
+                text: .app("View.HotspotChartView.NoGitHistory")
             )
         } else if let data = viewModel.chartData, !data.points.isEmpty {
             chart(data)
                 .padding()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else {
-            statusState(systemImage: "flame", text: "No files to plot yet — reindex the codebase first.")
+            statusState(systemImage: "flame", text: .app("View.HotspotChartView.NoFilesToPlot"))
         }
     }
 
@@ -113,10 +114,10 @@ struct HotspotChartView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
-    private func statusState(systemImage: String, text: String) -> some View {
+    private func statusState(systemImage: String, text: LocalizedStringResource) -> some View {
         VStack(spacing: 12) {
             Image(systemName: systemImage).font(.system(size: 28)).foregroundStyle(.secondary)
-            Text(text).foregroundStyle(.secondary).multilineTextAlignment(.center)
+            Text(localized: text).foregroundStyle(.secondary).multilineTextAlignment(.center)
         }
         .padding(24)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -172,7 +173,7 @@ struct HotspotChartView: View {
                         VStack(alignment: .leading, spacing: 4) {
                             HStack {
                                 Image(systemName: "flame.fill")
-                                Text(point.fileName).font(.callout.bold())
+                                Text(verbatim: point.fileName).font(.callout.bold())
                             }
                             Text(.app("View.HotspotChartView.ChurnComplexity \(point.churn) \(point.complexity)"))
                                 .font(.caption)

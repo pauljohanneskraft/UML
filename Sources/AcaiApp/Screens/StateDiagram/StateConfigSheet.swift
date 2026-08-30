@@ -59,7 +59,7 @@ struct StateConfigSheet: View {
                                     Text(.app("View.StateConfigSheet.GlobalVariables")).tag(Scope?.some(.globals))
                                 }
                                 ForEach(typeNamesWithStoredProperties.filtered(by: scopeQuery), id: \.self) { name in
-                                    Text(name).tag(Scope?.some(.type(name)))
+                                    Text(verbatim: name).tag(Scope?.some(.type(name)))
                                 }
                             }
                             .labelsHidden()
@@ -79,7 +79,9 @@ struct StateConfigSheet: View {
                             PickerFilterField(text: $variableQuery)
                             Picker(.app("View.StateConfigSheet.Variable"), selection: $variableName) {
                                 Text(.app("View.StateConfigSheet.Select")).tag("")
-                                ForEach(variableNames.filtered(by: variableQuery), id: \.self) { Text($0).tag($0) }
+                                ForEach(variableNames.filtered(by: variableQuery), id: \.self) {
+                                Text(verbatim: $0).tag($0)
+                            }
                             }
                             .labelsHidden()
                             .disabled(scope == nil)

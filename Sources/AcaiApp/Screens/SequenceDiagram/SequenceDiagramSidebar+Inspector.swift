@@ -23,7 +23,7 @@ extension SequenceDiagramSidebar {
             Image(systemName: "cursorarrow.click")
                 .font(.title)
                 .foregroundStyle(.secondary)
-            Text(.app("SequenceDiagramSidebar.SelectLifelineMessageInspect"))
+            Text(.app("View.SequenceDiagramSidebar.SelectLifelineMessageInspect"))
                 .font(.callout)
                 .foregroundStyle(.secondary)
         }
@@ -42,7 +42,7 @@ extension SequenceDiagramSidebar {
                             messageRow(message)
                         }
                     } label: {
-                        Text(.app("SequenceDiagramSidebar.Sends \(sent.count)"))
+                        Text(.app("View.SequenceDiagramSidebar.Sends \(sent.count)"))
                     }
                 }
                 if !received.isEmpty {
@@ -51,7 +51,7 @@ extension SequenceDiagramSidebar {
                             messageRow(message)
                         }
                     } label: {
-                        Text(.app("SequenceDiagramSidebar.Receives \(received.count)"))
+                        Text(.app("View.SequenceDiagramSidebar.Receives \(received.count)"))
                     }
                 }
             }
@@ -61,7 +61,7 @@ extension SequenceDiagramSidebar {
 
     func messageRow(_ message: SequenceDiagram.Message) -> some View {
         HStack {
-            Text(message.label ?? message.kind.rawValue)
+            Text(verbatim: message.label ?? message.kind.rawValue)
                 .font(.caption.monospaced())
             Spacer()
             Text(verbatim: "\(viewModel.participantName(message.from) ?? message.from) → "
@@ -75,24 +75,24 @@ extension SequenceDiagramSidebar {
         List {
             Section(message.label ?? "Message") {
                 LabeledContent {
-                    Text(viewModel.participantName(message.from) ?? message.from)
+                    Text(verbatim: viewModel.participantName(message.from) ?? message.from)
                 } label: {
-                    Text(.app("SequenceDiagramSidebar.Text2"))
+                    Text(.app("View.SequenceDiagramSidebar.From"))
                 }
                 LabeledContent {
-                    Text(viewModel.participantName(message.to) ?? message.to)
+                    Text(verbatim: viewModel.participantName(message.to) ?? message.to)
                 } label: {
-                    Text(.app("SequenceDiagramSidebar.Text3"))
+                    Text(.app("View.SequenceDiagramSidebar.To"))
                 }
                 LabeledContent {
-                    Text(message.kind.rawValue)
+                    Text(verbatim: message.kind.rawValue)
                 } label: {
-                    Text(.app("SequenceDiagramSidebar.Kind"))
+                    Text(.app("View.SequenceDiagramSidebar.Kind"))
                 }
                 LabeledContent {
                     Text(message.order, format: .number)
                 } label: {
-                    Text(.app("SequenceDiagramSidebar.Order"))
+                    Text(.app("View.SequenceDiagramSidebar.Order"))
                 }
             }
         }
@@ -109,7 +109,7 @@ extension SequenceDiagramSidebar {
             .map { SelectableLifeline(id: $0, name: viewModel.participantName($0) ?? $0) }
         return MultiSelectionInspector(
             items: selected,
-            title: { Text(.app("SequenceDiagramSidebar.LifelineInflectTrueSelected \($0)")) },
+            title: { Text(.app("View.SequenceDiagramSidebar.LifelineInflectTrueSelected \($0)")) },
             rowIcon: { _ in nil },
             rowLabel: \.name,
             rowDetail: nil,

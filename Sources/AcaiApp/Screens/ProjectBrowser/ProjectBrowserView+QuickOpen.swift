@@ -10,7 +10,7 @@ extension ProjectBrowserView {
         } label: {
             HStack {
                 Image(systemName: "magnifyingglass")
-                Text(.app("ProjectBrowserView.SearchTypesModulesMethods"))
+                Text(.app("View.ProjectBrowserView.SearchTypesModulesMethods"))
                 Spacer()
             }
             .foregroundStyle(.secondary)

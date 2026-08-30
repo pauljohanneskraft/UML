@@ -55,7 +55,7 @@ struct NewCodebaseSheet: View {
         NavigationStack {
             Form {
                 Picker(.app("View.NewCodebaseSheet.Source"), selection: $source) {
-                    ForEach(Source.allCases) { Text($0.rawValue).tag($0) }
+                    ForEach(Source.allCases) { Text(verbatim: $0.rawValue).tag($0) }
                 }
                 .pickerStyle(.segmented)
                 .accessibilityIdentifier("newCodebase.sourcePicker")
@@ -143,10 +143,7 @@ struct NewCodebaseSheet: View {
             }
             LabeledContent {
                 HStack {
-                    Text(directoryURL?.path ?? "No directory chosen")
-                        .lineLimit(1)
-                        .truncationMode(.middle)
-                        .foregroundStyle(directoryURL == nil ? .secondary : .primary)
+                    directoryPathText
                     Button(.app("View.NewCodebaseSheet.Choose")) { isChoosingDirectory = true }
                         .accessibilityIdentifier("newCodebase.chooseDirectoryButton")
                 }
@@ -160,16 +157,21 @@ struct NewCodebaseSheet: View {
             .focused($isNameFieldFocused)
             .accessibilityIdentifier("newCodebase.localNameField")
             HStack {
-                Text(directoryURL?.path ?? "No directory chosen")
-                    .lineLimit(1)
-                    .truncationMode(.middle)
-                    .foregroundStyle(directoryURL == nil ? .secondary : .primary)
+                directoryPathText
                 Spacer()
                 Button(.app("View.NewCodebaseSheet.Choose")) { isChoosingDirectory = true }
                     .accessibilityIdentifier("newCodebase.chooseDirectoryButton")
             }
             #endif
         }
+    }
+
+    private var directoryPathText: some View {
+        (directoryURL.map { Text(verbatim: $0.path) }
+            ?? Text(.app("View.NewCodebaseSheet.NoDirectoryChosen")))
+            .lineLimit(1)
+            .truncationMode(.middle)
+            .foregroundStyle(directoryURL == nil ? .secondary : .primary)
     }
 
     @ViewBuilder
@@ -226,7 +228,7 @@ struct NewCodebaseSheet: View {
                     Picker(.app("View.NewCodebaseSheet.Repository"), selection: $selectedRepository) {
                         Text(.app("View.NewCodebaseSheet.None")).tag(GitHubAPIClient.Repository?.none)
                         ForEach(filteredRepositories) { repository in
-                            Text(repository.fullName).tag(Optional(repository))
+                            Text(verbatim: repository.fullName).tag(Optional(repository))
                         }
                     }
                     .accessibilityIdentifier("newCodebase.repositoryPicker")
@@ -237,7 +239,7 @@ struct NewCodebaseSheet: View {
                     } else {
                         Picker(.app("View.NewCodebaseSheet.BranchTag"), selection: $selectedRef) {
                             ForEach(refs) { ref in
-                                Text(ref.name).tag(Optional(ref))
+                                Text(verbatim: ref.name).tag(Optional(ref))
                             }
                         }
                         .accessibilityIdentifier("newCodebase.refPicker")
@@ -248,7 +250,7 @@ struct NewCodebaseSheet: View {
                 // fresh network clone, so it's fast regardless of repository size.
                 if isSelectedRepositoryAlreadyCloned {
                     Label(
-                        "Already cloned locally — adding this codebase will be fast.",
+                        .app("View.NewCodebaseSheet.AlreadyClonedLocally"),
                         systemImage: "checkmark.icloud"
                     )
                     .foregroundStyle(.secondary)
@@ -258,7 +260,7 @@ struct NewCodebaseSheet: View {
         }
         if let gitHubErrorMessage {
             Section {
-                Text(gitHubErrorMessage).foregroundStyle(.red)
+                Text(verbatim: gitHubErrorMessage).foregroundStyle(.red)
             }
         }
     }
@@ -300,7 +302,7 @@ struct NewCodebaseSheet: View {
             Button(isSelectedRepositoryAlreadyCloned ? "Add" : "Clone") {
                 guard let repository = selectedRepository, let ref = selectedRef, let account,
                       !clonePhase.isInFlight else { return }
-                clonePhase = .loading("Cloning…")
+                clonePhase = .loading(.app("View.NewCodebaseSheet.Cloning"))
                 Task {
                     await model.editing.addGitHubCodebase(
                         to: projectID,

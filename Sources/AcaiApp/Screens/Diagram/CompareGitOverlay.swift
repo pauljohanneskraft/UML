@@ -253,10 +253,10 @@ struct CompareGitPanel: View {
                     select(row)
                 } label: {
                     HStack {
-                        Text(row.name)
+                        Text(verbatim: row.name)
                         Spacer()
                         if let kindLabel = row.kindLabel {
-                            Text(kindLabel)
+                            Text(verbatim: kindLabel)
                                 .font(.caption2)
                                 .foregroundStyle(.secondary)
                         }
@@ -285,7 +285,7 @@ struct CompareGitPanel: View {
             VStack(alignment: .leading, spacing: 12) {
                 if isEditingCustomRef {
                     TextField(text: $customRefText) {
-                        Text(.app("View.CompareGitPanel.RefSHAHEAD3"))
+                        Text(.app("View.CompareGitPanel.RefPlaceholder"))
                     }
                     .textFieldStyle(.roundedBorder)
                     .onSubmit { model.updateComparisonGitRef(diagramID: diagram.id, ref: customRefText) }
@@ -398,7 +398,7 @@ struct CompareGitPanel: View {
                 reviewed ? "Mark \(entry.filePath) as not reviewed" : "Mark \(entry.filePath) as reviewed")
             .accessibilityIdentifier("delta.changedFile.reviewToggle.\(entry.filePath)")
 
-            Text(entry.filePath)
+            Text(verbatim: entry.filePath)
                 .font(.caption.monospaced())
                 .lineLimit(1)
                 .truncationMode(.middle)
@@ -485,16 +485,16 @@ struct CompareGitPanel: View {
 
     private var legend: some View {
         HStack(spacing: 10) {
-            swatch(Color(hex: DeltaEdgeColors.standard.added), "added")
-            swatch(Color(hex: DeltaEdgeColors.standard.removed), "removed")
-            swatch(Color(hex: DeltaEdgeColors.standard.changed), "changed")
+            swatch(Color(hex: DeltaEdgeColors.standard.added), .app("View.CompareGitOverlay.Added"))
+            swatch(Color(hex: DeltaEdgeColors.standard.removed), .app("View.CompareGitOverlay.Removed"))
+            swatch(Color(hex: DeltaEdgeColors.standard.changed), .app("View.CompareGitOverlay.Changed"))
         }
     }
 
-    private func swatch(_ color: Color, _ label: String) -> some View {
+    private func swatch(_ color: Color, _ label: LocalizedStringResource) -> some View {
         HStack(spacing: 3) {
             Circle().fill(color).frame(width: 8, height: 8)
-            Text(label).font(.caption2).foregroundStyle(.secondary)
+            Text(localized: label).font(.caption2).foregroundStyle(.secondary)
         }
     }
 }

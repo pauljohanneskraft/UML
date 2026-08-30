@@ -3,9 +3,8 @@ import XCTest
 /// German is the longest of the three shipped languages, so it is the one the layouts have to hold
 /// in. This walks the densest screens with the app running in German and diffs each against its own
 /// golden — the only way a label that fits in English but truncates or clips in German is caught.
-///
-/// Truncation itself is asserted structurally too: an element whose accessibility label ends in an
-/// ellipsis is a label the layout could not fit.
+/// The pixel diff is the whole check: XCUITest reports a `Text`'s full string whether or not it was
+/// rendered in full, so truncation is invisible to an assertion over accessibility labels.
 @MainActor
 final class GermanLayoutJourneyTests: UIJourneyTestCase {
 
@@ -40,7 +39,6 @@ final class GermanLayoutJourneyTests: UIJourneyTestCase {
 
         let detail = ProjectDetailScreen(app: app)
         XCTAssertTrue(detail.codebaseRow(id: Self.codebaseID).waitForExistence(timeout: 10))
-        assertNothingTruncates()
         comparator.validate(
             viewType: "ProjectDetail", state: "german",
             screenshot: app.screenshotAfterAnimationsIdle(), testCase: self
@@ -49,7 +47,6 @@ final class GermanLayoutJourneyTests: UIJourneyTestCase {
         detail.codebaseRow(id: Self.codebaseID).tap()
         let codebase = CodebaseDetailScreen(app: app)
         XCTAssertTrue(codebase.reindexButton.waitForExistence(timeout: 20))
-        assertNothingTruncates()
         comparator.validate(
             viewType: "CodebaseDetail", state: "german",
             screenshot: app.screenshotAfterAnimationsIdle(), testCase: self
@@ -65,15 +62,5 @@ final class GermanLayoutJourneyTests: UIJourneyTestCase {
             "the app came up in English — the -AppleLanguages launch argument did not take effect",
             file: file, line: line
         )
-    }
-
-    /// A trailing ellipsis in an accessibility label is SwiftUI reporting text it had to truncate.
-    private func assertNothingTruncates(file: StaticString = #filePath, line: UInt = #line) {
-        for element in app.staticTexts.allElementsBoundByIndex where element.isHittable {
-            XCTAssertFalse(
-                element.label.hasSuffix("…"),
-                "'\(element.label)' is truncated in German", file: file, line: line
-            )
-        }
     }
 }

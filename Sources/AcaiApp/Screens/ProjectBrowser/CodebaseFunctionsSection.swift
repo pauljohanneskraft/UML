@@ -6,8 +6,8 @@ struct CodebaseFunctionsSection: View {
     let artifact: CodeArtifact
 
     var body: some View {
-        CollapsibleSection(title: "Top-Level Functions", defaultExpanded: false) {
-            SectionCountBadge(text: "\(artifact.freestandingFunctions.count)")
+        CollapsibleSection(title: .app("View.CodebaseFunctionsSection.TopLevelFunctions"), defaultExpanded: false) {
+            SectionCountBadge(text: .app("View.SectionCountBadge.Count \(artifact.freestandingFunctions.count)"))
         } content: {
             let sortedFunctions = artifact.freestandingFunctions
                 .sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
@@ -35,15 +35,15 @@ struct CodebaseFunctionsSection: View {
                 .frame(width: 22, height: 22)
                 .background(Color.indigo)
                 .clipShape(RoundedRectangle(cornerRadius: 4))
-            Text(function.name)
+            Text(verbatim: function.name)
                 .fontWeight(.medium)
-            Text(signature(for: function))
+            Text(verbatim: signature(for: function))
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .lineLimit(1)
                 .truncationMode(.middle)
             Spacer()
-            Text(function.accessLevel.rawValue)
+            Text(verbatim: function.accessLevel.rawValue)
                 .font(.caption2)
                 .foregroundStyle(.tertiary)
                 .padding(.horizontal, 4)

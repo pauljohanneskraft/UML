@@ -121,7 +121,7 @@ struct CycleDiagramView: View {
     }
 
     private func cycleNodeBubble(_ node: CycleDiagramData.Node, radius: CGFloat) -> some View {
-        Text(node.label)
+        Text(verbatim: node.label)
             .font(.caption.bold())
             .lineLimit(2)
             .multilineTextAlignment(.center)
@@ -140,7 +140,7 @@ struct CycleDiagramView: View {
         List {
             Section(.app("View.CycleDiagramView.Members \(data.nodes.count)")) {
                 ForEach(data.nodes) { node in
-                    Text(node.label).font(.callout)
+                    Text(verbatim: node.label).font(.callout)
                 }
             }
             Section(.app("View.CycleDiagramView.Dependencies \(data.edges.count)")) {

@@ -45,7 +45,7 @@ struct ViewSourceButton: View {
         ) {
             Button(.app("View.ViewSourceButton.OK"), role: .cancel) { errorMessage = nil }
         } message: {
-            Text(errorMessage ?? "")
+            Text(verbatim: errorMessage ?? "")
         }
         .onDisappear {
             resolveTask?.cancel()

@@ -46,15 +46,15 @@ struct FindingRow: View {
                 badge(text: finding.kind.title, systemImage: finding.kind.systemImage, tint: .secondary)
                 badge(text: finding.severity.title, systemImage: finding.severity.systemImage, tint: severityTint)
                 Spacer()
-                Text(finding.codebaseName)
+                Text(verbatim: finding.codebaseName)
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .lineLimit(1)
             }
-            Text(finding.title)
+            Text(verbatim: finding.title)
                 .font(.callout.bold())
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Text(finding.message)
+            Text(verbatim: finding.message)
                 .font(.callout)
                 .frame(maxWidth: .infinity, alignment: .leading)
             if let location = finding.location {

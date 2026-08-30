@@ -115,7 +115,7 @@ struct StateDiagramSidebar: View {
                                 Text(.app("View.StateDiagramSidebar.GlobalVariables")).tag(Scope?.some(.globals))
                             }
                             ForEach(typeNamesWithStoredProperties.filtered(by: scopeQuery), id: \.self) { name in
-                                Text(name).tag(Scope?.some(.type(name)))
+                                Text(verbatim: name).tag(Scope?.some(.type(name)))
                             }
                         }
                         .labelsHidden()
@@ -135,7 +135,9 @@ struct StateDiagramSidebar: View {
                         PickerFilterField(text: $variableQuery)
                         Picker(.app("View.StateDiagramSidebar.Variable"), selection: $draftVariableName) {
                             Text(.app("View.StateDiagramSidebar.Select")).tag("")
-                            ForEach(draftVariableNames.filtered(by: variableQuery), id: \.self) { Text($0).tag($0) }
+                            ForEach(draftVariableNames.filtered(by: variableQuery), id: \.self) {
+                                Text(verbatim: $0).tag($0)
+                            }
                         }
                         .labelsHidden()
                         .disabled(draftScope == nil)
@@ -288,27 +290,27 @@ extension StateDiagramSidebar {
     @ViewBuilder
     private func stateFields(_ state: StateDiagram.State?) -> some View {
         LabeledContent {
-            Text(state?.kind.rawValue ?? "")
+            Text(verbatim: state?.kind.rawValue ?? "")
         } label: {
             Text(.app("View.StateDiagramSidebar.Kind"))
         }
         if let entryAction = state?.entryAction {
             LabeledContent {
-                Text(entryAction)
+                Text(verbatim: entryAction)
             } label: {
                 Text(.app("View.StateDiagramSidebar.Entry"))
             }
         }
         if let exitAction = state?.exitAction {
             LabeledContent {
-                Text(exitAction)
+                Text(verbatim: exitAction)
             } label: {
                 Text(.app("View.StateDiagramSidebar.Exit"))
             }
         }
         if let doActivity = state?.doActivity {
             LabeledContent {
-                Text(doActivity)
+                Text(verbatim: doActivity)
             } label: {
                 Text(.app("View.StateDiagramSidebar.Do"))
             }
@@ -341,7 +343,7 @@ extension StateDiagramSidebar {
 
     private func transitionRow(_ transition: StateDiagram.Transition) -> some View {
         HStack {
-            Text(transition.label ?? "(no label)")
+            transition.label.map { Text(verbatim: $0) } ?? Text(.app("View.StateDiagramSidebar.NoLabel"))
                 .font(.caption.monospaced())
             Spacer()
             Text(verbatim: "\(viewModel.stateName(transition.from) ?? transition.from) → "
@@ -355,32 +357,32 @@ extension StateDiagramSidebar {
         List {
             Section(.app("View.StateDiagramSidebar.Transition")) {
                 LabeledContent {
-                    Text(viewModel.stateName(transition.from) ?? transition.from)
+                    Text(verbatim: viewModel.stateName(transition.from) ?? transition.from)
                 } label: {
-                    Text(.app("View.StateDiagramSidebar.Text3"))
+                    Text(.app("View.StateDiagramSidebar.From"))
                 }
                 LabeledContent {
-                    Text(viewModel.stateName(transition.to) ?? transition.to)
+                    Text(verbatim: viewModel.stateName(transition.to) ?? transition.to)
                 } label: {
-                    Text(.app("View.StateDiagramSidebar.Text4"))
+                    Text(.app("View.StateDiagramSidebar.To"))
                 }
                 if let event = transition.event {
                     LabeledContent {
-                        Text(event)
+                        Text(verbatim: event)
                     } label: {
                         Text(.app("View.StateDiagramSidebar.Event"))
                     }
                 }
                 if let guardCondition = transition.guardCondition {
                     LabeledContent {
-                        Text(guardCondition)
+                        Text(verbatim: guardCondition)
                     } label: {
                         Text(.app("View.StateDiagramSidebar.Guard"))
                     }
                 }
                 if let action = transition.action {
                     LabeledContent {
-                        Text(action)
+                        Text(verbatim: action)
                     } label: {
                         Text(.app("View.StateDiagramSidebar.Action"))
                     }

@@ -176,7 +176,7 @@ struct CodebaseDetailView: View {
                         .truncationMode(.middle)
                         .textSelection(.enabled)
                 } else {
-                    Text((codebase.directoryPath as NSString).abbreviatingWithTildeInPath)
+                    Text(verbatim: (codebase.directoryPath as NSString).abbreviatingWithTildeInPath)
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                         .lineLimit(2)
@@ -197,7 +197,7 @@ struct CodebaseDetailView: View {
                 githubActions(codebase: codebase, source: source)
             } else {
                 Button {
-                    reindexPhase = .loading("Indexing…")
+                    reindexPhase = .loading(.app("View.CodebaseDetailView.Indexing"))
                     Task {
                         await model.editing.reindex(codebaseID: codebase.id)
                         reindexPhase = .loaded
@@ -219,7 +219,7 @@ struct CodebaseDetailView: View {
             set: { newID in
                 let currentRef = GitHubRef(name: source.ref, kind: source.refKind)
                 guard let selected = (availableRefs + [currentRef]).first(where: { $0.id == newID }) else { return }
-                refSwitchPhase = .loading("Switching to \(selected.name)…")
+                refSwitchPhase = .loading(.app("View.CodebaseDetailView.SwitchingTo \(selected.name)"))
                 Task {
                     await model.editing.switchGitHubRef(
                         codebaseID: codebase.id, ref: selected.name, kind: selected.kind)
@@ -228,10 +228,10 @@ struct CodebaseDetailView: View {
             }
         )) {
             if !availableRefs.contains(where: { $0.name == source.ref && $0.kind == source.refKind }) {
-                Text(source.ref).tag(GitHubRef(name: source.ref, kind: source.refKind).id)
+                Text(verbatim: source.ref).tag(GitHubRef(name: source.ref, kind: source.refKind).id)
             }
             ForEach(availableRefs) { ref in
-                Text(ref.name).tag(ref.id)
+                Text(verbatim: ref.name).tag(ref.id)
             }
         }
         .labelsHidden()
@@ -242,7 +242,7 @@ struct CodebaseDetailView: View {
         AsyncOperationStatusView(identifierPrefix: "codebaseDetail.refSwitch", phase: refSwitchPhase)
 
         Button {
-            pullPhase = .loading("Pulling…")
+            pullPhase = .loading(.app("View.CodebaseDetailView.Pulling"))
             Task {
                 await model.editing.pull(codebaseID: codebase.id)
                 pullPhase = .loaded
@@ -271,7 +271,7 @@ struct CodebaseDetailView: View {
             }
             if codebase.hasParseErrors {
                 Label(
-                    "\(codebase.parseDiagnosticCount) syntax issue(s) detected",
+                    .app("View.CodebaseDetailView.SyntaxIssues \(codebase.parseDiagnosticCount)"),
                     systemImage: "exclamationmark.triangle.fill"
                 )
                 .font(.caption)
@@ -329,17 +329,17 @@ extension CodebaseDetailView {
             Image(systemName: "doc.text.magnifyingglass")
                 .font(.system(size: 40))
                 .foregroundStyle(.secondary)
-            Text(.app("CodebaseDetailView.CodebaseHasNotBeen"))
+            Text(.app("View.CodebaseDetailView.CodebaseHasNotBeen"))
                 .font(.callout)
                 .foregroundStyle(.secondary)
             Button {
-                reindexPhase = .loading("Indexing…")
+                reindexPhase = .loading(.app("View.CodebaseDetailView.Indexing"))
                 Task {
                     await model.editing.reindex(codebaseID: codebase.id)
                     reindexPhase = .loaded
                 }
             } label: {
-                Label(.app("CodebaseDetailView.IndexNow"), systemImage: "arrow.clockwise")
+                Label(.app("View.CodebaseDetailView.IndexNow"), systemImage: "arrow.clockwise")
             }
             .disabled(reindexPhase.isInFlight)
             AsyncOperationStatusView(identifierPrefix: "codebaseDetail.reindex", phase: reindexPhase)

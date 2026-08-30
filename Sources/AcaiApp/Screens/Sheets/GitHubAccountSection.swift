@@ -76,10 +76,10 @@ struct GitHubAccountSection: View {
             .clipShape(Circle())
             .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 2) {
-                Text(account.login)
+                Text(verbatim: account.login)
                     .font(.headline)
                     .accessibilityIdentifier("github.signedInRow")
-                Text(codebaseCountLine)
+                Text(localized: codebaseCountLine)
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .accessibilityIdentifier("github.usedByCodebasesLabel")
@@ -136,18 +136,17 @@ struct GitHubAccountSection: View {
         .accessibilityIdentifier("github.scopeChecklist")
     }
 
-    private var codebaseCountLine: String {
-        accountStore.codebaseCount == 1
-            ? "Used by 1 codebase"
-            : "Used by \(accountStore.codebaseCount) codebases"
+    private var codebaseCountLine: LocalizedStringResource {
+        .app("View.GitHubAccountSection.UsedByCodebases \(accountStore.codebaseCount)")
     }
 
-    private var expiryMessage: String? {
+    private var expiryMessage: LocalizedStringResource? {
         guard let expiresAt = accountStore.account?.tokenExpiresAt else { return nil }
         let daysRemaining = Calendar.current.dateComponents([.day], from: Date(), to: expiresAt).day ?? 0
         guard daysRemaining <= 7 else { return nil }
-        if daysRemaining <= 0 { return "Your token has expired. Sign in again to keep pulling from GitHub." }
-        return "Your token expires \(expiresAt.formatted(.relative(presentation: .named))). Sign in again soon."
+        guard daysRemaining > 0 else { return .app("View.GitHubAccountSection.TokenExpired") }
+        let when = expiresAt.formatted(.relative(presentation: .named))
+        return .app("View.GitHubAccountSection.TokenExpires \(when)")
     }
 
     // MARK: - Signed out
@@ -180,7 +179,7 @@ struct GitHubAccountSection: View {
             }
         }
         if let errorMessage {
-            Text(errorMessage).font(.caption).foregroundStyle(.red)
+            Text(verbatim: errorMessage).font(.caption).foregroundStyle(.red)
         }
     }
 
@@ -189,7 +188,7 @@ struct GitHubAccountSection: View {
             Text(.app("View.GitHubAccountSection.EnterCodeLinkBelow"))
                 .font(.caption)
                 .foregroundStyle(.secondary)
-            Text(code.userCode)
+            Text(verbatim: code.userCode)
                 .font(.title2.monospaced().bold())
             Text(.app("View.GitHubAccountSection.CopiedClipboard"))
                 .font(.caption2)

@@ -12,11 +12,14 @@ struct FreeformDiagramCheckpointsView: View {
         NavigationStack {
             List {
                 if viewModel.checkpoints.isEmpty {
-                    ContentUnavailableView(
-                        "No Checkpoints",
-                        systemImage: "clock.arrow.circlepath",
-                        description: Text(.app("View.FreeformDiagramCheckpointsView.SaveCheckpointSnapshotDiagram"))
-                    )
+                    ContentUnavailableView {
+                        Label(
+                            .app("View.FreeformDiagramCheckpointsView.NoCheckpoints"),
+                            systemImage: "clock.arrow.circlepath"
+                        )
+                    } description: {
+                        Text(.app("View.FreeformDiagramCheckpointsView.SaveCheckpointSnapshotDiagram"))
+                    }
                 } else {
                     ForEach(viewModel.checkpoints) { checkpoint in
                         checkpointRow(checkpoint)
@@ -65,9 +68,9 @@ struct FreeformDiagramCheckpointsView: View {
     private func checkpointRow(_ checkpoint: FreeformDiagram.Checkpoint) -> some View {
         HStack {
             VStack(alignment: .leading, spacing: 2) {
-                Text(checkpoint.name)
+                Text(verbatim: checkpoint.name)
                     .font(.body)
-                Text(checkpoint.createdDate.formatted(date: .abbreviated, time: .shortened))
+                Text(verbatim: checkpoint.createdDate.formatted(date: .abbreviated, time: .shortened))
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }

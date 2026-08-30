@@ -26,7 +26,8 @@ extension ProjectCodebaseEditor {
         let activityCenter = store.activityCenter
         do {
             let cloneResult = try await activityCenter.run(
-                title: "Cloning \(target.owner)/\(target.repo)…", kind: .gitClone, subject: .codebase(codebaseID)
+                title: .app("Activity.Cloning \(target.owner)/\(target.repo)"),
+                kind: .gitClone, subject: .codebase(codebaseID)
             ) { onProgress in
                 let repositoryTarget = GitHubRepositoryTarget(
                     credential: credential, owner: target.owner, repo: target.repo, ref: target.ref)
@@ -73,7 +74,8 @@ extension ProjectCodebaseEditor {
         let legacyCloneURL = store.githubCloneURL(for: codebaseID)
         do {
             let fetchResult = try await store.activityCenter.run(
-                title: "Fetching \(source.owner)/\(source.repo)…", kind: .gitFetch, subject: .codebase(codebaseID)
+                title: .app("Activity.Fetching \(source.owner)/\(source.repo)"),
+                kind: .gitFetch, subject: .codebase(codebaseID)
             ) { onProgress throws -> String in
                 let target = GitHubRepositoryTarget(
                     credential: account.credential, owner: source.owner, repo: source.repo, ref: source.ref)
@@ -120,7 +122,7 @@ extension ProjectCodebaseEditor {
         let legacyCloneURL = store.githubCloneURL(for: codebaseID)
         do {
             let switchResult = try await store.activityCenter.run(
-                title: "Switching \(source.owner)/\(source.repo) to \(ref)…",
+                title: .app("Activity.Switching \(source.owner)/\(source.repo) \(ref)"),
                 kind: .gitFetch, subject: .codebase(codebaseID)
             ) { onProgress throws -> String in
                 let target = GitHubRepositoryTarget(
@@ -178,7 +180,8 @@ extension ProjectCodebaseEditor {
             // The artifact is saved to disk (awaited) *inside* this closure, before `run` returns —
             // otherwise `isBusy`/the row's spinner would flip to "done" before the write lands.
             let reindexResult = try await store.activityCenter.run(
-                title: "Indexing \(codebase.name)…", kind: .reindex, subject: .codebase(codebaseID)
+                title: .app("Activity.Indexing \(codebase.name)"),
+                kind: .reindex, subject: .codebase(codebaseID)
             ) {
                 let detached = Task.detached(priority: .userInitiated) {
                     var refreshed: ScopedResourceAccess.Refreshed?

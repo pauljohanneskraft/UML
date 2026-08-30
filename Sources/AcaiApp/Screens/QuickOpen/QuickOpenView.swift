@@ -69,11 +69,11 @@ struct QuickOpenView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .accessibilityIdentifier("quickOpen.loadingState")
         } else if query.isEmpty {
-            ContentUnavailableView(
-                "Search Everything",
-                systemImage: "magnifyingglass",
-                description: Text(.app("View.QuickOpenView.FindTypeModuleMethod"))
-            )
+            ContentUnavailableView {
+                Label(.app("View.QuickOpenView.SearchEverything"), systemImage: "magnifyingglass")
+            } description: {
+                Text(.app("View.QuickOpenView.FindTypeModuleMethod"))
+            }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .accessibilityIdentifier("quickOpen.emptyState")
         } else if filteredEntries.isEmpty {
@@ -180,8 +180,8 @@ private struct QuickOpenResultRow: View {
                     .foregroundStyle(.secondary)
                     .frame(width: 20)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(entry.name)
-                    Text(entry.subtitle)
+                    Text(verbatim: entry.name)
+                    Text(verbatim: entry.subtitle)
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -199,7 +199,7 @@ private struct QuickOpenResultRow: View {
                     onSelect(resolution)
                 } label: {
                     Label(
-                        "Open in \(resolution.diagramType.displayName)",
+                        .app("View.QuickOpenView.OpenIn \(String(localized: resolution.diagramType.title))"),
                         systemImage: resolution.diagramType.systemImage)
                 }
             }

@@ -149,7 +149,8 @@ extension ProjectBrowserViewModel {
 
         do {
             let data = try await store.activityCenter.run(
-                title: "Exporting \(codebase.name) atlas…", kind: .other(systemImage: "doc.richtext"),
+                title: .app("Activity.ExportingAtlas \(codebase.name)"),
+                kind: .other(systemImage: "doc.richtext"),
                 subject: .codebase(codebaseID)
             ) {
                 try await builder.build()

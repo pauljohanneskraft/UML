@@ -172,9 +172,9 @@ struct ModuleCouplingChartView: View {
             VStack(alignment: .leading, spacing: 4) {
                 HStack {
                     Image(systemName: point.zone.symbolName)
-                    Text(point.name).font(.callout.bold())
+                    Text(verbatim: point.name).font(.callout.bold())
                     Spacer()
-                    Text(percent(point.distance)).font(.caption.monospaced()).foregroundStyle(.secondary)
+                    Text(verbatim: percent(point.distance)).font(.caption.monospaced()).foregroundStyle(.secondary)
                 }
                 let instability = percent(point.instability)
                 let abstractness = percent(point.abstractness)

@@ -39,7 +39,7 @@ struct MultiSelectToggleButton<Model: CanvasInteraction>: View {
             model.isMultiSelectActive.toggle()
         } label: {
             Label(
-                "Select",
+                .app("View.MultiSelectToggleButton.Select"),
                 systemImage: model.isMultiSelectActive ? "checkmark.circle.fill" : "checkmark.circle"
             )
         }

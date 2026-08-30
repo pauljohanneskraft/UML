@@ -55,8 +55,9 @@ struct CodeElementReferenceActions: ViewModifier {
                 Button {
                     open(resolution)
                 } label: {
+                    let diagram = String(localized: resolution.diagramType.title)
                     Label(
-                        "Open in \(resolution.diagramType.displayName)",
+                        .app("View.CodeElementReferenceActions.OpenIn \(diagram)"),
                         systemImage: resolution.diagramType.systemImage)
                 }
             }

@@ -7,7 +7,7 @@ struct BudgetsEditor: View {
 
     var body: some View {
         RuleSection(
-            title: "Metric budgets",
+            title: .app("View.BudgetsEditor.MetricBudgets"),
             total: budgets.count,
             onAdd: { budgets.append(MetricBudget(metric: .distance)) },
             content: {
@@ -21,7 +21,7 @@ struct BudgetsEditor: View {
         RuleCard(onRemove: { budgets.remove(at: index) }, content: {
             Picker(.app("View.BudgetsEditor.Metric"), selection: $budgets[index].metric) {
                 ForEach(MetricBudget.Metric.allCases, id: \.self) { metric in
-                    Text(metric.rawValue).tag(metric)
+                    Text(verbatim: metric.rawValue).tag(metric)
                 }
             }
             HStack(spacing: 8) {
@@ -35,7 +35,7 @@ struct BudgetsEditor: View {
                 }
             }
             .textFieldStyle(.roundedBorder)
-            SelectorEditor(title: "Applies to (optional)", selector: $budgets[index].target)
+            SelectorEditor(title: .app("View.BudgetsEditor.AppliesToOptional"), selector: $budgets[index].target)
             TextField(text: $budgets[index].message.orEmpty) {
                 Text(.app("View.BudgetsEditor.CustomMessageOptional"))
             }

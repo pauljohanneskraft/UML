@@ -262,7 +262,7 @@ struct StateDiagramView: View {
                 .foregroundStyle(.secondary)
             Text(.app("View.StateDiagramView.VariableSStatesCan"))
                 .foregroundStyle(.secondary)
-            Text(error.message)
+            Text(verbatim: error.message)
                 .font(.callout)
                 .foregroundStyle(.tertiary)
                 .multilineTextAlignment(.center)

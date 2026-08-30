@@ -3,12 +3,17 @@ import SwiftUI
 /// A titled group of rule rows with an "add" button in its header. Shared chrome for every rule kind
 /// so the individual editors only describe their rows.
 struct RuleSection<Content: View>: View {
-    let title: String
+    let title: LocalizedStringResource
     let total: Int
     let onAdd: () -> Void
     @ViewBuilder let content: Content
 
-    init(title: String, total: Int, onAdd: @escaping () -> Void, @ViewBuilder content: () -> Content) {
+    init(
+        title: LocalizedStringResource,
+        total: Int,
+        onAdd: @escaping () -> Void,
+        @ViewBuilder content: () -> Content
+    ) {
         self.title = title
         self.total = total
         self.onAdd = onAdd
@@ -18,7 +23,7 @@ struct RuleSection<Content: View>: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text(title).font(.headline)
+                Text(localized: title).font(.headline)
                 if total > 0 {
                     Text(total, format: .number).font(.caption).foregroundStyle(.secondary)
                 }

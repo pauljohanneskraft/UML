@@ -95,7 +95,7 @@ struct CallGraphInspector: View {
             HStack(spacing: 8) {
                 Image(systemName: node.isFreeFunction ? "function" : "f.cursive")
                     .foregroundStyle(.secondary)
-                Text(node.label)
+                Text(verbatim: node.label)
                     .font(.system(.subheadline, design: .monospaced).weight(.semibold))
                     .lineLimit(1)
                     .truncationMode(.middle)
@@ -106,8 +106,8 @@ struct CallGraphInspector: View {
                         .foregroundStyle(.secondary)
                 }
             }
-            MetricRow("Calls out", "\(out)")
-            MetricRow("Called by", "\(incoming)")
+            MetricRow(.app("View.CallGraphInspector.CallsOut"), out.formatted())
+            MetricRow(.app("View.CallGraphInspector.CalledBy"), incoming.formatted())
         }
         .inspectorCard(highlighted: highlighted)
     }
@@ -122,17 +122,17 @@ struct CallGraphInspector: View {
 
         return VStack(alignment: .leading, spacing: 8) {
             if !callees.isEmpty {
-                relatedList(title: "Calls (\(callees.count))", nodes: callees)
+                relatedList(title: .app("View.CallGraphInspector.Calls \(callees.count)"), nodes: callees)
             }
             if !callers.isEmpty {
-                relatedList(title: "Called By (\(callers.count))", nodes: callers)
+                relatedList(title: .app("View.CallGraphInspector.CalledByCount \(callers.count)"), nodes: callers)
             }
         }
     }
 
-    private func relatedList(title: String, nodes: [CallGraph.Node]) -> some View {
+    private func relatedList(title: LocalizedStringResource, nodes: [CallGraph.Node]) -> some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(title)
+            Text(localized: title)
                 .font(.caption.weight(.semibold))
                 .foregroundStyle(.secondary)
             ForEach(nodes.sorted { $0.label < $1.label }, id: \.id) { related in
@@ -140,7 +140,7 @@ struct CallGraphInspector: View {
                     onSelect(related.id)
                 } label: {
                     HStack {
-                        Text(related.label)
+                        Text(verbatim: related.label)
                             .font(.system(.caption, design: .monospaced))
                             .lineLimit(1)
                             .truncationMode(.middle)

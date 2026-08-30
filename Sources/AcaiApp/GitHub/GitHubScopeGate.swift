@@ -73,7 +73,7 @@ private struct GitHubScopeGateModifier: ViewModifier {
 
     private var explanation: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text(explanationText)
+            Text(localized: explanationText)
             Button(.app("View.GitHubScopeGateModifier.ReAuthorize")) {
                 showExplanation = false
                 onReauthorize()

@@ -8,25 +8,25 @@ extension FreeformDiagramInspector {
     func transitionSection(edge: FreeformDiagram.Edge) -> some View {
         let stateNodes = viewModel.nodes.filter { viewModel.state.isStateNode($0.id) }
         return Section {
-            Picker(.app("FreeformDiagramInspector.Text"), selection: Binding(
+            Picker(.app("View.FreeformDiagramInspector.From"), selection: Binding(
                 get: { edge.sourceNodeID },
                 set: { viewModel.updateEdge(edge.id, sourceID: $0, targetID: edge.targetNodeID, kind: edge.kind) }
             )) {
-                ForEach(stateNodes) { node in Text(stateDisplayName(node)).tag(node.id) }
+                ForEach(stateNodes) { node in Text(verbatim: stateDisplayName(node)).tag(node.id) }
             }
 
-            Picker(.app("FreeformDiagramInspector.Text2"), selection: Binding(
+            Picker(.app("View.FreeformDiagramInspector.To"), selection: Binding(
                 get: { edge.targetNodeID },
                 set: { viewModel.updateEdge(edge.id, sourceID: edge.sourceNodeID, targetID: $0, kind: edge.kind) }
             )) {
-                ForEach(stateNodes) { node in Text(stateDisplayName(node)).tag(node.id) }
+                ForEach(stateNodes) { node in Text(verbatim: stateDisplayName(node)).tag(node.id) }
             }
 
             TextField(text: Binding(
                 get: { edge.transition?.event ?? "" },
                 set: { viewModel.state.updateTransitionEdge(edge.id, event: $0) }
             )) {
-                Text(.app("FreeformDiagramInspector.Event"))
+                Text(.app("View.FreeformDiagramInspector.Event"))
             }
             .textFieldStyle(.roundedBorder)
             .focused($focusedField, equals: .name)
@@ -35,7 +35,7 @@ extension FreeformDiagramInspector {
                 get: { edge.transition?.guardCondition ?? "" },
                 set: { viewModel.state.updateTransitionEdge(edge.id, guardCondition: $0) }
             )) {
-                Text(.app("FreeformDiagramInspector.GuardCondition"))
+                Text(.app("View.FreeformDiagramInspector.GuardCondition"))
             }
             .textFieldStyle(.roundedBorder)
 
@@ -43,11 +43,11 @@ extension FreeformDiagramInspector {
                 get: { edge.transition?.action ?? "" },
                 set: { viewModel.state.updateTransitionEdge(edge.id, action: $0) }
             )) {
-                Text(.app("FreeformDiagramInspector.Action"))
+                Text(.app("View.FreeformDiagramInspector.Action"))
             }
             .textFieldStyle(.roundedBorder)
         } header: {
-            Text(.app("FreeformDiagramInspector.Transition"))
+            Text(.app("View.FreeformDiagramInspector.Transition"))
                 .font(.subheadline.weight(.medium))
                 .foregroundStyle(.secondary)
         }
@@ -55,18 +55,18 @@ extension FreeformDiagramInspector {
 
     func stateKindSection(nodeID: String, kind: StateDiagram.State.Kind) -> some View {
         Section {
-            Picker(.app("FreeformDiagramInspector.StateKind"), selection: Binding(
+            Picker(.app("View.FreeformDiagramInspector.StateKind"), selection: Binding(
                 get: { kind },
                 set: { viewModel.state.updateStateKind(nodeID, kind: $0) }
             )) {
-                Text(.app("FreeformDiagramInspector.State")).tag(StateDiagram.State.Kind.normal)
-                Text(.app("FreeformDiagramInspector.Initial")).tag(StateDiagram.State.Kind.initial)
-                Text(.app("FreeformDiagramInspector.Final")).tag(StateDiagram.State.Kind.final)
-                Text(.app("FreeformDiagramInspector.Choice")).tag(StateDiagram.State.Kind.choice)
+                Text(.app("View.FreeformDiagramInspector.State")).tag(StateDiagram.State.Kind.normal)
+                Text(.app("View.FreeformDiagramInspector.Initial")).tag(StateDiagram.State.Kind.initial)
+                Text(.app("View.FreeformDiagramInspector.Final")).tag(StateDiagram.State.Kind.final)
+                Text(.app("View.FreeformDiagramInspector.Choice")).tag(StateDiagram.State.Kind.choice)
             }
             .labelsHidden()
         } header: {
-            Text(.app("FreeformDiagramInspector.StateKind2"))
+            Text(.app("View.FreeformDiagramInspector.TransitionStateKind"))
                 .font(.subheadline.weight(.medium))
                 .foregroundStyle(.secondary)
         }

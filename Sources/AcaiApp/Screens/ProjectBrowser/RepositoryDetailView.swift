@@ -28,7 +28,7 @@ struct RepositoryDetailView: View {
         Form {
             Section(.app("View.RepositoryDetailView.Repository")) {
                 LabeledContent {
-                    Text(remoteURL.absoluteString)
+                    Text(verbatim: remoteURL.absoluteString)
                 } label: {
                     Text(.app("View.RepositoryDetailView.Remote"))
                 }
@@ -36,7 +36,7 @@ struct RepositoryDetailView: View {
                     if isLoadingDetails {
                         ProgressView()
                     } else {
-                        Text(onDiskSize.map(Self.byteCountFormatter.string(fromByteCount:)) ?? "—")
+                        Text(verbatim: onDiskSize.map(Self.byteCountFormatter.string(fromByteCount:)) ?? "—")
                     }
                 } label: {
                     Text(.app("View.RepositoryDetailView.DiskSize"))
@@ -45,7 +45,8 @@ struct RepositoryDetailView: View {
                     if isLoadingDetails {
                         ProgressView()
                     } else {
-                        Text(lastFetchedAt.map { $0.formatted(.relative(presentation: .named)) } ?? "Never")
+                        lastFetchedAt.map { Text(verbatim: $0.formatted(.relative(presentation: .named))) }
+                            ?? Text(.app("View.RepositoryDetailView.Never"))
                     }
                 } label: {
                     Text(.app("View.RepositoryDetailView.LastFetched"))
@@ -124,7 +125,7 @@ struct RepositoryDetailView: View {
         ) {
             Button(.app("View.RepositoryDetailView.OK")) {}
         } message: {
-            Text(errorMessage ?? "")
+            Text(verbatim: errorMessage ?? "")
         }
         .task(id: remoteURL) { await loadDetails() }
     }
@@ -153,7 +154,8 @@ struct RepositoryDetailView: View {
             // flips this repository's row (in the sidebar's Repositories section) to a spinner,
             // the same as a codebase's reindex/fetch does.
             _ = try await model.store.activityCenter.run(
-                title: "Fetching \(remoteURL.lastPathComponent)…", kind: .gitFetch, subject: .repository(remoteURL)
+                title: .app("Activity.FetchingRemote \(remoteURL.lastPathComponent)"),
+                kind: .gitFetch, subject: .repository(remoteURL)
             ) { onProgress in
                 try await locks.run(for: hub) {
                     try await hub.fetch(onProgress: onProgress)

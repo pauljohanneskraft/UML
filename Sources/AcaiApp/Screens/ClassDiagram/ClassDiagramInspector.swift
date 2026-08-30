@@ -82,7 +82,7 @@ struct ClassDiagramSidebar: View {
                 Picker(.app("View.ClassDiagramSidebar.MinAccessLevel"), selection: config.minimumAccessLevel) {
                     Text(.app("View.ClassDiagramSidebar.All")).tag(AccessLevel?.none)
                     ForEach([AccessLevel.public, .internal, .private], id: \.self) { level in
-                        Text(level.rawValue).tag(AccessLevel?.some(level))
+                        Text(verbatim: level.rawValue).tag(AccessLevel?.some(level))
                     }
                 }
             }
@@ -132,7 +132,7 @@ struct ClassDiagramSidebar: View {
             if let filter = artifact.standardLanguageResolver.defaultConfiguration.generatedCodeFilter {
                 Section(filter.displayName) {
                     Toggle(.app("View.ClassDiagramSidebar.HideGeneratedTypes"), isOn: config.hideGeneratedTypes)
-                    Text(filter.explanation)
+                    Text(verbatim: filter.explanation)
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -176,7 +176,7 @@ struct ClassDiagramSidebar: View {
                     if let node = viewModel.nodes.first(where: { $0.id == nodeID }) {
                         Section(node.name) {
                             LabeledContent {
-                                Text(node.kind.rawValue)
+                                Text(verbatim: node.kind.rawValue)
                             } label: {
                                 Text(.app("View.ClassDiagramSidebar.Kind"))
                             }
@@ -240,18 +240,18 @@ struct ClassDiagramSidebar: View {
                                 DisclosureGroup {
                                     ForEach(relatedEdges) { edge in
                                         HStack {
-                                            Text(edge.kind.rawValue)
+                                            Text(verbatim: edge.kind.rawValue)
                                                 .font(.caption)
                                             Spacer()
                                             let otherID = edge.sourceID == nodeID
                                                 ? edge.targetID : edge.sourceID
-                                            Text(otherID)
+                                            Text(verbatim: otherID)
                                                 .font(.caption.monospaced())
                                                 .foregroundStyle(.secondary)
                                         }
                                     }
                                 } label: {
-                                    Text(.app("View.ClassDiagramSidebar.Relationships2 \(relatedEdges.count)"))
+                                    Text(.app("View.ClassDiagramSidebar.RelationshipsCount \(relatedEdges.count)"))
                                 }
                             }
                             VStack(alignment: .center) {
@@ -324,11 +324,11 @@ private extension ClassDiagramSidebar {
                 VStack(alignment: .leading, spacing: 1) {
                     Text(verbatim: "~ \(memberChange.name)")
                         .font(.caption.monospaced())
-                    Text(memberChange.before)
+                    Text(verbatim: memberChange.before)
                         .font(.caption2.monospaced())
                         .foregroundStyle(.secondary)
                         .strikethrough()
-                    Text(memberChange.after)
+                    Text(verbatim: memberChange.after)
                         .font(.caption2.monospaced())
                         .foregroundStyle(.secondary)
                 }
@@ -381,7 +381,7 @@ private struct FocusSection: View {
 
             if configuration.focus != nil {
                 Picker(.app("View.FocusSection.RootType"), selection: rootType) {
-                    ForEach(typeNames, id: \.self) { Text($0).tag($0) }
+                    ForEach(typeNames, id: \.self) { Text(verbatim: $0).tag($0) }
                 }
 
                 Toggle(.app("View.FocusSection.LimitDepth"), isOn: depthLimited)

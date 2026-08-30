@@ -104,8 +104,12 @@ struct SequenceConfigSheet: View {
                     VStack(alignment: .leading, spacing: 4) {
                         PickerFilterField(text: $typeQuery)
                         Picker(.app("View.SequenceConfigSheet.Type"), selection: $entryTypeName) {
-                            Text(freeFunctionNames.isEmpty ? "Select…" : "None (top-level functions)").tag("")
-                            ForEach(callableTypeNames.filtered(by: typeQuery), id: \.self) { Text($0).tag($0) }
+                            Text(localized: freeFunctionNames.isEmpty
+                                ? .app("View.SequenceConfigSheet.SelectEllipsis")
+                                : .app("View.SequenceConfigSheet.NoneTopLevelFunctions")).tag("")
+                            ForEach(callableTypeNames.filtered(by: typeQuery), id: \.self) {
+                                Text(verbatim: $0).tag($0)
+                            }
                         }
                         .labelsHidden()
                         .accessibilityIdentifier("sequenceConfig.typePicker")
@@ -124,7 +128,9 @@ struct SequenceConfigSheet: View {
                         PickerFilterField(text: $methodQuery)
                         Picker(.app("View.SequenceConfigSheet.Method"), selection: $entryMethodName) {
                             Text(.app("View.SequenceConfigSheet.Select")).tag("")
-                            ForEach(methodNames.filtered(by: methodQuery), id: \.self) { Text($0).tag($0) }
+                            ForEach(methodNames.filtered(by: methodQuery), id: \.self) {
+                                Text(verbatim: $0).tag($0)
+                            }
                         }
                         .labelsHidden()
                         .disabled(methodNames.isEmpty)
@@ -159,7 +165,7 @@ struct SequenceConfigSheet: View {
                     LabeledContent(row.protocolName) {
                         Picker(row.protocolName, selection: $row.selection) {
                             Text(.app("View.SequenceConfigSheet.LeaveAbstract")).tag(String?.none)
-                            ForEach(row.candidates, id: \.self) { Text($0).tag(String?.some($0)) }
+                            ForEach(row.candidates, id: \.self) { Text(verbatim: $0).tag(String?.some($0)) }
                         }
                         .labelsHidden()
                     }

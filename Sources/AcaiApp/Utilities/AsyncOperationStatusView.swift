@@ -4,7 +4,7 @@ import SwiftUI
 /// completion signal instead of inferring "done" from an unrelated downstream element.
 enum AsyncOperationPhase: Equatable {
     case idle
-    case loading(String)
+    case loading(LocalizedStringResource)
     case loaded
     case failed(String)
 
@@ -25,7 +25,7 @@ struct AsyncOperationStatusView: View {
         case .loading(let title):
             HStack(spacing: 6) {
                 ProgressView().controlSize(.small)
-                Text(title).font(.caption).foregroundStyle(.secondary)
+                Text(localized: title).font(.caption).foregroundStyle(.secondary)
             }
             .accessibilityIdentifier("\(identifierPrefix).loading")
         case .loaded:

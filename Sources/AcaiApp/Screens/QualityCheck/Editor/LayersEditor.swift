@@ -33,7 +33,7 @@ struct LayersEditor: View {
                     Text(.app("View.LayersEditor.LayerNameEG"))
                 }
                 .textFieldStyle(.roundedBorder)
-                SelectorEditor(title: "Matches", selector: rule.layers[index].selector)
+                SelectorEditor(title: .app("View.LayersEditor.Matches"), selector: rule.layers[index].selector)
             })
         }
         HStack {

@@ -66,13 +66,13 @@ struct MultiSelectionInspector<Item: Identifiable>: View where Item.ID == String
                 Image(systemName: systemImage)
                     .foregroundStyle(.secondary)
             }
-            Text(rowLabel(item))
+            Text(verbatim: rowLabel(item))
                 .font(.system(.caption, design: .monospaced))
                 .lineLimit(1)
                 .truncationMode(.middle)
             Spacer()
             if let detail = rowDetail?(item) {
-                Text(detail)
+                Text(verbatim: detail)
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             }

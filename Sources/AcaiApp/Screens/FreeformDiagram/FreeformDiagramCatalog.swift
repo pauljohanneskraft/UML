@@ -66,7 +66,7 @@ struct FreeformDiagramCatalog: View {
         @ViewBuilder content: () -> Content
     ) -> some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(title)
+            Text(verbatim: title)
                 .font(.subheadline.weight(.medium))
                 .foregroundStyle(.secondary)
                 .padding(.horizontal)
@@ -86,7 +86,7 @@ struct FreeformDiagramCatalog: View {
             HStack {
                 Image(systemName: kind.systemImage)
                     .frame(width: 20)
-                Text(kind.displayName)
+                Text(verbatim: kind.displayName)
                 Spacer()
             }
             .padding(.horizontal)
@@ -127,7 +127,7 @@ struct FreeformDiagramCatalog: View {
             HStack {
                 Image(systemName: "arrow.right")
                     .frame(width: 20)
-                Text(label)
+                Text(verbatim: label)
                 Spacer()
             }
             .padding(.horizontal)
@@ -186,7 +186,7 @@ struct FreeformDiagramCatalog: View {
                 HStack {
                     Image(systemName: "arrow.right")
                         .frame(width: 20)
-                    Text(oneSelected ? "Self-Transition" : "Transition")
+                    Text(verbatim: oneSelected ? "Self-Transition" : "Transition")
                     Spacer()
                 }
                 .padding(.horizontal)
@@ -223,7 +223,7 @@ struct FreeformDiagramCatalog: View {
             HStack {
                 Image(systemName: icon)
                     .frame(width: 20)
-                Text(label)
+                Text(verbatim: label)
                 Spacer()
             }
             .padding(.horizontal)

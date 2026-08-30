@@ -12,9 +12,9 @@ struct KeyboardShortcutsPanel: View {
                     Section(group.title) {
                         ForEach(group.shortcuts) { shortcut in
                             HStack {
-                                Text(shortcut.name)
+                                Text(verbatim: shortcut.name)
                                 Spacer()
-                                Text(shortcut.symbol)
+                                Text(verbatim: shortcut.symbol)
                                     .foregroundStyle(.secondary)
                                     .monospaced()
                             }

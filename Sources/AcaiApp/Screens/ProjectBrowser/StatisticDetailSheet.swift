@@ -2,8 +2,8 @@ import SwiftUI
 
 struct StatisticDetail: Identifiable {
     let id = UUID()
-    let title: String
-    let description: LocalizedStringResource
+    let title: LocalizedStringResource
+    let description: LocalizedStringResource?
     let rows: [Row]
 
     struct Row: Identifiable {
@@ -23,8 +23,8 @@ struct StatisticDetailSheet: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                Group {
-                    Text(detail.description)
+                if let description = detail.description {
+                    Text(localized: description)
                         .font(.callout)
                         .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
@@ -38,7 +38,7 @@ struct StatisticDetailSheet: View {
             #if os(macOS)
             .frame(maxWidth: 480, minHeight: 420)
             #endif
-            .navigationTitle(detail.title)
+            .navigationTitle(Text(localized: detail.title))
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button(.app("View.StatisticDetailSheet.Done")) { dismiss() }
@@ -58,11 +58,11 @@ struct StatisticDetailSheet: View {
             List(detail.rows) { row in
                 VStack(alignment: .leading, spacing: 2) {
                     HStack(spacing: 8) {
-                        Text(row.name)
+                        Text(verbatim: row.name)
                             .lineLimit(1)
                             .truncationMode(.middle)
                         Spacer()
-                        Text(row.value)
+                        Text(verbatim: row.value)
                             .font(.callout.monospacedDigit())
                             .foregroundStyle(.secondary)
                     }

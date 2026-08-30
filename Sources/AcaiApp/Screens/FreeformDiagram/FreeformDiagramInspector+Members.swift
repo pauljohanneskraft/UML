@@ -47,7 +47,7 @@ extension FreeformDiagramInspector {
             }
             addPropertyRow(nodeID: nodeID)
         } header: {
-            Text(.app("FreeformDiagramInspector.Properties"))
+            Text(.app("View.FreeformDiagramInspector.Properties"))
                 .font(.subheadline.weight(.medium))
                 .foregroundStyle(.secondary)
         }
@@ -55,7 +55,7 @@ extension FreeformDiagramInspector {
 
     private func propertyRow(nodeID: String, prop: FreeformDiagram.Node.Member) -> some View {
         HStack {
-            Text(prop.displayString)
+            Text(verbatim: prop.displayString)
                 .font(.system(size: 12, design: .monospaced))
                 .contentShape(Rectangle())
                 .onTapGesture {
@@ -76,13 +76,13 @@ extension FreeformDiagramInspector {
     private func addPropertyRow(nodeID: String) -> some View {
         VStack(alignment: .leading, spacing: 6) {
             TextField(text: $newPropertyName) {
-                Text(.app("FreeformDiagramInspector.Name"))
+                Text(.app("View.FreeformDiagramInspector.MemberName"))
             }
             .textFieldStyle(.roundedBorder)
             .focused($focusedField, equals: .newProperty)
             .accessibilityIdentifier("inspector.newPropertyNameField")
             TextField(text: $newPropertyType) {
-                Text(.app("FreeformDiagramInspector.Type"))
+                Text(.app("View.FreeformDiagramInspector.Type"))
             }
             .textFieldStyle(.roundedBorder)
             .accessibilityIdentifier("inspector.newPropertyTypeField")
@@ -101,7 +101,7 @@ extension FreeformDiagramInspector {
                 newPropertyIsStatic = false
                 newPropertyIsAbstract = false
             } label: {
-                Label(.app("FreeformDiagramInspector.AddProperty"), systemImage: "plus.circle")
+                Label(.app("View.FreeformDiagramInspector.AddProperty"), systemImage: "plus.circle")
             }
             .disabled(newPropertyName.trimmingCharacters(in: .whitespaces).isEmpty)
             .accessibilityIdentifier("inspector.addPropertyButton")
@@ -117,7 +117,7 @@ extension FreeformDiagramInspector {
             }
             addMethodRow(nodeID: nodeID)
         } header: {
-            Text(.app("FreeformDiagramInspector.Methods"))
+            Text(.app("View.FreeformDiagramInspector.Methods"))
                 .font(.subheadline.weight(.medium))
                 .foregroundStyle(.secondary)
         }
@@ -125,7 +125,7 @@ extension FreeformDiagramInspector {
 
     private func methodRow(nodeID: String, method: FreeformDiagram.Node.Member) -> some View {
         HStack {
-            Text(method.displayString)
+            Text(verbatim: method.displayString)
                 .font(.system(size: 12, design: .monospaced))
                 .contentShape(Rectangle())
                 .onTapGesture {
@@ -146,13 +146,13 @@ extension FreeformDiagramInspector {
     private func addMethodRow(nodeID: String) -> some View {
         VStack(alignment: .leading, spacing: 6) {
             TextField(text: $newMethodName) {
-                Text(.app("FreeformDiagramInspector.Name"))
+                Text(.app("View.FreeformDiagramInspector.MemberName"))
             }
             .textFieldStyle(.roundedBorder)
             .focused($focusedField, equals: .newMethod)
             .accessibilityIdentifier("inspector.newMethodNameField")
             TextField(text: $newMethodReturnType) {
-                Text(.app("FreeformDiagramInspector.ReturnType"))
+                Text(.app("View.FreeformDiagramInspector.ReturnType"))
             }
             .textFieldStyle(.roundedBorder)
             .accessibilityIdentifier("inspector.newMethodReturnTypeField")
@@ -174,7 +174,7 @@ extension FreeformDiagramInspector {
                 newMethodIsStatic = false
                 newMethodIsAbstract = false
             } label: {
-                Label(.app("FreeformDiagramInspector.AddMethod"), systemImage: "plus.circle")
+                Label(.app("View.FreeformDiagramInspector.AddMethod"), systemImage: "plus.circle")
             }
             .disabled(newMethodName.trimmingCharacters(in: .whitespaces).isEmpty)
             .accessibilityIdentifier("inspector.addMethodButton")

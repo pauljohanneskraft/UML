@@ -50,14 +50,14 @@ struct ViolationRowView: View {
     private var findingSummary: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack(spacing: 8) {
-                Text(violation.ruleKind)
+                Text(verbatim: violation.ruleKind)
                     .font(.caption.monospaced())
                     .padding(.horizontal, 6).padding(.vertical, 2)
                     .background(tint.opacity(0.12))
                     .clipShape(Capsule())
-                Text(violation.subject).font(.callout.bold())
+                Text(verbatim: violation.subject).font(.callout.bold())
             }
-            Text(violation.message).font(.callout)
+            Text(verbatim: violation.message).font(.callout)
             if let source = violation.source {
                 Text(verbatim: "\(source.filePath):\(source.line)")
                     .font(.caption.monospaced())
@@ -95,9 +95,9 @@ private struct LocationRow: View {
 
     private var summary: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(title).font(.callout)
+            Text(verbatim: title).font(.callout)
             if let detail {
-                Text(detail).font(.caption).foregroundStyle(.secondary)
+                Text(verbatim: detail).font(.caption).foregroundStyle(.secondary)
             }
             if let location {
                 Text(verbatim: "\(location.filePath):\(location.line)")
@@ -122,7 +122,7 @@ struct DeadCodeReportView: View {
         let coverage = Int((report.coverage.fraction * 100).rounded())
         if report.candidates.isEmpty {
             QualityCheckPlaceholder(
-                text: "No dead-code candidates (call-graph coverage \(coverage)%).",
+                text: .app("View.DeadCodeSection.NoCandidates \(coverage)"),
                 systemImage: "checkmark.seal")
         } else {
             VStack(alignment: .leading, spacing: 8) {
@@ -148,8 +148,9 @@ struct HealthReportView: View {
     var body: some View {
         let percent = Int((report.score * 100).rounded())
         if report.diagnostics.isEmpty {
+            let types = String(localized: .app("View.ParseHealthSection.Types \(report.typeCount)"))
             QualityCheckPlaceholder(
-                text: "Parse health \(percent)% — no diagnostics across \(report.typeCount) type(s).",
+                text: .app("View.ParseHealthSection.NoDiagnostics \(percent) \(types)"),
                 systemImage: "checkmark.seal")
         } else {
             VStack(alignment: .leading, spacing: 8) {

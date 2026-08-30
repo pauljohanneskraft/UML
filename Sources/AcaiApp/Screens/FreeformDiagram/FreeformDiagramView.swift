@@ -274,7 +274,7 @@ struct FreeformDiagramView: View {
             Text(.app("View.FreeformDiagramView.CanvasEmpty"))
                 .font(.title3)
                 .foregroundStyle(.secondary)
-            Text(emptyCanvasHintText)
+            Text(localized: emptyCanvasHintText)
                 .font(.callout)
                 .foregroundStyle(.tertiary)
                 .multilineTextAlignment(.center)
@@ -283,11 +283,11 @@ struct FreeformDiagramView: View {
         .allowsHitTesting(false)
     }
 
-    private var emptyCanvasHintText: String {
+    private var emptyCanvasHintText: LocalizedStringResource {
         #if os(macOS)
-        "Right-click to add a node, or open the Node Catalog in the sidebar."
+        .app("View.FreeformDiagramView.RightClickToAddNode")
         #else
-        "Touch and hold to add a node, or open the Node Catalog in the sidebar."
+        .app("View.FreeformDiagramView.TouchAndHoldToAddNode")
         #endif
     }
 

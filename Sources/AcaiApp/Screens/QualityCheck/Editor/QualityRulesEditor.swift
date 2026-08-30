@@ -42,7 +42,7 @@ struct QualityRulesEditor: View {
             if let binding = Binding($rules.cycles) {
                 Picker(.app("View.QualityRulesEditor.Scope"), selection: binding.scope) {
                     ForEach(CycleRule.Scope.allCases, id: \.self) { scope in
-                        Text(scope.rawValue).tag(scope)
+                        Text(verbatim: scope.rawValue).tag(scope)
                     }
                 }
                 .pickerStyle(.segmented)

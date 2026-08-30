@@ -31,7 +31,7 @@ struct ActivityOperation: Identifiable, Sendable {
     }
 
     var id = UUID()
-    var title: String
+    var title: LocalizedStringResource
     var kind: Kind
     var subject: Subject
     /// `nil` = indeterminate.

@@ -47,7 +47,7 @@ struct FindingsView: View {
         ) {
             Button(.app("View.FindingsView.OK"), role: .cancel) { suppressionError = nil }
         } message: {
-            Text(suppressionError ?? "")
+            Text(verbatim: suppressionError ?? "")
         }
     }
 
@@ -55,15 +55,14 @@ struct FindingsView: View {
     private func content(project: Project) -> some View {
         if project.codebases.isEmpty {
             emptyState(
-                text: "This project has no codebases yet. Add one to see its findings here.",
+                text: .app("View.FindingsView.NoCodebasesYet"),
                 identifier: "findings.noCodebasesState")
         } else {
             let aggregator = FindingsAggregator(project: project, model: model)
             let notIndexed = aggregator.codebasesNotIndexed()
             if notIndexed.count == project.codebases.count {
                 emptyState(
-                    text: "No codebase in this project has been indexed yet. "
-                        + "Reindex a codebase to see its findings here.",
+                    text: .app("View.FindingsView.NoCodebaseIndexedYet"),
                     identifier: "findings.notIndexedState")
             } else {
                 let allFindings = aggregator.findings()
@@ -79,12 +78,12 @@ struct FindingsView: View {
         }
     }
 
-    private func emptyState(text: String, identifier: String) -> some View {
+    private func emptyState(text: LocalizedStringResource, identifier: String) -> some View {
         VStack(spacing: 12) {
             Image(systemName: "checkmark.seal")
                 .font(.system(size: 40))
                 .foregroundStyle(.secondary)
-            Text(text)
+            Text(localized: text)
                 .font(.callout)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
@@ -122,8 +121,8 @@ struct FindingsView: View {
             if visible.isEmpty {
                 emptyState(
                     text: allFindings.isEmpty
-                        ? "No findings — every indexed codebase in this project is clean."
-                        : "No findings match the current filters.",
+                        ? .app("View.FindingsView.NoFindingsClean")
+                        : .app("View.FindingsView.NoFindingsMatchFilters"),
                     identifier: "findings.emptyState")
             } else {
                 List(visible) { finding in
@@ -179,7 +178,7 @@ struct FindingsView: View {
                 Picker(.app("View.FindingsView.Codebase"), selection: $selectedCodebaseID) {
                     Text(.app("View.FindingsView.AllCodebases")).tag(UUID?.none)
                     ForEach(project.codebases.sorted { $0.name < $1.name }) { codebase in
-                        Text(codebase.name).tag(Optional(codebase.id))
+                        Text(verbatim: codebase.name).tag(Optional(codebase.id))
                     }
                 }
                 .accessibilityIdentifier("findings.codebaseFilter")
@@ -262,7 +261,7 @@ struct FindingsView: View {
         // boundary as an immutable copy, not a captured mutable variable — the same rebinding
         // `ViewSourceButton.resolve()` uses for its own detached-task capture.
         let toSave = updated
-        suppressionSavePhase = .loading("Saving…")
+        suppressionSavePhase = .loading(.app("View.FindingsView.Saving"))
         Task {
             do {
                 try await Task.detached(priority: .userInitiated) {

@@ -20,19 +20,17 @@ struct CIQualityCheckExportSheet: View {
                 VStack(alignment: .leading, spacing: 20) {
                     if invocation.needsExportNote {
                         QualityCheckPlaceholder(
-                            text: "This rules file isn't inside \(codebaseName)'s own folder, so a CI "
-                                + "runner's checkout won't have it. Commit a copy into the repository "
-                                + "(e.g. as quality.yml) before using the snippet below in CI.",
+                            text: .app("View.CIQualityCheckExportSheet.RulesFileOutsideCodebase \(codebaseName)"),
                             systemImage: "exclamationmark.triangle")
                     }
                     snippetSection(
-                        title: "Shell command",
-                        caption: "Runs against this codebase's current location.",
+                        title: .app("View.CIQualityCheckExportSheet.ShellCommand"),
+                        caption: .app("View.CIQualityCheckExportSheet.RunsAgainstCurrentLocation"),
                         code: invocation.shellCommand,
                         identifier: "ciCheckExport.shellCommand")
                     snippetSection(
-                        title: "GitHub Actions step",
-                        caption: "Paste into a job that already checks out the repository.",
+                        title: .app("View.CIQualityCheckExportSheet.GitHubActionsStep"),
+                        caption: .app("View.CIQualityCheckExportSheet.PasteIntoJob"),
                         code: invocation.gitHubActionsStep,
                         identifier: "ciCheckExport.actionsStep")
                 }
@@ -50,11 +48,13 @@ struct CIQualityCheckExportSheet: View {
         }
     }
 
-    private func snippetSection(title: String, caption: String, code: String, identifier: String) -> some View {
+    private func snippetSection(
+        title: LocalizedStringResource, caption: LocalizedStringResource, code: String, identifier: String
+    ) -> some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(title).font(.headline)
-            Text(caption).font(.caption).foregroundStyle(.secondary)
-            Text(code)
+            Text(localized: title).font(.headline)
+            Text(localized: caption).font(.caption).foregroundStyle(.secondary)
+            Text(verbatim: code)
                 .font(.system(.callout, design: .monospaced))
                 .textSelection(.enabled)
                 .frame(maxWidth: .infinity, alignment: .leading)

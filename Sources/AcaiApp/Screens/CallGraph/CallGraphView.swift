@@ -358,7 +358,7 @@ private struct CallGraphNodeView: View {
     }
 
     var body: some View {
-        Text(node.label)
+        Text(verbatim: node.label)
             .font(.system(.caption, design: .monospaced))
             .lineLimit(1)
             .truncationMode(.middle)

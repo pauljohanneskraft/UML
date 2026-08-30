@@ -131,7 +131,7 @@ struct MemberFlagsFields: View {
     var body: some View {
         Picker(.app("View.MemberFlagsFields.AccessLevel"), selection: $accessLevel) {
             ForEach(AccessLevel.allCases, id: \.self) { level in
-                Text(level.rawValue.capitalized).tag(level)
+                Text(verbatim: level.rawValue.capitalized).tag(level)
             }
         }
         .accessibilityIdentifier("memberEditor.accessLevelPicker")

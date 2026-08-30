@@ -22,7 +22,7 @@ struct DiagramFilterSection: View {
 
     var body: some View {
         Section(.app("View.DiagramFilterSection.Filter")) {
-            SelectorEditor(title: "Show only", selector: nonOptionalFilter)
+            SelectorEditor(title: .app("View.DiagramFilterSection.ShowOnly"), selector: nonOptionalFilter)
             saveAsQualityRuleButton
             presetControls
             AsyncOperationStatusView(identifierPrefix: "diagramFilter.presetSave", phase: presetSavePhase)
@@ -46,7 +46,7 @@ struct DiagramFilterSection: View {
         ) {
             Button(.app("View.DiagramFilterSection.OK"), role: .cancel) { presetSaveError = nil }
         } message: {
-            Text(presetSaveError ?? "")
+            Text(verbatim: presetSaveError ?? "")
         }
     }
 
@@ -87,12 +87,12 @@ struct DiagramFilterSection: View {
             Picker(.app("View.DiagramFilterSection.ApplyPreset"), selection: presetSelection) {
                 Text(.app("View.DiagramFilterSection.Choose")).tag(UUID?.none)
                 ForEach(presets.presets) { preset in
-                    Text(preset.name).tag(UUID?.some(preset.id))
+                    Text(verbatim: preset.name).tag(UUID?.some(preset.id))
                 }
             }
             .accessibilityIdentifier("diagram.filter.presetPicker")
         }
-        Button(.app("View.DiagramFilterSection.SavePreset2")) { showSaveAsPreset = true }
+        Button(.app("View.DiagramFilterSection.SaveAsPreset")) { showSaveAsPreset = true }
             .accessibilityIdentifier("diagram.filter.saveAsPresetButton")
     }
 
@@ -128,7 +128,7 @@ struct DiagramFilterSection: View {
         // A fresh `let` (not the `var` mutated above) so this Sendable value crosses the isolation
         // boundary as an immutable copy — same rebinding `FindingsView.toggleSuppressed` uses.
         let toSave = updated
-        presetSavePhase = .loading("Saving preset…")
+        presetSavePhase = .loading(.app("View.DiagramFilterSection.SavingPreset"))
         Task {
             do {
                 try await Task.detached(priority: .userInitiated) {

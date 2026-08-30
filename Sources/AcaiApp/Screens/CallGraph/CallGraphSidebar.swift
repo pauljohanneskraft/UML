@@ -105,13 +105,13 @@ struct CallGraphSidebar: View {
                             if !modules.isEmpty {
                                 Section(.app("View.CallGraphSidebar.Modules")) {
                                     ForEach(modules, id: \.self) { name in
-                                        Text(name).tag(CallGraphScope.module(name))
+                                        Text(verbatim: name).tag(CallGraphScope.module(name))
                                     }
                                 }
                             }
                             Section(.app("View.CallGraphSidebar.Types")) {
                                 ForEach(typeNames.filtered(by: scopeQuery), id: \.self) { name in
-                                    Text(name).tag(CallGraphScope.type(name))
+                                    Text(verbatim: name).tag(CallGraphScope.type(name))
                                 }
                             }
                         }

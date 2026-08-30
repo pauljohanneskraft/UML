@@ -367,13 +367,13 @@ private struct StoreErrorAlert: ViewModifier {
                 guard let codebaseID = error.relocatableCodebaseID else {
                     return Alert(
                         title: Text(.app("View.StoreErrorAlert.SomethingWentWrong")),
-                        message: Text(error.message),
+                        message: Text(verbatim: error.message),
                         dismissButton: .default(Text(.app("View.StoreErrorAlert.OK")))
                     )
                 }
                 return Alert(
                     title: Text(.app("View.StoreErrorAlert.SomethingWentWrong")),
-                    message: Text(error.message),
+                    message: Text(verbatim: error.message),
                     primaryButton: .default(Text(.app("View.StoreErrorAlert.ChooseFolder"))) {
                         relocationTarget = codebaseID
                         isChoosingFolder = true
