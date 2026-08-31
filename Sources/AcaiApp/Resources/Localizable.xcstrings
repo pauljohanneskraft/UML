@@ -4252,19 +4252,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld/%lld Aufrufstellen aufgelöst (%lld%)"
+            "value" : "%lld/%lld Aufrufstellen aufgelöst (%lld %%)"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Resolved %lld/%lld call sites (%lld%)"
+            "value" : "Resolved %lld/%lld call sites (%lld%%)"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld/%lld sites d'appel résolus (%lld%)"
+            "value" : "%lld/%lld sites d'appel résolus (%lld %%)"
           }
         }
       }
@@ -8697,28 +8697,6 @@
         }
       }
     },
-    "View.ContainerNodeView.Stereotype %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "<<%@>>"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "<<%@>>"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "<<%@>>"
-          }
-        }
-      }
-    },
     "View.ContractsEditor.AccessContracts" : {
       "localizations" : {
         "de" : {
@@ -12248,19 +12226,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld%"
+            "value" : "%lld %%"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld%"
+            "value" : "%lld%%"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld%"
+            "value" : "%lld%%"
           }
         }
       }
@@ -19609,28 +19587,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rien à afficher."
-          }
-        }
-      }
-    },
-    "View.StereotypedBoxNodeView.Stereotype %@" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "<<%@>>"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "<<%@>>"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "<<%@>>"
           }
         }
       }

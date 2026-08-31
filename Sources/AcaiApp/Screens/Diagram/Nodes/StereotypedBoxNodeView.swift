@@ -12,7 +12,7 @@ struct StereotypedBoxNodeView: View {
     var body: some View {
         VStack(spacing: 4) {
             if let stereotype {
-                Text(.app("View.StereotypedBoxNodeView.Stereotype \(stereotype)"))
+                Text(verbatim: "<<\(stereotype)>>")
                     .font(.system(size: 9, design: .monospaced))
                     .foregroundColor(palette.artifactBorder)
             }

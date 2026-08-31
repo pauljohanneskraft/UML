@@ -6,14 +6,20 @@ import Foundation
 struct FormatArguments: Equatable, CustomStringConvertible {
     let byPosition: [Int: String]
 
+    /// `%` characters that are neither a specifier nor an escaped `%%`. The formatter swallows one,
+    /// so `"%lld%"` renders "120" where "120%" was meant.
+    let strayPercents: Int
+
     /// `substitutions` is the localization's `substitutions` block, which resolves each `%#@name@`
     /// to the argument it stands for.
     init(_ format: String, substitutions: [String: [String: Any]] = [:]) {
         let specifier = /%(?:%|(?:(\d+)\$)?(?:#@(\w+)@|[-+ 0#']*[\d.]*((?:hh|h|ll|l|q|z|t|j|L)?)([@a-zA-Z])))/
         var byPosition: [Int: String] = [:]
         var next = 1
+        var accounted = 0
         for match in format.matches(of: specifier) {
             let (whole, position, substitution, length, conversion) = match.output
+            accounted += whole == "%%" ? 2 : 1
             guard whole != "%%" else { continue }
             if let substitution {
                 guard let entry = substitutions[String(substitution)],
@@ -29,6 +35,7 @@ struct FormatArguments: Equatable, CustomStringConvertible {
             next = max(next, argument + 1)
         }
         self.byPosition = byPosition
+        self.strayPercents = format.count(where: { $0 == "%" }) - accounted
     }
 
     var description: String {

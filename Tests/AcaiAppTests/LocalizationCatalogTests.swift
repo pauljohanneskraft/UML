@@ -39,121 +39,6 @@ struct LocalizationCatalogTests {
     /// The spellings that state what a `Text` holds. Anything else is an unmarked string.
     private static let textIntents = ["verbatim:", "localized:", ".app(", "image:"]
 
-    // MARK: - Catalog
-
-    private func catalogStrings() throws -> [String: [String: Any]] {
-        let url = sourceRoot.appendingPathComponent("Resources/Localizable.xcstrings")
-        let object = try JSONSerialization.jsonObject(with: try Data(contentsOf: url))
-        let catalog = try #require(object as? [String: Any])
-        return try #require(catalog["strings"] as? [String: [String: Any]])
-    }
-
-    private func languages(in entry: [String: Any]) -> Set<String> {
-        Set((entry["localizations"] as? [String: Any])?.keys ?? [:].keys)
-    }
-
-    /// The entry's text in one language: either its flat value, or a plural's `other` form.
-    private func text(of entry: [String: Any], _ language: String) -> String? {
-        guard let localizations = entry["localizations"] as? [String: Any],
-              let localization = localizations[language] as? [String: Any] else { return nil }
-        if let unit = localization["stringUnit"] as? [String: Any] { return unit["value"] as? String }
-        guard let variations = localization["variations"] as? [String: Any],
-              let plural = variations["plural"] as? [String: Any],
-              let other = plural["other"] as? [String: Any],
-              let unit = other["stringUnit"] as? [String: Any] else { return nil }
-        return unit["value"] as? String
-    }
-
-    /// One concrete format string of a localization, with the substitutions that resolve its
-    /// `%#@name@` tokens. A plural entry has one per plural form; every form has to agree.
-    private struct LocalizedFormat {
-        let value: String
-        let substitutions: [String: [String: Any]]
-    }
-
-    /// Every format string a localization can produce — its flat value, or one per plural form.
-    private func formats(of entry: [String: Any], _ language: String) -> [LocalizedFormat] {
-        guard let localizations = entry["localizations"] as? [String: Any],
-              let localization = localizations[language] as? [String: Any] else { return [] }
-        let substitutions = localization["substitutions"] as? [String: [String: Any]] ?? [:]
-        if let unit = localization["stringUnit"] as? [String: Any], let value = unit["value"] as? String {
-            return [LocalizedFormat(value: value, substitutions: substitutions)]
-        }
-        guard let variations = localization["variations"] as? [String: Any],
-              let plural = variations["plural"] as? [String: Any] else { return [] }
-        return plural.values.compactMap { form in
-            guard let form = form as? [String: Any], let unit = form["stringUnit"] as? [String: Any],
-                  let value = unit["value"] as? String else { return nil }
-            return LocalizedFormat(value: value, substitutions: substitutions)
-        }
-    }
-
-    // MARK: - Source
-
-    private func swiftFiles() -> [URL] {
-        guard let walker = FileManager.default.enumerator(at: sourceRoot, includingPropertiesForKeys: nil) else {
-            return []
-        }
-        return walker.compactMap { $0 as? URL }.filter { $0.pathExtension == "swift" }
-    }
-
-    /// Every `.app("…")` in the module, with the number of interpolated arguments it passes.
-    private func usages() -> [Usage] {
-        var usages: [Usage] = []
-        for file in swiftFiles() {
-            guard let source = try? String(contentsOf: file, encoding: .utf8) else { continue }
-            var remainder = Substring(source)
-            while let start = remainder.range(of: ".app(\"") {
-                remainder = remainder[start.upperBound...]
-                guard let end = remainder.firstIndex(of: "\"") else { break }
-                let literal = remainder[..<end]
-                let identifier = literal.prefix { $0 != " " }
-                usages.append(
-                    Usage(
-                        identifier: String(identifier),
-                        arguments: interpolations(in: literal),
-                        file: file.lastPathComponent
-                    )
-                )
-                remainder = remainder[end...]
-            }
-        }
-        return usages
-    }
-
-    /// The source text of each `\(…)` in a string literal, paren-balanced so a nested call stays
-    /// whole.
-    private func interpolations(in literal: Substring) -> [String] {
-        var arguments: [String] = []
-        var remainder = literal
-        while let start = remainder.range(of: "\\(") {
-            remainder = remainder[start.upperBound...]
-            var depth = 1
-            var end = remainder.startIndex
-            while end < remainder.endIndex, depth > 0 {
-                if remainder[end] == "(" { depth += 1 }
-                if remainder[end] == ")" { depth -= 1 }
-                if depth > 0 { end = remainder.index(after: end) }
-            }
-            arguments.append(String(remainder[..<end]))
-            guard end < remainder.endIndex else { break }
-            remainder = remainder[remainder.index(after: end)...]
-        }
-        return arguments
-    }
-
-    /// The source text between a `(` at `start` and its matching `)`.
-    private func call(in source: String, from start: String.Index) -> Substring {
-        var depth = 1
-        var end = start
-        while end < source.endIndex, depth > 0 {
-            if source[end] == "(" { depth += 1 }
-            if source[end] == ")" { depth -= 1 }
-            if depth > 0 { end = source.index(after: end) }
-        }
-        return source[start..<end]
-    }
-
     // MARK: - Tests
 
     @Test("Every identifier used in the app exists in the catalog")
@@ -201,6 +86,13 @@ struct LocalizationCatalogTests {
                         """
                         \(language) '\(key)': value '\(format.value)' formats \(actual), \
                         the key declares \(declared)
+                        """
+                    )
+                    #expect(
+                        actual.strayPercents == 0,
+                        """
+                        \(language) '\(key)': value '\(format.value)' has a bare % — the formatter \
+                        swallows it, so a literal percent sign must be written %%
                         """
                     )
                 }
@@ -363,4 +255,125 @@ struct LocalizationCatalogTests {
             }
         }
     }
+}
+
+// MARK: - Catalog and Source Reading
+
+extension LocalizationCatalogTests {
+
+    // MARK: - Catalog
+
+    private func catalogStrings() throws -> [String: [String: Any]] {
+        let url = sourceRoot.appendingPathComponent("Resources/Localizable.xcstrings")
+        let object = try JSONSerialization.jsonObject(with: try Data(contentsOf: url))
+        let catalog = try #require(object as? [String: Any])
+        return try #require(catalog["strings"] as? [String: [String: Any]])
+    }
+
+    private func languages(in entry: [String: Any]) -> Set<String> {
+        Set((entry["localizations"] as? [String: Any])?.keys ?? [:].keys)
+    }
+
+    /// The entry's text in one language: either its flat value, or a plural's `other` form.
+    private func text(of entry: [String: Any], _ language: String) -> String? {
+        guard let localizations = entry["localizations"] as? [String: Any],
+              let localization = localizations[language] as? [String: Any] else { return nil }
+        if let unit = localization["stringUnit"] as? [String: Any] { return unit["value"] as? String }
+        guard let variations = localization["variations"] as? [String: Any],
+              let plural = variations["plural"] as? [String: Any],
+              let other = plural["other"] as? [String: Any],
+              let unit = other["stringUnit"] as? [String: Any] else { return nil }
+        return unit["value"] as? String
+    }
+
+    /// One concrete format string of a localization, with the substitutions that resolve its
+    /// `%#@name@` tokens. A plural entry has one per plural form; every form has to agree.
+    private struct LocalizedFormat {
+        let value: String
+        let substitutions: [String: [String: Any]]
+    }
+
+    /// Every format string a localization can produce — its flat value, or one per plural form.
+    private func formats(of entry: [String: Any], _ language: String) -> [LocalizedFormat] {
+        guard let localizations = entry["localizations"] as? [String: Any],
+              let localization = localizations[language] as? [String: Any] else { return [] }
+        let substitutions = localization["substitutions"] as? [String: [String: Any]] ?? [:]
+        if let unit = localization["stringUnit"] as? [String: Any], let value = unit["value"] as? String {
+            return [LocalizedFormat(value: value, substitutions: substitutions)]
+        }
+        guard let variations = localization["variations"] as? [String: Any],
+              let plural = variations["plural"] as? [String: Any] else { return [] }
+        return plural.values.compactMap { form in
+            guard let form = form as? [String: Any], let unit = form["stringUnit"] as? [String: Any],
+                  let value = unit["value"] as? String else { return nil }
+            return LocalizedFormat(value: value, substitutions: substitutions)
+        }
+    }
+
+    // MARK: - Source
+
+    private func swiftFiles() -> [URL] {
+        guard let walker = FileManager.default.enumerator(at: sourceRoot, includingPropertiesForKeys: nil) else {
+            return []
+        }
+        return walker.compactMap { $0 as? URL }.filter { $0.pathExtension == "swift" }
+    }
+
+    /// Every `.app("…")` in the module, with the number of interpolated arguments it passes.
+    private func usages() -> [Usage] {
+        var usages: [Usage] = []
+        for file in swiftFiles() {
+            guard let source = try? String(contentsOf: file, encoding: .utf8) else { continue }
+            var remainder = Substring(source)
+            while let start = remainder.range(of: ".app(\"") {
+                remainder = remainder[start.upperBound...]
+                guard let end = remainder.firstIndex(of: "\"") else { break }
+                let literal = remainder[..<end]
+                let identifier = literal.prefix { $0 != " " }
+                usages.append(
+                    Usage(
+                        identifier: String(identifier),
+                        arguments: interpolations(in: literal),
+                        file: file.lastPathComponent
+                    )
+                )
+                remainder = remainder[end...]
+            }
+        }
+        return usages
+    }
+
+    /// The source text of each `\(…)` in a string literal, paren-balanced so a nested call stays
+    /// whole.
+    private func interpolations(in literal: Substring) -> [String] {
+        var arguments: [String] = []
+        var remainder = literal
+        while let start = remainder.range(of: "\\(") {
+            remainder = remainder[start.upperBound...]
+            var depth = 1
+            var end = remainder.startIndex
+            while end < remainder.endIndex, depth > 0 {
+                if remainder[end] == "(" { depth += 1 }
+                if remainder[end] == ")" { depth -= 1 }
+                if depth > 0 { end = remainder.index(after: end) }
+            }
+            arguments.append(String(remainder[..<end]))
+            guard end < remainder.endIndex else { break }
+            remainder = remainder[remainder.index(after: end)...]
+        }
+        return arguments
+    }
+
+    /// The source text between a `(` at `start` and its matching `)`.
+    private func call(in source: String, from start: String.Index) -> Substring {
+        var depth = 1
+        var end = start
+        while end < source.endIndex, depth > 0 {
+            if source[end] == "(" { depth += 1 }
+            if source[end] == ")" { depth -= 1 }
+            if depth > 0 { end = source.index(after: end) }
+        }
+        return source[start..<end]
+    }
+
 }
