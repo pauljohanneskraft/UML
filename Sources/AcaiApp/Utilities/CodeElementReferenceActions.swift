@@ -31,7 +31,7 @@ struct CodeElementReferenceActions: ViewModifier {
         FinderReveal(
             codebase: codebase, relativePath: relativePath,
             onFailure: { [store = model.store] in
-                store.report("Couldn't reveal in Finder: \($0.localizedDescription)")
+                store.report(.app("Error.FinderReveal.Failed \($0.localizedDescription)"))
             }
         )
     }
@@ -55,8 +55,9 @@ struct CodeElementReferenceActions: ViewModifier {
                 Button {
                     open(resolution)
                 } label: {
+                    let diagram = String(localized: resolution.diagramType.title)
                     Label(
-                        "Open in \(resolution.diagramType.displayName)",
+                        .app("View.CodeElementReferenceActions.OpenIn \(diagram)"),
                         systemImage: resolution.diagramType.systemImage)
                 }
             }
@@ -66,7 +67,7 @@ struct CodeElementReferenceActions: ViewModifier {
                 Button {
                     finderReveal.reveal()
                 } label: {
-                    Label("Reveal in Finder", systemImage: "folder")
+                    Label(.app("View.CodeElementReferenceActions.RevealFinder"), systemImage: "folder")
                 }
             }
             #endif
